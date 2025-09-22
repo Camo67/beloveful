@@ -2,7 +2,13 @@
 
 import { useState, useEffect } from "react"
 
-const heroImages = ["/hero-image.png", "/images/hero-1.jpg", "/images/hero-2.jpg", "/images/hero-3.jpg"]
+// All Africa images you provided
+const heroImages = [
+  "/Africa/Egypt/11-16-EGY-1107.jpg",
+  "/Africa/Ethiopia/ETH-2206.jpg",
+  "/Africa/Morocco/IMG_5172.jpg",
+  "/Africa/Namibia/NAM-03-18-DSCF3994-2.jpg",
+]
 
 export default function HeroSlideshow() {
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -10,7 +16,7 @@ export default function HeroSlideshow() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % heroImages.length)
-    }, 5000) // Change image every 5 seconds
+    }, 5000) // change slide every 5 seconds
 
     return () => clearInterval(interval)
   }, [])
@@ -28,6 +34,7 @@ export default function HeroSlideshow() {
           }}
         />
       ))}
+
       {/* Overlay for better text readability */}
       <div className="absolute inset-0 bg-black/20" />
 
@@ -37,7 +44,9 @@ export default function HeroSlideshow() {
           <button
             key={index}
             onClick={() => setCurrentIndex(index)}
-            className={`w-2 h-2 rounded-full transition-colors ${index === currentIndex ? "bg-white" : "bg-white/40"}`}
+            className={`w-2 h-2 rounded-full transition-colors ${
+              index === currentIndex ? "bg-white" : "bg-white/40"
+            }`}
             aria-label={`Go to slide ${index + 1}`}
           />
         ))}
