@@ -6,7 +6,7 @@ import Logo from "@/components/logo"
 
 // Hero images from public folder
 const heroImages = [
-  "/Africa/Egypt/11-16-EGY-1107.jpg",
+  "https://github.com/Camo67/beloveful/blob/main/public/Central%20America%20%26%20Caribbean/Caribbean/CAR-12-24-DSCF8798.jpg",
   "/Africa/Ethiopia/ETH-2206.jpg",
   "/Africa/Morocco/IMG_5172.jpg",
   "/Africa/Namibia/NAM-03-18-DSCF3994-2.jpg"
