@@ -1,6 +1,8 @@
-name = "beloveful-worker"
-type = "static" # or "esm" if you're using modern module syntax
+name = "beloveful"
+type = "webpack" # or "javascript" if no bundling needed
+account_id = "YOUR_CLOUDFLARE_ACCOUNT_ID"
 workers_dev = true
-compatibility_date = "2025-09-23"
-
-main = "index.html"
+site = { 
+  bucket = "./",       # points to the root folder of your HTML project
+  entry-point = "./"   # can be the same
+}
