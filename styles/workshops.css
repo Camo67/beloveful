@@ -1,0 +1,170 @@
+/* Workshops page specific styles */
+
+.workshops-container {
+    min-height: 100vh;
+}
+
+.workshops-header {
+    position: relative;
+    z-index: 10;
+    background: white;
+    border-bottom: 1px solid var(--border);
+}
+
+.workshops-hero {
+    position: relative;
+    height: 24rem;
+    overflow: hidden;
+}
+
+.workshops-hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.workshops-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.workshops-hero-content {
+    text-align: center;
+    color: white;
+}
+
+.workshops-hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.workshops-hero-content p {
+    font-size: 1.25rem;
+}
+
+.workshops-main {
+    padding: 4rem 0;
+}
+
+.workshops-intro {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.workshops-intro h2 {
+    font-size: 2rem;
+    color: #000;
+    margin-bottom: 1.5rem;
+}
+
+.workshops-intro p {
+    font-size: 1.125rem;
+    color: #666;
+    line-height: 1.7;
+    max-width: 48rem;
+    margin: 0 auto;
+}
+
+.workshops-content {
+    max-width: 64rem;
+    margin: 0 auto;
+}
+
+.workshop-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+}
+
+.what-learn h3,
+.workshop-info h3 {
+    font-size: 1.5rem;
+    color: #000;
+    margin-bottom: 1rem;
+}
+
+.what-learn ul {
+    list-style: none;
+    padding: 0;
+}
+
+.what-learn li {
+    color: #666;
+    margin-bottom: 0.75rem;
+    position: relative;
+    padding-left: 1rem;
+}
+
+.what-learn li::before {
+    content: '•';
+    color: #000;
+    position: absolute;
+    left: 0;
+}
+
+.info-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.info-item {
+    color: #666;
+}
+
+.info-item strong {
+    color: #000;
+}
+
+.workshop-booking {
+    text-align: center;
+}
+
+.book-button {
+    display: inline-block;
+    background: #000;
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 9999px;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+
+.book-button:hover {
+    background: #333;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .workshops-hero-content h1 {
+        font-size: 2rem;
+    }
+    
+    .workshops-hero-content p {
+        font-size: 1rem;
+    }
+    
+    .workshop-details {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .workshops-intro h2 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .workshops-hero {
+        height: 16rem;
+    }
+    
+    .workshops-hero-content h1 {
+        font-size: 1.5rem;
+    }
+}
