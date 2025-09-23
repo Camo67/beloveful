@@ -1,0 +1,7 @@
+name = "beloveful-worker"
+type = "javascript" # or "esm" if you're using modern module syntax
+account_id = "your-cloudflare-account-id"
+workers_dev = true
+compatibility_date = "2025-09-23"
+
+main = "app.tsx"
