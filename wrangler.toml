@@ -1,8 +1,8 @@
 name = "beloveful"
-type = "webpack" # or "javascript" if no bundling needed
-account_id = "YOUR_CLOUDFLARE_ACCOUNT_ID"
+type = "static"                  # for plain HTML/CSS
 workers_dev = true
+
 site = { 
-  bucket = "./",       # points to the root folder of your HTML project
-  entry-point = "./"   # can be the same
+  bucket = "./",                 # folder with index.html
+  entry-point = "./"
 }
