@@ -4,50 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio - BE LOVEFUL Photography</title>
-    
-    <!-- Favicons -->
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-
-    <!-- CSS -->
-    <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/portfolio.css">
-
-    <!-- Manifest -->
-    <link rel="manifest" href="/manifest.json">
-
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/portfolio.css">
+    <link rel="manifest" href="manifest.json">
     <meta name="description" content="Photography portfolio showcasing work from across continents - Africa, Asia, Europe, and the Americas.">
 </head>
 <body>
     <!-- Header -->
     <header class="site-header">
         <div class="header-content">
-            <!-- Social Links -->
+            <!-- Social Links - Desktop -->
             <div class="header-social">
                 <a href="https://www.facebook.com/tony.menias" target="_blank" rel="noopener noreferrer" class="header-social-link">
-                    <!-- Facebook SVG here -->
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                    </svg>
                 </a>
                 <a href="https://www.instagram.com/beloveful" target="_blank" rel="noopener noreferrer" class="header-social-link">
-                    <!-- Instagram SVG here -->
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.62 5.367 11.987 11.988 11.987 6.62 0 11.987-5.367 11.987-11.987C24.014 5.367 18.637.001 12.017.001z"/>
+                    </svg>
                 </a>
             </div>
 
             <!-- Logo -->
             <div class="header-logo">
-                <a href="/index.html">
-                    <img src="/beloveful-logo-black.png" alt="BE LOVEFUL Photography" class="logo">
+                <a href="index.html">
+                    <img src="src/beloveful-logo-black.png" alt="BE LOVEFUL Photography" class="logo">
                 </a>
             </div>
 
             <!-- Navigation -->
             <nav class="header-nav">
-                <a href="/index.html" class="nav-link">HOME</a>
-                <a href="/portfolio.html" class="nav-link active">PORTFOLIO</a>
+                <a href="index.html" class="nav-link">HOME</a>
+                <a href="portfolio.html" class="nav-link active">PORTFOLIO</a>
                 <a href="https://www.printinnovationlab.com/collections/beloveful" target="_blank" class="nav-link">PRINT SHOP</a>
-                <a href="/workshops.html" class="nav-link">WORKSHOPS</a>
-                <a href="/about.html" class="nav-link">ABOUT</a>
+                <a href="workshops.html" class="nav-link">WORKSHOPS</a>
+                <a href="about.html" class="nav-link">ABOUT</a>
             </nav>
         </div>
     </header>
@@ -55,19 +52,22 @@
     <!-- Main Content -->
     <main class="portfolio-main">
         <div class="container">
+            <!-- Hero Section -->
             <div class="portfolio-hero">
                 <h1>Portfolio</h1>
                 <p>A curated collection of moments captured across continents, telling stories that transcend borders.</p>
             </div>
 
+            <!-- Filter Notice -->
             <div class="filter-notice">
                 <p>Showcasing work from Africa, Asia, Europe, and the Americas</p>
             </div>
 
+            <!-- Portfolio Grid -->
             <div class="portfolio-grid">
                 <!-- Africa Images -->
                 <div class="portfolio-item portrait africa" data-country="Egypt">
-                    <img src="/Africa/Egypt/EGY-1135.jpg" alt="Egyptian Architecture" loading="lazy">
+                    <img src="src/Africa/Egypt/EGY-1135.jpg" alt="Egyptian Architecture" loading="lazy">
                     <div class="portfolio-overlay">
                         <h3>Egyptian Architecture</h3>
                         <p>Egypt</p>
@@ -75,7 +75,7 @@
                 </div>
 
                 <div class="portfolio-item landscape africa" data-country="Egypt">
-                    <img src="/Africa/Egypt/EGY-481.jpg" alt="Egyptian Street Scene" loading="lazy">
+                    <img src="src/Africa/Egypt/EGY-481.jpg" alt="Egyptian Street Scene" loading="lazy">
                     <div class="portfolio-overlay">
                         <h3>Egyptian Street Scene</h3>
                         <p>Egypt</p>
@@ -83,7 +83,7 @@
                 </div>
 
                 <div class="portfolio-item square africa" data-country="Morocco">
-                    <img src="/Africa/Morocco/Morocco-AlmostHome.jpg" alt="Almost Home" loading="lazy">
+                    <img src="src/Africa/Morocco/Morocco-AlmostHome.jpg" alt="Almost Home" loading="lazy">
                     <div class="portfolio-overlay">
                         <h3>Almost Home</h3>
                         <p>Morocco</p>
@@ -91,7 +91,7 @@
                 </div>
 
                 <div class="portfolio-item landscape africa" data-country="Morocco">
-                    <img src="/Africa/Morocco/Morocco-Hide n Seek.jpg" alt="Hide n Seek" loading="lazy">
+                    <img src="src/Africa/Morocco/Morocco-Hide n Seek.jpg" alt="Hide n Seek" loading="lazy">
                     <div class="portfolio-overlay">
                         <h3>Hide n Seek</h3>
                         <p>Morocco</p>
@@ -99,7 +99,7 @@
                 </div>
 
                 <div class="portfolio-item portrait africa" data-country="Ethiopia">
-                    <img src="/Africa/Ethiopia/IMG_1428.jpg" alt="Ethiopian Portrait" loading="lazy">
+                    <img src="src/Africa/Ethiopia/IMG_1428.jpg" alt="Ethiopian Portrait" loading="lazy">
                     <div class="portfolio-overlay">
                         <h3>Ethiopian Portrait</h3>
                         <p>Ethiopia</p>
@@ -107,7 +107,7 @@
                 </div>
 
                 <div class="portfolio-item landscape africa" data-country="Namibia">
-                    <img src="/Africa/Namibia/NAM-03-18-DSCF3946.jpg" alt="Namibian Desert" loading="lazy">
+                    <img src="src/Africa/Namibia/NAM-03-18-DSCF3946.jpg" alt="Namibian Desert" loading="lazy">
                     <div class="portfolio-overlay">
                         <h3>Namibian Desert</h3>
                         <p>Namibia</p>
@@ -116,7 +116,7 @@
 
                 <!-- Asia Images -->
                 <div class="portfolio-item portrait asia" data-country="India">
-                    <img src="/Asia/India/MadameJodhpur.jpg" alt="Madame Jodhpur" loading="lazy">
+                    <img src="src/Asia/India/MadameJodhpur.jpg" alt="Madame Jodhpur" loading="lazy">
                     <div class="portfolio-overlay">
                         <h3>Madame Jodhpur</h3>
                         <p>India</p>
@@ -124,44 +124,213 @@
                 </div>
 
                 <div class="portfolio-item square asia" data-country="India">
-                    <img src="/Asia/India/HoliAir.jpg" alt="Holi Festival" loading="lazy">
+                    <img src="src/Asia/India/HoliAir.jpg" alt="Holi Festival" loading="lazy">
                     <div class="portfolio-overlay">
                         <h3>Holi Festival</h3>
                         <p>India</p>
                     </div>
                 </div>
 
+                <div class="portfolio-item landscape asia" data-country="India">
+                    <img src="src/Asia/India/Baba-Holi.jpg" alt="Baba Holi" loading="lazy">
+                    <div class="portfolio-overlay">
+                        <h3>Baba Holi</h3>
+                        <p>India</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item portrait asia" data-country="India">
+                    <img src="src/Asia/India/Manhole.jpg" alt="Street Photography" loading="lazy">
+                    <div class="portfolio-overlay">
+                        <h3>Street Photography</h3>
+                        <p>India</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item landscape asia" data-country="Japan">
+                    <img src="src/Asia/Japan/Japan.jpg" alt="Japanese Street" loading="lazy">
+                    <div class="portfolio-overlay">
+                        <h3>Japanese Street</h3>
+                        <p>Japan</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item square asia" data-country="Japan">
+                    <img src="src/Asia/Japan/WanderingPaths.jpg" alt="Wandering Paths" loading="lazy">
+                    <div class="portfolio-overlay">
+                        <h3>Wandering Paths</h3>
+                        <p>Japan</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item square asia" data-country="Thailand">
+                    <img src="src/Asia/Thailand/Simpler Times.jpg" alt="Simpler Times" loading="lazy">
+                    <div class="portfolio-overlay">
+                        <h3>Simpler Times</h3>
+                        <p>Thailand</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item portrait asia" data-country="Myanmar">
+                    <img src="src/Asia/Myanmar/Enlightened.jpg" alt="Enlightened" loading="lazy">
+                    <div class="portfolio-overlay">
+                        <h3>Enlightened</h3>
+                        <p>Myanmar</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item landscape asia" data-country="Myanmar">
+                    <img src="src/Asia/Myanmar/Bridge to Enlightenment.jpg" alt="Bridge to Enlightenment" loading="lazy">
+                    <div class="portfolio-overlay">
+                        <h3>Bridge to Enlightenment</h3>
+                        <p>Myanmar</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item landscape asia" data-country="Vietnam">
+                    <img src="src/Asia/Vietnam/Lazy Sunday.jpg" alt="Lazy Sunday" loading="lazy">
+                    <div class="portfolio-overlay">
+                        <h3>Lazy Sunday</h3>
+                        <p>Vietnam</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item square asia" data-country="Nepal">
+                    <img src="src/Asia/Nepal/NEP-Silent Stare.jpg" alt="Silent Stare" loading="lazy">
+                    <div class="portfolio-overlay">
+                        <h3>Silent Stare</h3>
+                        <p>Nepal</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item portrait asia" data-country="Hong Kong">
+                    <img src="src/Asia/Hong Kong/Pastel Playground.jpg" alt="Pastel Playground" loading="lazy">
+                    <div class="portfolio-overlay">
+                        <h3>Pastel Playground</h3>
+                        <p>Hong Kong</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item landscape asia" data-country="Philippines">
+                    <img src="src/Asia/philippines-1/Sunset-Sails.jpg" alt="Sunset Sails" loading="lazy">
+                    <div class="portfolio-overlay">
+                        <h3>Sunset Sails</h3>
+                        <p>Philippines</p>
+                    </div>
+                </div>
+
                 <!-- Europe Images -->
                 <div class="portfolio-item landscape europe" data-country="Italy">
-                    <img src="/Europe & Scandinavia/Italy/ITA-5252.jpg" alt="Italian Architecture" loading="lazy">
+                    <img src="src/Europe & Scandinavia/Italy/ITA-5252.jpg" alt="Italian Architecture" loading="lazy">
                     <div class="portfolio-overlay">
                         <h3>Italian Architecture</h3>
                         <p>Italy</p>
                     </div>
                 </div>
 
+                <div class="portfolio-item portrait europe" data-country="Italy">
+                    <img src="src/Europe & Scandinavia/Italy/ITA-6796-Website-2.jpg" alt="Italian Street" loading="lazy">
+                    <div class="portfolio-overlay">
+                        <h3>Italian Street</h3>
+                        <p>Italy</p>
+                    </div>
+                </div>
+
                 <div class="portfolio-item portrait europe" data-country="France">
-                    <img src="/Europe & Scandinavia/France/FRA-0103.jpg" alt="French Street" loading="lazy">
+                    <img src="src/Europe & Scandinavia/France/FRA-0103.jpg" alt="French Street" loading="lazy">
                     <div class="portfolio-overlay">
                         <h3>French Street</h3>
                         <p>France</p>
                     </div>
                 </div>
 
+                <div class="portfolio-item square europe" data-country="Greece">
+                    <img src="src/Europe & Scandinavia/Greece/Greece-DSCF4135.jpg" alt="Greek Island" loading="lazy">
+                    <div class="portfolio-overlay">
+                        <h3>Greek Island</h3>
+                        <p>Greece</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item portrait europe" data-country="Portugal">
+                    <img src="src/Europe & Scandinavia/Portugal/Lisbon-5415.jpg" alt="Lisbon Street" loading="lazy">
+                    <div class="portfolio-overlay">
+                        <h3>Lisbon Street</h3>
+                        <p>Portugal</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item landscape europe" data-country="Ireland">
+                    <img src="src/Europe & Scandinavia/UK & Ireland/Ireland-HeAwaits.jpg" alt="He Awaits" loading="lazy">
+                    <div class="portfolio-overlay">
+                        <h3>He Awaits</h3>
+                        <p>Ireland</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item portrait europe" data-country="UK">
+                    <img src="src/Europe & Scandinavia/UK & Ireland/GoneGirl.jpg" alt="Gone Girl" loading="lazy">
+                    <div class="portfolio-overlay">
+                        <h3>Gone Girl</h3>
+                        <p>UK</p>
+                    </div>
+                </div>
+
                 <!-- Americas Images -->
                 <div class="portfolio-item landscape americas" data-country="Mexico">
-                    <img src="/Central America & Caribbean/Mexico/MEX-Miss Technicolor-8.jpg" alt="Miss Technicolor" loading="lazy">
+                    <img src="src/Central America & Caribbean/Mexico/MEX-Miss Technicolor-8.jpg" alt="Miss Technicolor" loading="lazy">
                     <div class="portfolio-overlay">
                         <h3>Miss Technicolor</h3>
                         <p>Mexico</p>
                     </div>
                 </div>
 
-                <div class="portfolio-item portrait americas" data-country="Argentina">
-                    <img src="/South America/Argentina/_DSF6993.jpg" alt="Argentine Landscape" loading="lazy">
+                <div class="portfolio-item portrait americas" data-country="Mexico">
+                    <img src="src/Central America & Caribbean/Mexico/MEX-178.jpg" alt="Mexican Culture" loading="lazy">
+                    <div class="portfolio-overlay">
+                        <h3>Mexican Culture</h3>
+                        <p>Mexico</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item portrait americas" data-country="Caribbean">
+                    <img src="src/Central America & Caribbean/Caribbean/CAR-7827.jpg" alt="Caribbean Life" loading="lazy">
+                    <div class="portfolio-overlay">
+                        <h3>Caribbean Life</h3>
+                        <p>Caribbean</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item landscape americas" data-country="Puerto Rico">
+                    <img src="src/Central America & Caribbean/Puerto Rico/PR-1049.jpg" alt="Puerto Rican Culture" loading="lazy">
+                    <div class="portfolio-overlay">
+                        <h3>Puerto Rican Culture</h3>
+                        <p>Puerto Rico</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item square americas" data-country="Argentina">
+                    <img src="src/South America/Argentina/_DSF6993.jpg" alt="Argentine Landscape" loading="lazy">
                     <div class="portfolio-overlay">
                         <h3>Argentine Landscape</h3>
                         <p>Argentina</p>
+                    </div>
+                </div>
+
+                <!-- Middle East Images -->
+                <div class="portfolio-item landscape asia" data-country="Jordan">
+                    <img src="src/Middle East/Jordan/JOR-4461.jpg" alt="Jordanian Culture" loading="lazy">
+                    <div class="portfolio-overlay">
+                        <h3>Jordanian Culture</h3>
+                        <p>Jordan</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item portrait asia" data-country="Palestine">
+                    <img src="src/Middle East/Israel _ Palestine/TonyMenias-Hesalwayslistening.jpg" alt="He's Always Listening" loading="lazy">
+                    <div class="portfolio-overlay">
+                        <h3>He's Always Listening</h3>
+                        <p>Palestine</p>
                     </div>
                 </div>
             </div>
@@ -171,24 +340,32 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
+            <!-- Social Icons -->
             <div class="footer-social">
                 <a href="https://www.instagram.com/beloveful" target="_blank" rel="noopener noreferrer" class="footer-social-link">
-                    <!-- Instagram SVG -->
+                    <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.62 5.367 11.987 11.988 11.987 6.62 0 11.987-5.367 11.987-11.987C24.014 5.367 18.637.001 12.017.001z"/>
+                    </svg>
                 </a>
                 <a href="https://www.facebook.com/beloveful" target="_blank" rel="noopener noreferrer" class="footer-social-link">
-                    <!-- Facebook SVG -->
+                    <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                    </svg>
                 </a>
             </div>
 
+            <!-- Logo -->
             <div class="footer-logo">
-                <img src="/beloveful-logo-black.png" alt="BE LOVEFUL Photography" class="footer-logo-img">
+                <img src="src/beloveful-logo-black.png" alt="BE LOVEFUL Photography" class="footer-logo-img">
             </div>
 
+            <!-- Links -->
             <div class="footer-links">
-                <a href="/workshops.html" class="footer-link">Workshops</a>
+                <a href="workshops.html" class="footer-link">Workshops</a>
                 <a href="https://www.printinnovationlab.com/collections/beloveful" target="_blank" class="footer-link">Print Shop</a>
             </div>
 
+            <!-- Copyright -->
             <div class="footer-copyright">
                 <p>&copy; 2025 Tony Menias. All rights reserved.</p>
             </div>
