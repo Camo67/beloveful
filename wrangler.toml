@@ -1,8 +1,8 @@
 name = "beloveful"
-type = "static"                  # for plain HTML/CSS
+type = "static"
+account_id = "YOUR_ACCOUNT_ID"
 workers_dev = true
 
-site = { 
-  bucket = "./",                 # folder with index.html
-  entry-point = "./"
-}
+[site]
+bucket = "./"
+entry-point = "./"
