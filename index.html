@@ -1,103 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tony Menias – BELOVEFUL Photography</title>
-  <meta name="description" content="Professional photography portfolio by Tony Menias showcasing work across multiple continents – Asia, Europe, Americas, and Africa." />
+  <meta name="description" content="Professional photography portfolio by Tony Menias showcasing work across Asia, Europe, Americas, and Africa.">
 
-  <!-- Preload critical images -->
-  <link rel="preload" href="src/images/Africa/Egypt/11-16-EGY-1107.jpg" as="image" />
-  <link rel="preload" href="src/images/Asia/India/MadameJodhpur.jpg" as="image" />
-  <link rel="preload" href="src/images/Europe20%&20%candinavia/Italy/ITA-5252.jpg" as="image" />
-  <link rel="preload" href="src/images/Central20%America20%&20%Caribbean/Mexico/MEX-Miss20%Technicolor-8.jpg" as="image" />
-  <link rel="preload" href="src/images/Asia/Japan/Japan.jpg" as="image" />
-  <link rel="preload" href="src/images/Africa/Morocco/Morocco-AlmostHome.jpg" as="image" />
-  <link rel="preload" href="src/images/Europe20%&20%Scandinavia/Greece/Greece-DSCF4135.jpg" as="image" />
-  <link rel="preload" href="src/images/Asia/Thailand/Simpler20%Times.jpg" as="image" />
-  <link rel="preload" href="src/images/Asia/Myanmar/Enlightened.jpg" as="image" />
-  <link rel="preload" href="src/images/Asia/Vietnam/Lazy20%Sunday.jpg" as="image" />
-  <link rel="preload" href="src/images/Asia/Nepal/NEP-Silent20%Stare.jpg" as="image" />
-  <link rel="preload" href="src/images/Asia/Hong20%Kong/Pastel20%Playground.jpg" as="image" />
-  <link rel="preload" href="src/images/Europe20%&20%Scandinavia/UK20%&20%Ireland/Ireland-HeAwaits.jpg" as="image" />
-  <link rel="preload" href="src/images/Europe20%&20%Scandinavia/Portugal/Lisbon-5415.jpg" as="image" />
-  <link rel="preload" href="src/images/Europe20%&20%Scandinavia/France/FRA-0103.jpg" as="image" />
-  <link rel="preload" href="src/images/South20%America/Argentina/_DSF6993.jpg" as="image" />
-  <link rel="preload" href="src/images/Central20%America20%&20%Caribbean/Caribbean/CAR-7827.jpg" as="image" />
-  <link rel="preload" href="src/images/Africa/Ethiopia/IMG_1428.jpg" as="image" />
-  <link rel="preload" href="src/images/Africa/Namibia/NAM-03-18-DSCF3946.jpg" as="image" />
-  <link rel="preload" href="src/images/Middle20%East/Jordan/JOR-4461.jpg" as="image" />
-  <link rel="preload" href="src/images/beloveful-logo-white.png" as="image" />
-  <link rel="preload" href="src/images/beloveful-logo-black.png" as="image" />
+  <!-- Open Graph & Twitter -->
+  <meta property="og:title" content="Tony Menias – BELOVEFUL Photography">
+  <meta property="og:description" content="Professional photography portfolio showcasing work across multiple continents.">
+  <meta property="og:image" content="src/images/tony-hero-new.jpg">
+  <meta property="og:url" content="https://beloveful.com">
+  <meta property="og:type" content="website">
 
-  <!-- PWA Manifest -->
-  <link rel="manifest" href="manifest.json" />
-  <meta name="theme-color" content="#030213" />
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Tony Menias – BELOVEFUL Photography">
+  <meta name="twitter:description" content="Professional photography portfolio showcasing work across multiple continents.">
+  <meta name="twitter:image" content="src/images/tony-hero-new.jpg">
 
-  <!-- Open Graph Meta Tags -->
-  <meta property="og:title" content="Tony Menias – BE LOVEFUL Photography" />
-  <meta property="og:description" content="Professional photography portfolio showcasing work across multiple continents – Asia, Europe, Americas, and Africa." />
-  <meta property="og:image" content="src/images/tony-hero-new.jpg" />
-  <meta property="og:url" content="https://beloveful.com" />
-  <meta property="og:type" content="website" />
+  <!-- Preload critical assets -->
+  <link rel="preload" href="src/images/tony-hero-new.jpg" as="image">
+  <link rel="preload" href="src/images/beloveful-logo-white.png" as="image">
 
-  <!-- Twitter Meta Tags -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Tony Menias – BE LOVEFUL Photography" />
-  <meta name="twitter:description" content="Professional photography portfolio showcasing work across multiple continents." />
-  <meta name="twitter:image" content="src/images/tony-hero-new.jpg" />
-
-  <!-- Performance Optimization -->
-  <meta http-equiv="x-dns-prefetch-control" content="on" />
-  <link rel="dns-prefetch" href="//www.instagram.com" />
-  <link rel="dns-prefetch" href="//www.facebook.com" />
-  <link rel="dns-prefetch" href="//linktr.ee" />
-  <link rel="dns-prefetch" href="//www.printinnovationlab.com" />
-  <link rel="dns-prefetch" href="//www.youtube.com" />
-  <link rel="dns-prefetch" href="//creators.spotify.com" />
-
-  <!-- Mobile & App Meta -->
-  <meta name="format-detection" content="telephone=no" />
-  <meta name="mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-
-  <!-- Critical CSS -->
+  <!-- Inline critical CSS -->
   <style>
     :root {
-      --font-size: 16px;
-      --background: #ffffff;
-      --foreground: #212121;
+      --bg: #ffffff;
+      --fg: #212121;
       --primary: #030213;
-      --border: rgba(0, 0, 0, 0.1);
+      --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      line-height: 1.6;
-      color: var(--foreground);
-      background: var(--background);
-    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family: var(--font); background: var(--bg); color: var(--fg); line-height:1.6; }
+    header { background: var(--primary); padding: 1rem; color:#fff; text-align:center; }
+    header img { height:50px; vertical-align:middle; }
+    nav a { color:#fff; margin:0 1rem; text-decoration:none; font-weight:bold; }
+    main { padding: 2rem; max-width:1200px; margin:0 auto; }
+    .hero { position:relative; text-align:center; margin-bottom:2rem; }
+    .hero img { width:100%; max-height:600px; object-fit:cover; }
+    .gallery { display:grid; grid-template-columns: repeat(auto-fit,minmax(250px,1fr)); gap:1rem; }
+    .gallery img { width:100%; height:200px; object-fit:cover; border-radius:8px; }
+    footer { background:#030213; color:#fff; text-align:center; padding:1rem; margin-top:2rem; }
   </style>
-
-  <!-- Load non-critical CSS asynchronously -->
-  <link rel="preload" href="css/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-  <link rel="preload" href="css/about.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-  <link rel="preload" href="css/workshops.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-  <noscript>
-    <link rel="stylesheet" href="css/main.css" />
-    <link rel="stylesheet" href="css/about.css" />
-    <link rel="stylesheet" href="css/workshops.css" />
-  </noscript>
-
 </head>
+<body>
 
+<header>
+  <img src="src/images/beloveful-logo-white.png" alt="BELOVEFUL Logo">
+  <nav>
+    <a href="#gallery">Gallery</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
 
+<main>
 
+  <!-- Hero Section -->
+  <section class="hero">
+    <img src="src/images/tony-hero-new.jpg" alt="Tony Menias Photography">
+  </section>
 
+  <!-- Gallery Section -->
+  <section id="gallery">
+    <h2 style="text-align:center; margin-bottom:1rem;">Gallery</h2>
+    <div class="gallery">
+      <!-- Example lazy-loaded images -->
+      <img src="src/images/Africa/Egypt/11-16-EGY-1107.jpg" alt="Egypt" loading="lazy">
+      <img src="src/images/Asia/India/MadameJodhpur.jpg" alt="India" loading="lazy">
+      <img src="src/images/Europe/Italy/ITA-5252.jpg" alt="Italy" loading="lazy">
+      <img src="src/images/Central-America/Mexico/MEX-MissTechnicolor-8.jpg" alt="Mexico" loading="lazy">
+      <img src="src/images/Asia/Japan/Japan.jpg" alt="Japan" loading="lazy">
+      <img src="src/images/Africa/Morocco/Morocco-AlmostHome.jpg" alt="Morocco" loading="lazy">
+      <!-- Add more images here with the same pattern -->
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" style="margin-top:3rem;">
+    <h2 style="text-align:center; margin-bottom:1rem;">About Tony Menias</h2>
+    <p style="max-width:800px; margin:0 auto; text-align:center;">
+      Tony Menias is a professional photographer with experience across Asia, Europe, the Americas, and Africa.
+      His work captures emotion, culture, and the essence of each location. Explore the gallery to see his story through imagery.
+    </p>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" style="margin-top:3rem;">
+    <h2 style="text-align:center; margin-bottom:1rem;">Contact</h2>
+    <p style="text-align:center;">
+      Email: <a href="mailto:info@beloveful.com">info@beloveful.com</a><br>
+      Instagram: <a href="https://www.instagram.com" target="_blank">@beloveful</a>
+    </p>
+  </section>
+
+</main>
+
+<footer>
+  <p>&copy; 2025 BELOVEFUL Photography. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
