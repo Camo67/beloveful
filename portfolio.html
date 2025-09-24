@@ -1,31 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portfolio - BE LOVEFUL Photography</title>
-<meta name="description" content="Explore Tony Menias' photography portfolio across continents.">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio - BE LOVEFUL Photography</title>
+  <meta name="description" content="Explore Tony Menias' photography portfolio across continents." />
 
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
-body{background:#111;color:white;}
-.site-header{background:#222;display:flex;justify-content:space-between;align-items:center;padding:15px 20px;}
-.site-header a{color:white;text-decoration:none;margin:0 10px;}
-.site-header a.active{color:#d63447;}
-.header-logo img{height:50px;}
-.portfolio-main{padding:40px 20px;max-width:1200px;margin:auto;}
-.portfolio-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:15px;}
-.portfolio-grid img{width:100%;border-radius:5px;}
-.footer{background:#222;color:white;text-align:center;padding:20px;}
-.footer a{color:white;margin:0 10px;text-decoration:none;}
-.footer-logo img{height:40px;margin:10px 0;}
-</style>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+    body { background: #111; color: white; }
+    .site-header { background: #222; display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; }
+    .site-header a { color: white; text-decoration: none; margin: 0 10px; }
+    .site-header a.active { color: #d63447; }
+    .header-logo img { height: 50px; }
+    .portfolio-main { padding: 40px 20px; max-width: 1200px; margin: auto; }
+    .portfolio-main h1 { margin-bottom: 30px; font-size: 2rem; text-align: center; }
+    .region-section { margin-bottom: 40px; }
+    .region-section h2 { font-size: 1.5rem; margin-bottom: 15px; border-bottom: 1px solid #444; padding-bottom: 5px; }
+    .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; }
+    .portfolio-grid img { width: 100%; border-radius: 5px; }
+    .footer { background: #222; color: white; text-align: center; padding: 20px; }
+    .footer a { color: white; margin: 0 10px; text-decoration: none; }
+    .footer-logo img { height: 40px; margin: 10px 0; }
+  </style>
 </head>
 <body>
 
 <header class="site-header">
   <div class="header-logo">
-    <a href="index.html"><img src="src/beloveful-logo-black.png" alt="BE LOVEFUL Photography"></a>
+    <a href="index.html"><img src="src/images/beloveful-logo-black.png" alt="BE LOVEFUL Photography Logo" /></a>
   </div>
   <nav>
     <a href="index.html">HOME</a>
@@ -38,13 +41,36 @@ body{background:#111;color:white;}
 
 <main class="portfolio-main">
   <h1>Photography Portfolio</h1>
-  <div class="portfolio-grid">
-    <img src="src/Africa/Egypt/EGY-1135.jpg" alt="">
-    <img src="src/Asia/India/MadameJodhpur.jpg" alt="">
-    <img src="src/Europe & Scandinavia/Italy/ITA-5252.jpg" alt="">
-    <img src="src/Central America & Caribbean/Mexico/MEX-Miss Technicolor-8.jpg" alt="">
-    <img src="src/Asia/Japan/Japan.jpg" alt="">
-  </div>
+
+  <!-- Africa Section -->
+  <section class="region-section">
+    <h2>Africa</h2>
+    <div class="portfolio-grid">
+      <img src="src/images/Africa/Egypt/EGY-1135.jpg" loading="lazy" alt="Egypt - EGY-1135" />
+      <img src="src/images/Africa/Morocco/Morocco-AlmostHome.jpg" loading="lazy" alt="Morocco - Almost Home" />
+      <img src="src/images/Africa/Ethiopia/IMG_1428.jpg" loading="lazy" alt="Ethiopia - IMG_1428" />
+    </div>
+  </section>
+
+  <!-- Asia Section -->
+  <section class="region-section">
+    <h2>Asia</h2>
+    <div class="portfolio-grid">
+      <img src="src/images/Asia/India/MadameJodhpur.jpg" loading="lazy" alt="India - Madame Jodhpur" />
+      <img src="src/images/Asia/Japan/Japan.jpg" loading="lazy" alt="Japan" />
+      <img src="src/images/Asia/Nepal/NEP-Silent Stare.jpg" loading="lazy" alt="Nepal - Silent Stare" />
+    </div>
+  </section>
+
+  <!-- Europe & Scandinavia Section -->
+  <section class="region-section">
+    <h2>Europe & Scandinavia</h2>
+    <div class="portfolio-grid">
+      <img src="src/images/Europe & Scandinavia/Italy/ITA-5252.jpg" loading="lazy" alt="Italy - ITA-5252" />
+      <img src="src/images/Europe & Scandinavia/Greece/Greece-DSCF4135.jpg" loading="lazy" alt="Greece - DSCF4135" />
+      <img src="src/images/Europe & Scandinavia/France/FRA-0103.jpg" loading="lazy" alt="France - FRA-0103" />
+    </div>
+  </section>
 </main>
 
 <footer class="footer">
@@ -53,7 +79,7 @@ body{background:#111;color:white;}
     <a href="https://www.facebook.com/beloveful" target="_blank">Facebook</a>
   </div>
   <div class="footer-logo">
-    <img src="src/beloveful-logo-black.png" alt="BE LOVEFUL Photography">
+    <img src="src/images/beloveful-logo-black.png" alt="BE LOVEFUL Photography Logo" />
   </div>
   <div class="footer-links">
     <a href="workshops.html">Workshops</a>
