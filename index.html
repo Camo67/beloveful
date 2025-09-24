@@ -1,107 +1,99 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BE LOVEFUL Photography - Tony Menias</title>
-    <link rel="icon" type="image/x-icon" href="../favicon.ico">
-    <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="manifest" href="manifest.json">
-    <meta name="description" content="Professional photography by Tony Menias capturing authentic moments across continents.">
+    <title>Tony Menias - BE LOVEFUL Photography</title>
+    <meta name="description" content="Professional photography portfolio by Tony Menias showcasing work across multiple continents - Asia, Europe, Americas, and Africa.">
+    
+    <!-- Preload all critical images -->
+    <link rel="preload" href="/Africa/Egypt/EGY-1135.jpg" as="image">
+    <link rel="preload" href="/Asia/India/MadameJodhpur.jpg" as="image">
+    <link rel="preload" href="/Europe & Scandinavia/Italy/ITA-5252.jpg" as="image">
+    <link rel="preload" href="/Central America & Caribbean/Mexico/MEX-Miss Technicolor-8.jpg" as="image">
+    <link rel="preload" href="/Asia/Japan/Japan.jpg" as="image">
+    <link rel="preload" href="/Africa/Morocco/Morocco-AlmostHome.jpg" as="image">
+    <link rel="preload" href="/Europe & Scandinavia/Greece/Greece-DSCF4135.jpg" as="image">
+    <link rel="preload" href="/Asia/Thailand/Simpler Times.jpg" as="image">
+    <link rel="preload" href="/Asia/Myanmar/Enlightened.jpg" as="image">
+    <link rel="preload" href="/Asia/Vietnam/Lazy Sunday.jpg" as="image">
+    <link rel="preload" href="/Asia/Nepal/NEP-Silent Stare.jpg" as="image">
+    <link rel="preload" href="/Asia/Hong Kong/Pastel Playground.jpg" as="image">
+    <link rel="preload" href="/Europe & Scandinavia/UK & Ireland/Ireland-HeAwaits.jpg" as="image">
+    <link rel="preload" href="/Europe & Scandinavia/Portugal/Lisbon-5415.jpg" as="image">
+    <link rel="preload" href="/Europe & Scandinavia/France/FRA-0103.jpg" as="image">
+    <link rel="preload" href="/South America/Argentina/_DSF6993.jpg" as="image">
+    <link rel="preload" href="/Central America & Caribbean/Caribbean/CAR-7827.jpg" as="image">
+    <link rel="preload" href="/Africa/Ethiopia/IMG_1428.jpg" as="image">
+    <link rel="preload" href="/Africa/Namibia/NAM-03-18-DSCF3946.jpg" as="image">
+    <link rel="preload" href="/Middle East/Jordan/JOR-4461.jpg" as="image">
+    <link rel="preload" href="/beloveful-logo-white.png" as="image">
+    <link rel="preload" href="/beloveful-logo-black.png" as="image">
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#030213">
+    
+    <!-- SEO Meta Tags -->
+    <meta property="og:title" content="Tony Menias - BE LOVEFUL Photography">
+    <meta property="og:description" content="Professional photography portfolio showcasing work across multiple continents - Asia, Europe, Americas, and Africa.">
+    <meta property="og:image" content="/tony-hero-new.jpg">
+    <meta property="og:url" content="https://beloveful.com">
+    <meta property="og:type" content="website">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Tony Menias - BE LOVEFUL Photography">
+    <meta name="twitter:description" content="Professional photography portfolio showcasing work across multiple continents">
+    <meta name="twitter:image" content="/tony-hero-new.jpg">
+    
+    <!-- Performance optimization meta tags -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+    <link rel="dns-prefetch" href="//www.instagram.com">
+    <link rel="dns-prefetch" href="//www.facebook.com">
+    <link rel="dns-prefetch" href="//linktr.ee">
+    <link rel="dns-prefetch" href="//www.printinnovationlab.com">
+    <link rel="dns-prefetch" href="//www.youtube.com">
+    <link rel="dns-prefetch" href="//creators.spotify.com">
+    
+    <!-- Critical resource hints -->
+    <link rel="preconnect" href="/" crossorigin>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <!-- Critical CSS -->
+    <style>
+        /* Critical above-the-fold styles */
+        :root {
+            --font-size: 16px;
+            --background: #ffffff;
+            --foreground: #212121;
+            --primary: #030213;
+            --border: rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--foreground);
+            background: var(--background);
+        }
+        
+        /* ...rest of your CSS */
+    </style>
+    
+    <!-- Load non-critical CSS asynchronously -->
+    <link rel="preload" href="/css/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="/css/about.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="/css/workshops.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="/css/main.css">
+        <link rel="stylesheet" href="/css/about.css">
+        <link rel="stylesheet" href="/css/workshops.css">
+    </noscript>
 </head>
-<body>
-    <!-- Hero Section -->
-    <div class="hero-container">
-        <!-- Background slideshow will be handled with CSS animation -->
-        <div class="hero-slideshow">
-            <div class="hero-slide active" style="background-image: url('src/Africa/Egypt/EGY-1135.jpg')"></div>
-            <div class="hero-slide" style="background-image: url('src/Asia/India/MadameJodhpur.jpg')"></div>
-            <div class="hero-slide" style="background-image: url('src/Europe & Scandinavia/Italy/ITA-5252.jpg')"></div>
-            <div class="hero-slide" style="background-image: url('src/Central America & Caribbean/Mexico/MEX-Miss Technicolor-8.jpg')"></div>
-            <div class="hero-slide" style="background-image: url('src/Asia/Japan/Japan.jpg')"></div>
-        </div>
-        
-        <!-- Overlay -->
-        <div class="hero-overlay"></div>
-        
-        <!-- Content -->
-        <div class="hero-content">
-            <!-- Header -->
-            <header class="hero-header">
-                <!-- Social Links -->
-                <div class="social-links">
-                    <a href="https://www.facebook.com/tony.menias" target="_blank" rel="noopener noreferrer" class="social-link">
-                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                        </svg>
-                    </a>
-                    <a href="https://linktr.ee/beloveful" target="_blank" rel="noopener noreferrer" class="social-link">
-                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M7.953 15.066c-.08.163-.08.324-.08.486.08.517.528.897 1.052.897.525 0 .973-.38 1.052-.897 0-.162 0-.323-.08-.486L8.005 9.5h1.838c.164 0 .324-.081.405-.243.081-.162.081-.405-.081-.567L6.647 3.595c-.162-.162-.405-.162-.567 0L2.56 8.69c-.162.162-.162.405-.081.567.081.162.241.243.405.243h1.838l1.231 5.566z"/>
-                        </svg>
-                    </a>
-                    <a href="https://www.instagram.com/beloveful" target="_blank" rel="noopener noreferrer" class="social-link">
-                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.62 5.367 11.987 11.988 11.987 6.62 0 11.987-5.367 11.987-11.987C24.014 5.367 18.637.001 12.017.001zM8.449 16.988c-1.297 0-2.448-.611-3.132-1.551-.684-.94-.684-2.126 0-3.066.684-.94 1.835-1.551 3.132-1.551s2.448.611 3.132 1.551c.684.94.684 2.126 0 3.066-.684.94-1.835 1.551-3.132 1.551z"/>
-                        </svg>
-                    </a>
-                </div>
-                
-                <!-- Logo -->
-                <div class="logo-container">
-                    <img src="src/beloveful-logo-white.png" alt="BE LOVEFUL Photography" class="logo">
-                </div>
-            </header>
-            
-            <!-- Navigation -->
-            <nav class="hero-nav">
-                <ul class="nav-list">
-                    <li><a href="index.html" class="nav-link active">HOME</a></li>
-                    <li><a href="portfolio.html" class="nav-link">PORTFOLIO</a></li>
-                    <li><a href="https://www.printinnovationlab.com/collections/beloveful" target="_blank" class="nav-link">PRINT SHOP</a></li>
-                    <li><a href="workshops.html" class="nav-link">WORKSHOPS</a></li>
-                    <li><a href="about.html" class="nav-link">ABOUT</a></li>
-                </ul>
-            </nav>
-        </div>
-    </div>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-content">
-            <!-- Social Icons -->
-            <div class="footer-social">
-                <a href="https://www.instagram.com/beloveful" target="_blank" rel="noopener noreferrer" class="footer-social-link">
-                    <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.62 5.367 11.987 11.988 11.987 6.62 0 11.987-5.367 11.987-11.987C24.014 5.367 18.637.001 12.017.001z"/>
-                    </svg>
-                </a>
-                <a href="https://www.facebook.com/beloveful" target="_blank" rel="noopener noreferrer" class="footer-social-link">
-                    <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                    </svg>
-                </a>
-            </div>
-
-            <!-- Logo -->
-            <div class="footer-logo">
-                <img src="src/beloveful-logo-black.png" alt="BE LOVEFUL Photography" class="footer-logo-img">
-            </div>
-
-            <!-- Links -->
-            <div class="footer-links">
-                <a href="workshops.html" class="footer-link">Workshops</a>
-                <a href="https://www.printinnovationlab.com/collections/beloveful" target="_blank" class="footer-link">Print Shop</a>
-            </div>
-
-            <!-- Copyright -->
-            <div class="footer-copyright">
-                <p>&copy; 2025 Tony Menias. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-</body>
-</html>
