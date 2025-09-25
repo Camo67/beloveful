@@ -105,17 +105,81 @@
     </style>
 </head>
 <body class="font-sans antialiased">
+    
+    <!-- Unified Header for all pages -->
+    <!-- This header is always visible and handles all navigation, solving the original issue -->
+    <header id="global-header" class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-sm border-b border-gray-100 hidden md:block">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <!-- Social Icons -->
+                <div class="flex items-center gap-2">
+                    <a href="https://www.facebook.com/tony.menias#" target="_blank" rel="noopener noreferrer">
+                        <svg class="w-6 h-6 text-gray-600 hover:text-gray-800 transition-colors cursor-pointer" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                        </svg>
+                    </a>
+                    <a href="https://x.com/beloveful" target="_blank" rel="noopener noreferrer">
+                        <svg class="w-6 h-6 text-gray-600 hover:text-gray-800 transition-colors cursor-pointer" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                        </svg>
+                    </a>
+                    <a href="https://www.instagram.com/beloveful" target="_blank" rel="noopener noreferrer">
+                        <svg class="w-6 h-6 text-gray-600 hover:text-gray-800 transition-colors cursor-pointer" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 0c-3.371 0-7.227.01-8.526.046C1.944.113.882.883.271 2.379.096 3.197 0 4.195 0 8.017v7.966c0 3.822.096 4.82.271 5.638.611 1.496 1.673 2.266 3.224 2.333 1.299.036 5.155.046 8.526.046 3.371 0 7.227-.01 8.526-.046 1.551-.067 2.613-.837 3.224-2.333.175-.818.271-1.816.271-5.638V8.017c0-3.822-.096-4.82-.271-5.638C22.41 1.047 21.348.277 19.797.21c-1.299-.036-5.155-.046-8.526-.046zM12 2.219c3.21 0 6.634.011 7.828.043 1.14.032 1.45.41 1.637.794.186.383.252.825.252 2.766v7.882c0 1.94-.066 2.383-.252 2.766-.187.384-.497.762-1.637.794-1.194.032-4.618.043-7.828.043-3.21 0-6.634-.011-7.828-.043-1.14-.032-1.45-.41-1.637-.794-.186-.383-.252-.825-.252-2.766V8.017c0-1.94.066-2.383.252-2.766.187-.384.497-.762 1.637-.794 1.194-.032 4.618-.043 7.828-.043zM12 6.809c-2.85 0-5.176 2.327-5.176 5.177 0 2.85 2.327 5.176 5.176 5.176s5.177-2.326 5.177-5.176c0-2.85-2.327-5.177-5.177-5.177zm0 2.21c1.63 0 2.967 1.336 2.967 2.967s-1.336 2.966-2.967 2.966c-1.63 0-2.966-1.336-2.966-2.966s1.336-2.967 2.966-2.967zm4.332-4.321c-.56 0-1.015.454-1.015 1.015s.455 1.015 1.015 1.015c.56 0 1.015-.454 1.015-1.015s-.455-1.015-1.015-1.015z"/>
+                        </svg>
+                    </a>
+                </div>
 
+                <!-- Logo -->
+                <div class="flex-1 flex justify-center">
+                    <a href="#" onclick="showPage('home')">
+                        <img src="https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620506/beloveful-logo-black_rwsx2j.png" alt="BE LOVEFUL Photography" class="h-8 w-auto">
+                    </a>
+                </div>
+
+                <!-- Desktop Nav -->
+                <nav class="flex items-center gap-8">
+                    <a href="#" onclick="showPage('home')" class="text-gray-600 hover:text-gray-900 transition-colors font-sans">HOME</a>
+                    <a href="#" onclick="showPage('portfolio')" class="text-gray-600 hover:text-gray-900 transition-colors font-sans">PORTFOLIO</a>
+                    <a href="https://www.printinnovationlab.com/collections/beloveful" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-gray-900 transition-colors font-sans">PRINT SHOP</a>
+                    <a href="#" onclick="showPage('workshops')" class="text-gray-600 hover:text-gray-900 transition-colors font-sans">WORKSHOPS</a>
+                    <a href="#" onclick="showPage('about')" class="text-gray-600 hover:text-gray-900 transition-colors font-sans">ABOUT</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Global mobile menu and toggle button -->
+    <!-- This is also a global element, visible on all pages -->
+    <button class="fixed top-6 right-6 z-50 md:hidden" onclick="toggleMobileMenu()">
+        <svg id="menu-icon" class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+        <svg id="close-icon" class="w-6 h-6 text-gray-600 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+    </button>
+    <div id="mobile-menu" class="fixed inset-0 bg-white z-40 md:hidden hidden">
+        <div class="flex flex-col items-center justify-center h-full space-y-8">
+            <a href="#" onclick="showPage('home'); toggleMobileMenu()" class="text-2xl text-gray-600 hover:text-gray-800 transition-colors font-sans">HOME</a>
+            <a href="#" onclick="showPage('portfolio'); toggleMobileMenu()" class="text-2xl text-gray-600 hover:text-gray-800 transition-colors font-sans">PORTFOLIO</a>
+            <a href="https://www.printinnovationlab.com/collections/beloveful" target="_blank" rel="noopener noreferrer" class="text-2xl text-gray-600 hover:text-gray-800 transition-colors font-sans">PRINT SHOP</a>
+            <a href="#" onclick="showPage('workshops'); toggleMobileMenu()" class="text-2xl text-gray-600 hover:text-gray-800 transition-colors font-sans">WORKSHOPS</a>
+            <a href="#" onclick="showPage('about'); toggleMobileMenu()" class="text-2xl text-gray-800 font-medium font-sans">ABOUT</a>
+        </div>
+    </div>
+    
+    <!-- Home Page -->
     <div id="home-page" class="page relative min-h-screen">
         
         <div class="hero-slideshow-container" id="slideshow-container">
-            </div>
+        </div>
         <div class="absolute inset-0 bg-black/20"></div>
         
         <div class="relative z-10 min-h-screen">
-        
+            <!-- This header is a temporary visual element specific to the home page, not the main nav -->
             <header class="flex justify-between items-start p-6">
-            
+                <!-- Social Icons -->
                 <div class="flex gap-4">
                     <a href="https://www.facebook.com/tony.menias#" target="_blank" rel="noopener noreferrer" class="text-white/80 hover:text-white transition-colors">
                         <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
@@ -129,19 +193,19 @@
                     </a>
                     <a href="https://www.instagram.com/beloveful" target="_blank" rel="noopener noreferrer" class="text-white/80 hover:text-white transition-colors">
                         <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.62 5.367 11.987 11.988 11.987 6.62 0 11.987-5.367 11.987-11.987C24.014 5.367 18.637.001 12.017.001zM8.449 16.988c-1.297 0-2.448-.611-3.132-1.551-.684-.94-.684-2.126 0-3.066.684-.94 1.835-1.551 3.132-1.551s2.448.611 3.132 1.551c.684.94.684 2.126 0 3.066-.684.94-1.835 1.551-3.132 1.551z"/>
+                            <path d="M12 0c-3.371 0-7.227.01-8.526.046C1.944.113.882.883.271 2.379.096 3.197 0 4.195 0 8.017v7.966c0 3.822.096 4.82.271 5.638.611 1.496 1.673 2.266 3.224 2.333 1.299.036 5.155.046 8.526.046 3.371 0 7.227-.01 8.526-.046 1.551-.067 2.613-.837 3.224-2.333.175-.818.271-1.816.271-5.638V8.017c0-3.822-.096-4.82-.271-5.638C22.41 1.047 21.348.277 19.797.21c-1.299-.036-5.155-.046-8.526-.046zM12 2.219c3.21 0 6.634.011 7.828.043 1.14.032 1.45.41 1.637.794.186.383.252.825.252 2.766v7.882c0 1.94-.066 2.383-.252 2.766-.187.384-.497.762-1.637.794-1.194.032-4.618.043-7.828.043-3.21 0-6.634-.011-7.828-.043-1.14-.032-1.45-.41-1.637-.794-.186-.383-.252-.825-.252-2.766V8.017c0-1.94.066-2.383.252-2.766.187-.384.497-.762 1.637-.794 1.194-.032 4.618-.043 7.828-.043zM12 6.809c-2.85 0-5.176 2.327-5.176 5.177 0 2.85 2.327 5.176 5.176 5.176s5.177-2.326 5.177-5.176c0-2.85-2.327-5.177-5.177-5.177zm0 2.21c1.63 0 2.967 1.336 2.967 2.967s-1.336 2.966-2.967 2.966c-1.63 0-2.966-1.336-2.966-2.966s1.336-2.967 2.966-2.967zm4.332-4.321c-.56 0-1.015.454-1.015 1.015s.455 1.015 1.015 1.015c.56 0 1.015-.454 1.015-1.015s-.455-1.015-1.015-1.015z"/>
                         </svg>
                     </a>
                 </div>
                 
-        
+                <!-- Logo -->
                 <div class="flex items-center">
                     <img src="https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620506/beloveful-logo-black_rwsx2j.png" alt="BE LOVEFUL Photography" class="h-8 w-auto">
                 </div>
             </header>
             
-        
-            <nav class="absolute top-48 right-6">
+            <!-- Desktop Nav -->
+            <nav class="absolute top-48 right-6 hidden md:block">
                 <ul class="flex flex-col gap-6 text-right">
                     <li><a href="#" onclick="showPage('home')" class="text-white/90 hover:text-white transition-colors text-sm font-light tracking-wide">HOME</a></li>
                     <li class="flex items-center justify-end gap-1">
@@ -150,7 +214,7 @@
                             <path d="M7 10l5 5 5-5z"/>
                         </svg>
                     </li>
-                    <li><a href="https://tr.ee/5UEQo99kEi" target="_blank" rel="noopener noreferrer" class="text-white/90 hover:text-white transition-colors text-sm font-light tracking-wide">PRINT SHOP</a></li>
+                    <li><a href="https://www.printinnovationlab.com/collections/beloveful" target="_blank" rel="noopener noreferrer" class="text-white/90 hover:text-white transition-colors text-sm font-light tracking-wide">PRINT SHOP</a></li>
                     <li><a href="#" onclick="showPage('workshops')" class="text-white/90 hover:text-white transition-colors text-sm font-light tracking-wide">WORKSHOPS</a></li>
                     <li><a href="#" onclick="showPage('about')" class="text-white/90 hover:text-white transition-colors text-sm font-light tracking-wide">ABOUT</a></li>
                 </ul>
@@ -158,194 +222,87 @@
         </div>
     </div>
 
-    
+    <!-- About Page -->
     <div id="about-page" class="page min-h-screen bg-white hidden">
         
-        <header class="relative z-10 flex items-center justify-between p-6">
+        <!-- Padding to prevent content from hiding under fixed header -->
+        <div class="pt-24 md:pt-28">
+            <main class="max-w-4xl mx-auto px-6 py-8">
+                <section class="text-center py-8 px-6">
+                    <h1 class="text-4xl md:text-5xl font-bold font-sans mb-4 text-black">Tony Menias</h1>
+                    <p class="text-lg md:text-xl font-sans text-gray-700">Professional Photographer & Visual Artist</p>
+                </section>
                 
-            <div class="hidden md:flex items-center gap-2">
-                <a href="https://www.facebook.com/tony.menias#" target="_blank" rel="noopener noreferrer">
-                    <svg class="w-6 h-6 text-gray-600 hover:text-gray-800 transition-colors cursor-pointer" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                    </svg>
-                </a>
-                <a href="https://www.threads.com/@beloveful" target="_blank" rel="noopener noreferrer">
-                    <svg class="w-6 h-6 text-black hover:text-gray-900 transition-colors cursor-pointer" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12.186 2.25h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.5 12.5c0-3.086.85-5.94 2.495-8.491C5.845 1.205 8.598.024 12.179 0h.014z"/>
-                    </svg>
-                </a>
-                <a href="https://x.com/beloveful" target="_blank" rel="noopener noreferrer">
-                    <svg class="w-6 h-6 text-gray-600 hover:text-gray-800 transition-colors cursor-pointer" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                    </svg>
-                </a>
-                <a href="https://www.instagram.com/beloveful" target="_blank" rel="noopener noreferrer">
-                    <svg class="w-6 h-6 text-gray-600 hover:text-gray-800 transition-colors cursor-pointer" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.62 5.367 11.987 11.988 11.987 6.62 0 11.987-5.367 11.987-11.987C24.014 5.367 18.637.001 12.017.001z"/>
-                    </svg>
-                </a>
-            </div>
+                <section class="flex justify-center px-6 py-8">
+                    <div class="relative w-full max-w-md md:max-w-lg aspect-square overflow-hidden rounded-lg shadow-lg">
+                        <img src="https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620507/tony-hero-new_mtx9wk.jpg" alt="Tony Menias with sunglasses and a small monkey on his shoulder at a historic temple site" class="w-full h-full object-cover">
+                    </div>
+                </section>
 
-            
-            <button class="md:hidden z-20" onclick="toggleMobileMenu()">
-                <svg id="menu-icon" class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-                </svg>
-                <svg id="close-icon" class="w-6 h-6 text-gray-600 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                </svg>
-            </button>
+                <div class="space-y-12">
+                    <section class="space-y-6">
+                        <h2 class="text-2xl font-bold text-gray-900 font-sans">Publications</h2>
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center border-b border-gray-200 pb-2">
+                                <span class="font-medium text-gray-900 font-sans">'Capturing Japan'</span>
+                                <span class="text-gray-600 font-sans">ANNE Magazine, 2018</span>
+                            </div>
+                            <div class="flex justify-between items-center border-b border-gray-200 pb-2">
+                                <span class="font-medium text-gray-900 font-sans">'Into The Rabbit Hole'</span>
+                                <span class="text-gray-600 font-sans">Editors Showcase National Geographic, 2018</span>
+                            </div>
+                            <div class="flex justify-between items-center border-b border-gray-200 pb-2">
+                                <span class="font-medium text-gray-900 font-sans">'Sunset Sails'</span>
+                                <span class="text-gray-600 font-sans">Editors Showcase National Geographic, 2021</span>
+                            </div>
+                            <div class="flex justify-between items-center border-b border-gray-200 pb-2">
+                                <span class="font-medium text-gray-900 font-sans">'Story Behind the Still'</span>
+                                <span class="text-gray-600 font-sans">Digital Photographers Magazine, 2022</span>
+                            </div>
+                            <div class="flex justify-between items-center border-b border-gray-200 pb-2">
+                                <span class="font-medium text-gray-900 font-sans">'Chicago'</span>
+                                <span class="text-gray-600 font-sans">Bump Books, 2023</span>
+                            </div>
+                            <div class="flex justify-between items-center border-b border-gray-200 pb-2">
+                                <span class="font-medium text-gray-900 font-sans">'Burning Man Tunes'</span>
+                                <span class="text-gray-600 font-sans">Magnetic Magazine, 2023</span>
+                            </div>
+                        </div>
+                    </section>
 
-            <div class="md:absolute md:left-1/2 md:transform md:-translate-x-1/2">
-                <img src="https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620506/beloveful-logo-black_rwsx2j.png" alt="BE LOVEFUL Photography" class="h-8 w-auto">
-            </div>
+                    <section class="space-y-6">
+                        <h2 class="text-2xl font-bold text-gray-900 font-sans">Media & Features</h2>
+                        
+                        <div class="space-y-4">
+                            <h3 class="text-lg font-semibold text-gray-900 font-sans">Featured Video</h3>
+                            <div class="relative w-full aspect-video rounded-lg overflow-hidden shadow-lg">
+                                <iframe src="https://www.youtube.com/embed/8_77njFPQQU" title="Tony Menias Featured Video" class="absolute inset-0 w-full h-full" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            </div>
+                        </div>
 
-            
-            <nav class="hidden md:flex items-center gap-8">
-                <a href="#" onclick="showPage('home')" class="text-gray-600 hover:text-gray-800 transition-colors font-sans">HOME</a>
-                <a href="#" onclick="showPage('portfolio')" class="text-gray-600 hover:text-gray-800 transition-colors font-sans">PORTFOLIO</a>
-                <a href="https://www.printinnovationlab.com/collections/beloveful" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-gray-800 transition-colors font-sans">PRINT SHOP</a>
-                <a href="#" onclick="showPage('workshops')" class="text-gray-600 hover:text-gray-800 transition-colors font-sans">WORKSHOPS</a>
-                <a href="#" onclick="showPage('about')" class="text-gray-800 font-medium font-sans">ABOUT</a>
-            </nav>
-
-
-            <div id="mobile-menu" class="fixed inset-0 bg-white z-10 md:hidden hidden">
-                <div class="flex flex-col items-center justify-center h-full space-y-8">
-                    <a href="#" onclick="showPage('home'); toggleMobileMenu()" class="text-2xl text-gray-600 hover:text-gray-800 transition-colors font-sans">HOME</a>
-                    <a href="#" onclick="showPage('portfolio'); toggleMobileMenu()" class="text-2xl text-gray-600 hover:text-gray-800 transition-colors font-sans">PORTFOLIO</a>
-                    <a href="https://www.printinnovationlab.com/collections/beloveful" target="_blank" rel="noopener noreferrer" class="text-2xl text-gray-600 hover:text-gray-800 transition-colors font-sans">PRINT SHOP</a>
-                    <a href="#" onclick="showPage('workshops'); toggleMobileMenu()" class="text-2xl text-gray-600 hover:text-gray-800 transition-colors font-sans">WORKSHOPS</a>
-                    <a href="#" onclick="showPage('about'); toggleMobileMenu()" class="text-2xl text-gray-800 font-medium font-sans">ABOUT</a>
+                        <div class="space-y-4">
+                            <h3 class="text-lg font-semibold text-gray-900 font-sans">Podcast Feature</h3>
+                            <div class="flex justify-center">
+                                <iframe src="https://creators.spotify.com/pod/profile/mediumlargepodcast/embed/episodes/14-Tony-Menias--Egyptian-G--MD-ef5vk6/a-a2e09up" height="102px" width="400px" frameborder="0" scrolling="no" title="Medium Large Podcast - Tony Menias Episode" class="rounded-lg shadow-lg"></iframe>
+                            </div>
+                        </div>
+                    </section>
                 </div>
-            </div>
-        </header>
-
-            
-        <section class="text-center py-8 px-6">
-            <h1 class="text-4xl md:text-5xl font-bold font-sans mb-4 text-black">Tony Menias</h1>
-            <p class="text-lg md:text-xl font-sans text-gray-700">Professional Photographer & Visual Artist</p>
-        </section>
-
-            
-        <section class="flex justify-center px-6 py-8">
-            <div class="relative w-full max-w-md md:max-w-lg aspect-square overflow-hidden rounded-lg shadow-lg">
-                <img src="https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620507/tony-hero-new_mtx9wk.jpg" alt="Tony Menias with sunglasses and a small monkey on his shoulder at a historic temple site" class="w-full h-full object-cover">
-            </div>
-        </section>
-
-        
-        <main class="max-w-4xl mx-auto px-6 py-12">
-            <div class="space-y-12">
-                
-                <section class="space-y-6">
-                    <h2 class="text-2xl font-bold text-gray-900 font-sans">Publications</h2>
-                    <div class="space-y-3">
-                        <div class="flex justify-between items-center border-b border-gray-200 pb-2">
-                            <span class="font-medium text-gray-900 font-sans">'Capturing Japan'</span>
-                            <span class="text-gray-600 font-sans">ANNE Magazine, 2018</span>
-                        </div>
-                        <div class="flex justify-between items-center border-b border-gray-200 pb-2">
-                            <span class="font-medium text-gray-900 font-sans">'Into The Rabbit Hole'</span>
-                            <span class="text-gray-600 font-sans">Editors Showcase National Geographic, 2018</span>
-                        </div>
-                        <div class="flex justify-between items-center border-b border-gray-200 pb-2">
-                            <span class="font-medium text-gray-900 font-sans">'Sunset Sails'</span>
-                            <span class="text-gray-600 font-sans">Editors Showcase National Geographic, 2021</span>
-                        </div>
-                        <div class="flex justify-between items-center border-b border-gray-200 pb-2">
-                            <span class="font-medium text-gray-900 font-sans">'Story Behind the Still'</span>
-                            <span class="text-gray-600 font-sans">Digital Photographers Magazine, 2022</span>
-                        </div>
-                        <div class="flex justify-between items-center border-b border-gray-200 pb-2">
-                            <span class="font-medium text-gray-900 font-sans">'Chicago'</span>
-                            <span class="text-gray-600 font-sans">Bump Books, 2023</span>
-                        </div>
-                        <div class="flex justify-between items-center border-b border-gray-200 pb-2">
-                            <span class="font-medium text-gray-900 font-sans">'Burning Man Tunes'</span>
-                            <span class="text-gray-600 font-sans">Magnetic Magazine, 2023</span>
-                        </div>
-                    </div>
-                </section>
-
-                    
-                <section class="space-y-6">
-                    <h2 class="text-2xl font-bold text-gray-900 font-sans">Media & Features</h2>
-                    
-                    
-                    <div class="space-y-4">
-                        <h3 class="text-lg font-semibold text-gray-900 font-sans">Featured Video</h3>
-                        <div class="relative w-full aspect-video rounded-lg overflow-hidden shadow-lg">
-                            <iframe src="https://www.youtube.com/embed/8_77njFPQQU" title="Tony Menias Featured Video" class="absolute inset-0 w-full h-full" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                        </div>
-                    </div>
-
-                    <div class="space-y-4">
-                        <h3 class="text-lg font-semibold text-gray-900 font-sans">Podcast Feature</h3>
-                        <div class="flex justify-center">
-                            <iframe src="https://creators.spotify.com/pod/profile/mediumlargepodcast/embed/episodes/14-Tony-Menias--Egyptian-G--MD-ef5vk6/a-a2e09up" height="102px" width="400px" frameborder="0" scrolling="no" title="Medium Large Podcast - Tony Menias Episode" class="rounded-lg shadow-lg"></iframe>
-                        </div>
-                    </div>
-                </section>
-            </div>
-        </main>
+            </main>
+        </div>
     </div>
 
-    
+    <!-- Portfolio Page -->
     <div id="portfolio-page" class="page min-h-screen bg-white hidden">
-        
-        <header class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-sm border-b border-gray-100">
-            <div class="container mx-auto px-6 py-4">
-                <div class="flex items-center justify-between">
-                        
-                    <div class="hidden md:flex items-center gap-4">
-                        <a href="https://www.facebook.com/tony.menias#" target="_blank" rel="noopener noreferrer">
-                            <svg class="w-5 h-5 text-gray-600 hover:text-gray-900 transition-colors" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                            </svg>
-                        </a>
-                        <a href="https://www.instagram.com/beloveful" target="_blank" rel="noopener noreferrer">
-                            <svg class="w-5 h-5 text-gray-600 hover:text-gray-900 transition-colors" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.62 5.367 11.987 11.988 11.987 6.62 0 11.987-5.367 11.987-11.987C24.014 5.367 18.637.001 12.017.001z"/>
-                            </svg>
-                        </a>
-                    </div>
-
-    
-                    <div class="flex-1 flex justify-center">
-                        <a href="#" onclick="showPage('home')">
-                            <img src="https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620506/beloveful-logo-black_rwsx2j.png" alt="BE LOVEFUL Photography" class="h-8 w-auto">
-                        </a>
-                    </div>
-
-        
-                    <nav class="hidden md:flex items-center gap-8">
-                        <a href="#" onclick="showPage('home')" class="text-gray-600 hover:text-gray-900 transition-colors font-medium">HOME</a>
-                        <a href="#" onclick="showPage('portfolio')" class="text-gray-900 font-medium border-b-2 border-gray-900 pb-1">PORTFOLIO</a>
-                        <a href="https://tr.ee/5UEQo99kEi" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-gray-900 transition-colors font-medium">PRINT SHOP</a>
-                        <a href="#" onclick="showPage('workshops')" class="text-gray-600 hover:text-gray-900 transition-colors font-medium">WORKSHOPS</a>
-                        <a href="#" onclick="showPage('about')" class="text-gray-600 hover:text-gray-900 transition-colors font-medium">ABOUT</a>
-                    </nav>
-
-                    <button class="md:hidden p-2" onclick="toggleMobileMenu()">
-                        <svg class="w-6 h-6 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </header>
-
-            
-        <main class="pt-24 pb-16">
-            <div class="container mx-auto px-6">
-                    
+        <!-- Padding to prevent content from hiding under fixed header -->
+        <div class="pt-24 md:pt-28">
+            <main class="container mx-auto px-6">
+                
                 <div class="text-center mb-12">
                     <h1 class="text-4xl md:text-5xl font-light text-gray-900 mb-4">Portfolio</h1>
                     <p class="text-lg text-gray-600 max-w-2xl mx-auto">A curated collection of moments captured across continents, telling stories that transcend borders.</p>
                 </div>
 
-    
                 <div class="flex flex-wrap justify-center gap-4 mb-12">
                     <button onclick="filterPortfolio('all')" class="px-6 py-2 rounded-full text-sm font-medium transition-all bg-gray-900 text-white" id="filter-all">Erasing Borders / View All</button>
                     <button onclick="filterPortfolio('asia')" class="px-6 py-2 rounded-full text-sm font-medium transition-all bg-gray-100 text-gray-600 hover:bg-gray-200" id="filter-asia">Asia</button>
@@ -361,137 +318,141 @@
                     <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900 mx-auto mb-4"></div>
                     <p class="text-gray-600">Loading portfolio...</p>
                 </div>
-            </div>
-        </main>
+            </main>
+        </div>
     </div>
 
+    <!-- Workshops Page -->
     <div id="workshops-page" class="page min-h-screen bg-white hidden">
-        
-        <header class="relative z-10 flex items-center justify-between p-6">
-            <div class="md:absolute md:left-1/2 md:transform md:-translate-x-1/2">
-                <img src="https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620506/beloveful-logo-black_rwsx2j.png" alt="BE LOVEFUL Photography" class="h-8 w-auto">
-            </div>
-            <nav class="hidden md:flex items-center gap-8 ml-auto">
-                <a href="#" onclick="showPage('home')" class="text-gray-600 hover:text-gray-800 transition-colors font-sans">HOME</a>
-                <a href="#" onclick="showPage('portfolio')" class="text-gray-600 hover:text-gray-800 transition-colors font-sans">PORTFOLIO</a>
-                <a href="https://tr.ee/5UEQo99kEi" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-gray-800 transition-colors font-sans">PRINT SHOP</a>
-                <a href="#" onclick="showPage('workshops')" class="text-gray-800 font-medium font-sans">WORKSHOPS</a>
-                <a href="#" onclick="showPage('about')" class="text-gray-600 hover:text-gray-800 transition-colors font-sans">ABOUT</a>
-            </nav>
-        </header>
-
-
-        <section class="relative h-96 overflow-hidden">
-            <img src="https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620506/chicago-basketball-court_uf5asu.jpg" alt="Street Photography Workshop" class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-black/40"></div>
-            <div class="absolute inset-0 flex items-center justify-center">
-                <div class="text-center text-white">
-                    <h1 class="text-4xl md:text-6xl font-light mb-4 font-sans">Walk the streets, see differently</h1>
-                    <p class="text-xl md:text-2xl font-light font-sans">Street Photography Workshop - Chicago</p>
-                </div>
-            </div>
-        </section>
-
-        <main class="max-w-4xl mx-auto px-6 py-16">
-            <div class="space-y-12">
-                <section class="text-center">
-                    <h2 class="text-3xl font-light text-gray-900 mb-6 font-sans">Discover the Art of Street Photography</h2>
-                    <p class="text-lg text-gray-700 leading-relaxed font-sans">Join Tony Menias for an immersive street photography workshop in the heart of Chicago. Learn to capture authentic moments, master composition, and develop your unique photographic voice while exploring the city's vibrant neighborhoods.</p>
-                </section>
-
-                <section class="grid md:grid-cols-2 gap-12">
-                    <div>
-                        <h3 class="text-2xl font-light text-gray-900 mb-4 font-sans">What You'll Learn</h3>
-                        <ul class="space-y-3 text-gray-700 font-sans">
-                            <li>• Street photography ethics and approach</li>
-                            <li>• Composition techniques for urban environments</li>
-                            <li>• Working with natural light in the city</li>
-                            <li>• Capturing candid moments and emotions</li>
-                            <li>• Post-processing for street photography</li>
-                        </ul>
+        <!-- Padding to prevent content from hiding under fixed header -->
+        <div class="pt-24 md:pt-28">
+            <section class="relative h-96 overflow-hidden">
+                <img src="https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620506/chicago-basketball-court_uf5asu.jpg" alt="Street Photography Workshop" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-black/40"></div>
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <div class="text-center text-white">
+                        <h1 class="text-4xl md:text-6xl font-light mb-4 font-sans">Walk the streets, see differently</h1>
+                        <p class="text-xl md:text-2xl font-light font-sans">Street Photography Workshop - Chicago</p>
                     </div>
-                    <div>
-                        <h3 class="text-2xl font-light text-gray-900 mb-4 font-sans">Workshop Details</h3>
-                        <div class="space-y-3 text-gray-700 font-sans">
-                            <p><strong>Duration:</strong> Full Day (8 hours)</p>
-                            <p><strong>Location:</strong> Chicago, IL</p>
-                            <p><strong>Group Size:</strong> Maximum 8 participants</p>
-                            <p><strong>Level:</strong> All skill levels welcome</p>
-                            <p><strong>Equipment:</strong> Camera required (DSLR/Mirrorless preferred)</p>
+                </div>
+            </section>
+
+            <main class="max-w-4xl mx-auto px-6 py-16">
+                <div class="space-y-12">
+                    <section class="text-center">
+                        <h2 class="text-3xl font-light text-gray-900 mb-6 font-sans">Discover the Art of Street Photography</h2>
+                        <p class="text-lg text-gray-700 leading-relaxed font-sans">Join Tony Menias for an immersive street photography workshop in the heart of Chicago. Learn to capture authentic moments, master composition, and develop your unique photographic voice while exploring the city's vibrant neighborhoods.</p>
+                    </section>
+
+                    <section class="grid md:grid-cols-2 gap-12">
+                        <div>
+                            <h3 class="text-2xl font-light text-gray-900 mb-4 font-sans">What You'll Learn</h3>
+                            <ul class="space-y-3 text-gray-700 font-sans">
+                                <li>• Street photography ethics and approach</li>
+                                <li>• Composition techniques for urban environments</li>
+                                <li>• Working with natural light in the city</li>
+                                <li>• Capturing candid moments and emotions</li>
+                                <li>• Post-processing for street photography</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-light text-gray-900 mb-4 font-sans">Workshop Details</h3>
+                            <div class="space-y-3 text-gray-700 font-sans">
+                                <p><strong>Duration:</strong> Full Day (8 hours)</p>
+                                <p><strong>Location:</strong> Chicago, IL</p>
+                                <p><strong>Group Size:</strong> Maximum 8 participants</p>
+                                <p><strong>Level:</strong> All skill levels welcome</p>
+                                <p><strong>Equipment:</strong> Camera required (DSLR/Mirrorless preferred)</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="text-center">
+                        <a href="mailto:hello@beloveful.com" class="inline-block bg-black text-white px-8 py-4 rounded-full font-sans font-medium hover:bg-gray-800 transition-colors">Book Your Spot</a>
+                    </section>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- The footer is now wrapped in a container so we can hide/show it with a single element -->
+    <div id="main-footer">
+        <footer class="bg-white border-t border-gray-100">
+        
+            <div class="md:hidden">
+                <div class="container mx-auto px-6 py-6">
+                    <div class="text-center space-y-4">
+                        <div class="flex justify-center mb-4">
+                            <img src="https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620506/beloveful-logo-black_rwsx2j.png" alt="BELOVEFUL Photography" class="h-7 w-auto">
+                        </div>
+                        <div class="flex justify-center gap-6 text-gray-600">
+                            <a href="https://www.instagram.com/beloveful" target="_blank" rel="noopener noreferrer">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 0c-3.371 0-7.227.01-8.526.046C1.944.113.882.883.271 2.379.096 3.197 0 4.195 0 8.017v7.966c0 3.822.096 4.82.271 5.638.611 1.496 1.673 2.266 3.224 2.333 1.299.036 5.155.046 8.526.046 3.371 0 7.227-.01 8.526-.046 1.551-.067 2.613-.837 3.224-2.333.175-.818.271-1.816.271-5.638V8.017c0-3.822-.096-4.82-.271-5.638C22.41 1.047 21.348.277 19.797.21c-1.299-.036-5.155-.046-8.526-.046zM12 2.219c3.21 0 6.634.011 7.828.043 1.14.032 1.45.41 1.637.794.186.383.252.825.252 2.766v7.882c0 1.94-.066 2.383-.252 2.766-.187.384-.497.762-1.637.794-1.194.032-4.618.043-7.828.043-3.21 0-6.634-.011-7.828-.043-1.14-.032-1.45-.41-1.637-.794-.186-.383-.252-.825-.252-2.766V8.017c0-1.94.066-2.383.252-2.766.187-.384.497-.762 1.637-.794 1.194-.032 4.618-.043 7.828-.043zM12 6.809c-2.85 0-5.176 2.327-5.176 5.177 0 2.85 2.327 5.176 5.176 5.176s5.177-2.326 5.177-5.176c0-2.85-2.327-5.177-5.177-5.177zm0 2.21c1.63 0 2.967 1.336 2.967 2.967s-1.336 2.966-2.967 2.966c-1.63 0-2.966-1.336-2.966-2.966s1.336-2.967 2.966-2.967zm4.332-4.321c-.56 0-1.015.454-1.015 1.015s.455 1.015 1.015 1.015c.56 0 1.015-.454 1.015-1.015s-.455-1.015-1.015-1.015z"/>
+                                </svg>
+                            </a>
+                            <a href="https://www.facebook.com/tony.menias#" target="_blank" rel="noopener noreferrer">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                                </svg>
+                            </a>
+                        </div>
+                        <div class="space-y-3">
+                            <a href="#" onclick="showPage('signup')" class="block w-full bg-black text-white py-3 px-5 rounded-full text-sm font-medium text-center hover:bg-gray-800 transition-colors">Join Newsletter</a>
+                            <a href="#" onclick="showPage('workshops')" class="block w-full border-2 border-black text-black py-3 px-5 rounded-full text-sm font-medium text-center hover:bg-black hover:text-white transition-colors">Book Workshop</a>
+                            <a href="https://www.printinnovationlab.com/collections/beloveful" target="_blank" rel="noopener noreferrer" class="block w-full border-2 border-gray-300 text-gray-700 py-3 px-5 rounded-full text-sm font-medium text-center hover:border-black hover:text-black transition-colors">Print Shop</a>
+                        </div>
+                        <div class="pt-4 border-t border-gray-100">
+                            <p class="text-xs text-gray-500 font-sans">© 2025 Tony Menias. All rights reserved.</p>
                         </div>
                     </div>
-                </section>
-
-                <section class="text-center">
-                    <a href="mailto:hello@beloveful.com" class="inline-block bg-black text-white px-8 py-4 rounded-full font-sans font-medium hover:bg-gray-800 transition-colors">Book Your Spot</a>
-                </section>
+                </div>
             </div>
-        </main>
-    </div>
 
-    <footer class="bg-white border-t border-gray-100">
-    
-        <div class="md:hidden">
-            <div class="container mx-auto px-6 py-8">
-                <div class="text-center space-y-6">
-                    <div class="flex justify-center mb-6">
-                        <img src="https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620506/beloveful-logo-black_rwsx2j.png" alt="BELOVEFUL Photography" class="h-8 w-auto">
+            
+            <div class="hidden md:block">
+                <div class="container mx-auto px-6 py-12 relative">
+                    <div class="absolute top-6 right-6">
+                        <div class="flex items-center gap-6">
+                            <a href="https://www.instagram.com/beloveful" target="_blank" rel="noopener noreferrer">
+                                <svg class="w-6 h-6 text-gray-600 hover:text-black transition-colors cursor-pointer" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 0c-3.371 0-7.227.01-8.526.046C1.944.113.882.883.271 2.379.096 3.197 0 4.195 0 8.017v7.966c0 3.822.096 4.82.271 5.638.611 1.496 1.673 2.266 3.224 2.333 1.299.036 5.155.046 8.526.046 3.371 0 7.227-.01 8.526-.046 1.551-.067 2.613-.837 3.224-2.333.175-.818.271-1.816.271-5.638V8.017c0-3.822-.096-4.82-.271-5.638C22.41 1.047 21.348.277 19.797.21c-1.299-.036-5.155-.046-8.526-.046zM12 2.219c3.21 0 6.634.011 7.828.043 1.14.032 1.45.41 1.637.794.186.383.252.825.252 2.766v7.882c0 1.94-.066 2.383-.252 2.766-.187.384-.497.762-1.637.794-1.194.032-4.618.043-7.828.043-3.21 0-6.634-.011-7.828-.043-1.14-.032-1.45-.41-1.637-.794-.186-.383-.252-.825-.252-2.766V8.017c0-1.94.066-2.383.252-2.766.187-.384.497-.762 1.637-.794 1.194-.032 4.618-.043 7.828-.043zM12 6.809c-2.85 0-5.176 2.327-5.176 5.177 0 2.85 2.327 5.176 5.176 5.176s5.177-2.326 5.177-5.176c0-2.85-2.327-5.177-5.177-5.177zm0 2.21c1.63 0 2.967 1.336 2.967 2.967s-1.336 2.966-2.967 2.966c-1.63 0-2.966-1.336-2.966-2.966s1.336-2.967 2.966-2.967zm4.332-4.321c-.56 0-1.015.454-1.015 1.015s.455 1.015 1.015 1.015c.56 0 1.015-.454 1.015-1.015s-.455-1.015-1.015-1.015z"/>
+                                </svg>
+                            </a>
+                            <a href="https://www.facebook.com/beloveful" target="_blank" rel="noopener noreferrer">
+                                <svg class="w-6 h-6 text-gray-600 hover:text-black transition-colors cursor-pointer" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                                </svg>
+                            </a>
+                        </div>
                     </div>
-                    <div class="space-y-4">
-                        <a href="#" onclick="showPage('signup')" class="block w-full bg-black text-white py-4 px-6 rounded-full font-sans font-medium text-center hover:bg-gray-800 transition-colors">Join Newsletter</a>
-                        <a href="#" onclick="showPage('workshops')" class="block w-full border-2 border-black text-black py-4 px-6 rounded-full font-sans font-medium text-center hover:bg-black hover:text-white transition-colors">Book Workshop</a>
-                        <a href="https://tr.ee/5UEQo99kEi" target="_blank" rel="noopener noreferrer" class="block w-full border-2 border-gray-300 text-gray-700 py-4 px-6 rounded-full font-sans font-medium text-center hover:border-black hover:text-black transition-colors">Print Shop</a>
+
+            
+                    <div class="absolute bottom-6 left-6">
+                        <img src="https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620506/beloveful-logo-black_rwsx2j.png" alt="BE LOVEFUL Photography" class="h-8 w-auto">
                     </div>
-                    <div class="pt-6 border-t border-gray-100">
+
+                    <div class="flex justify-center mb-8">
+                        </div>
+
+                    <div class="flex justify-center">
+                        <div class="flex items-center gap-8">
+                            <a href="#" onclick="showPage('signup')" class="text-gray-700 hover:text-black font-sans font-medium transition-colors">Newsletter</a>
+                            <a href="#" onclick="showPage('workshops')" class="text-gray-700 hover:text-black font-sans font-medium transition-colors">Workshops</a>
+                            <a href="https://www.printinnovationlab.com/collections/beloveful" target="_blank" rel="noopener noreferrer" class="text-gray-700 hover:text-black font-sans font-medium transition-colors">Print Shop</a>
+                        </div>
+                    </div>
+
+                
+                    <div class="mt-8 pt-8 border-t border-gray-100 text-center">
                         <p class="text-sm text-gray-500 font-sans">© 2025 Tony Menias. All rights reserved.</p>
                     </div>
                 </div>
             </div>
-        </div>
-
-        
-        <div class="hidden md:block">
-            <div class="container mx-auto px-6 py-12 relative">
-                <div class="absolute top-6 right-6">
-                    <div class="flex items-center gap-6">
-                        <a href="https://www.instagram.com/beloveful" target="_blank" rel="noopener noreferrer">
-                            <svg class="w-6 h-6 text-gray-600 hover:text-black transition-colors cursor-pointer" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.62 5.367 11.987 11.988 11.987 6.62 0 11.987-5.367 11.987-11.987C24.014 5.367 18.637.001 12.017.001z"/>
-                            </svg>
-                        </a>
-                        <a href="https://www.facebook.com/beloveful" target="_blank" rel="noopener noreferrer">
-                            <svg class="w-6 h-6 text-gray-600 hover:text-black transition-colors cursor-pointer" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-
-        
-                <div class="absolute bottom-6 left-6">
-                    <img src="https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620506/beloveful-logo-black_rwsx2j.png" alt="BE LOVEFUL Photography" class="h-8 w-auto">
-                </div>
-
-                <div class="flex justify-center mb-8">
-                    </div>
-
-                <div class="flex justify-center">
-                    <div class="flex items-center gap-8">
-                        <a href="#" onclick="showPage('signup')" class="text-gray-700 hover:text-black font-sans font-medium transition-colors">Newsletter</a>
-                        <a href="#" onclick="showPage('workshops')" class="text-gray-700 hover:text-black font-sans font-medium transition-colors">Workshops</a>
-                        <a href="https://tr.ee/5UEQo99kEi" target="_blank" rel="noopener noreferrer" class="text-gray-700 hover:text-black font-sans font-medium transition-colors">Print Shop</a>
-                    </div>
-                </div>
-
-            
-                <div class="mt-8 pt-8 border-t border-gray-100 text-center">
-                    <p class="text-sm text-gray-500 font-sans">© 2025 Tony Menias. All rights reserved.</p>
-                </div>
-            </div>
-        </div>
-    </footer>
-
+        </footer>
+    </div>
     
+    <!-- Lightbox, moved to be a global element -->
     <div id="lightbox" class="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4 hidden" onclick="closeLightbox()">
         <div class="relative max-w-4xl max-h-full">
             <img id="lightbox-image" src="" alt="" class="max-w-full max-h-full object-contain">
@@ -579,6 +540,24 @@
             if (targetPage) {
                 targetPage.classList.remove('hidden');
                 targetPage.classList.add('fade-in');
+            }
+
+            // Hide the footer on the home page and show it on all others
+            const footer = document.getElementById('main-footer');
+            if (footer) {
+                if (pageId === 'home') {
+                    footer.classList.add('hidden');
+                } else {
+                    footer.classList.remove('hidden');
+                }
+            }
+            
+            // Adjust header visibility based on page
+            const globalHeader = document.getElementById('global-header');
+            if (pageId === 'home') {
+                globalHeader.classList.add('hidden');
+            } else {
+                globalHeader.classList.remove('hidden');
             }
 
             // Slideshow control: Only start/continue if we're on the home page
