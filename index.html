@@ -3,307 +3,579 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BE LOVEFUL Photography Portfolio</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <style>
-        /* Reset & base */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; line-height: 1.6; color: #333; background: #fafafa; }
-        a { text-decoration: none; color: inherit; }
-
-        /* Navbar */
-        .navbar {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            background: rgba(255,255,255,0.95);
-            backdrop-filter: blur(8px);
-            z-index: 1000;
-            padding: 1rem 2rem;
-            border-bottom: 1px solid rgba(0,0,0,0.08);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+    <title>BE LOVEFUL Photography</title>
+    <meta name="description" content="Professional photography portfolio and services by Tony Menias">
+    <link rel="icon" href="https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620508/favicon_staqlf.jpg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        'background': '#ffffff',
+                        'foreground': '#374151',
+                        'primary': '#dc2626',
+                        'secondary': '#f59e0b',
+                        'muted': '#6b7280',
+                    }
+                }
+            }
         }
-        .logo img { height: 45px; width: auto; }
-        .nav-links { display: flex; list-style: none; gap: 2rem; }
-        .nav-links a { font-weight: 500; transition: color 0.3s; }
-        .nav-links a:hover, .nav-links a.active { color: #2c3e50; }
-        .mobile-menu-btn { display: none; font-size: 1.8rem; cursor: pointer; background: none; border: none; }
-
-        /* Hero */
-        .hero { height: 100vh; position: relative; margin-top: 80px; overflow: hidden; }
-        .hero-slideshow { width: 100%; height: 100%; position: relative; }
-        .hero-slide { position: absolute; top:0; left:0; width:100%; height:100%; opacity:0; transition: opacity 1s ease-in-out; }
-        .hero-slide.active { opacity:1; }
-        .hero-slide img { width:100%; height:100%; object-fit:cover; }
-        .hero-overlay { position:absolute; top:0; left:0; right:0; bottom:0; background: rgba(0,0,0,0.35); display:flex; align-items:center; justify-content:center; text-align:center; color:white; padding:0 1rem; }
-        .hero-content h1 { font-size:3.5rem; font-weight:300; margin-bottom:1rem; text-shadow: 2px 2px 8px rgba(0,0,0,0.5); }
-        .hero-content p { font-size:1.25rem; margin-bottom:2rem; text-shadow: 1px 1px 5px rgba(0,0,0,0.5); }
-        .cta-button { padding: 12px 30px; background:#2c3e50; border-radius:5px; color:white; font-weight:500; transition: background 0.3s; }
-        .cta-button:hover { background:#34495e; }
-
-        /* Sections */
-        .page-section { display:none; min-height: calc(100vh - 80px); margin-top:80px; }
-        .page-section.active { display:block; }
-
-        /* Portfolio */
-        .portfolio { padding:4rem 2rem; max-width:1200px; margin:0 auto; }
-        .section-title { text-align:center; font-size:2.5rem; font-weight:300; margin-bottom:3rem; color:#2c3e50; }
-        .filter-buttons { display:flex; justify-content:center; gap:1rem; margin-bottom:3rem; flex-wrap:wrap; }
-        .filter-btn { padding:8px 20px; background:#f8f9fa; border:2px solid #e9ecef; border-radius:25px; cursor:pointer; font-weight:500; transition: all 0.3s ease; }
-        .filter-btn:hover, .filter-btn.active { background:#2c3e50; color:white; border-color:#2c3e50; }
-        .portfolio-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:2rem; }
-        .portfolio-item { position:relative; overflow:hidden; border-radius:10px; box-shadow:0 4px 15px rgba(0,0,0,0.1); cursor:pointer; transition: transform 0.3s; }
-        .portfolio-item:hover { transform: translateY(-5px); }
-        .portfolio-item img { width:100%; height:250px; object-fit:cover; transition: transform 0.3s; }
-        .portfolio-item:hover img { transform: scale(1.05); }
-        .portfolio-overlay { position:absolute; top:0; left:0; right:0; bottom:0; background: rgba(44,62,80,0.8); display:flex; align-items:center; justify-content:center; opacity:0; transition: opacity 0.3s; text-align:center; color:white; padding:1rem; }
-        .portfolio-item:hover .portfolio-overlay { opacity:1; }
-        .portfolio-overlay h3 { margin-bottom:0.5rem; }
-        .portfolio-overlay p { font-size:0.95rem; }
-
-        /* About */
-        .about { background:white; padding:4rem 2rem; }
-        .about-container { max-width:1000px; margin:0 auto; display:grid; grid-template-columns:1fr 2fr; gap:4rem; align-items:center; }
-        .about-image img { width:100%; height:400px; object-fit:cover; border-radius:10px; }
-        .about-content h2 { font-size:2.5rem; font-weight:300; margin-bottom:2rem; color:#2c3e50; }
-        .about-content p { margin-bottom:1.5rem; color:#666; line-height:1.8; }
-
-        /* Workshops */
-        .workshops-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:2rem; margin-top:3rem; }
-        .workshop-card { background:white; border-radius:10px; overflow:hidden; box-shadow:0 4px 15px rgba(0,0,0,0.1); }
-        .workshop-card img { width:100%; height:200px; object-fit:cover; }
-        .workshop-info { padding:1.5rem; }
-        .workshop-info h3 { margin-bottom:1rem; color:#2c3e50; }
-        .workshop-info p { color:#666; margin-bottom:1rem; }
-        .workshop-price { font-weight:600; color:#2c3e50; font-size:1.2rem; }
-
-        /* Footer */
-        .footer { background:#2c3e50; color:white; text-align:center; padding:3rem 2rem; }
-        .footer h3 { margin-bottom:1rem; }
-        .social-links { display:flex; justify-content:center; gap:2rem; margin:2rem 0; }
-        .social-links a { color:white; font-weight:500; transition: color 0.3s; }
-        .social-links a:hover { color:#3498db; }
-
-        /* Lightbox */
-        .lightbox { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:2000; align-items:center; justify-content:center; }
-        .lightbox.active { display:flex; }
-        .lightbox-content { position:relative; max-width:90%; max-height:90%; }
-        .lightbox img { width:100%; height:100%; object-fit:contain; }
-        .lightbox-close { position:absolute; top:-40px; right:0; font-size:2rem; cursor:pointer; background:none; border:none; color:white; }
-
-        /* Responsive */
-        @media(max-width:768px) {
-            .nav-links { display:none; flex-direction:column; background:#fff; position:absolute; top:70px; right:20px; padding:1rem; border-radius:8px; box-shadow:0 4px 15px rgba(0,0,0,0.1); }
-            .mobile-menu-btn { display:block; }
-            .hero-content h1 { font-size:2.5rem; }
-            .about-container { grid-template-columns:1fr; gap:2rem; }
-            .portfolio-grid { grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:1rem; }
+    </script>
+    <style>
+        .hero-slideshow {
+            background-image: url('/hero-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .slide-in {
+            animation: slideIn 0.3s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateY(-10px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
     </style>
 </head>
-<body>
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="logo">
-            <img src="https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620506/beloveful-logo-black_rwsx2j.png" alt="BE LOVEFUL Logo">
-        </div>
-        <ul class="nav-links">
-            <li><a href="#" class="nav-link active" data-page="home">Home</a></li>
-            <li><a href="#" class="nav-link" data-page="about">About</a></li>
-            <li><a href="#" class="nav-link" data-page="portfolio">Portfolio</a></li>
-            <li><a href="#" class="nav-link" data-page="workshops">Workshops</a></li>
-        </ul>
-        <button class="mobile-menu-btn">☰</button>
-    </nav>
+<body class="font-sans antialiased">
 
-    <!-- Hero -->
-    <section class="hero">
-        <div class="hero-slideshow">
-            <div class="hero-slide active">
-                <img src="https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620507/tony-hero-new_mtx9wk.jpg" alt="Hero Image">
-            </div>
-        </div>
-        <div class="hero-overlay">
-            <div class="hero-content">
-                <h1>Capturing Life's Beautiful Moments</h1>
-                <p>Professional photography that tells your story</p>
-                <a href="#" class="cta-button" data-page="portfolio">View Portfolio</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Page Sections -->
-    <div id="home" class="page-section active">
-        <section class="portfolio">
-            <h2 class="section-title">Featured Work</h2>
-            <div class="portfolio-grid" id="featured-portfolio"></div>
-        </section>
-    </div>
-
-    <div id="about" class="page-section">
-        <section class="about">
-            <div class="about-container">
-                <div class="about-image">
-                    <img src="https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620507/tony-hero-new_mtx9wk.jpg" alt="Tony - Photographer Portrait">
+    <div id="home-page" class="page relative min-h-screen">
+       
+        <div class="hero-slideshow absolute inset-0"></div>
+        
+     
+        <div class="absolute inset-0 bg-black/20"></div>
+      
+        <div class="relative z-10 min-h-screen">
+       
+            <header class="flex justify-between items-start p-6">
+       
+                <div class="flex gap-4">
+                    <a href="https://www.facebook.com/tony.menias#" target="_blank" rel="noopener noreferrer" class="text-white/80 hover:text-white transition-colors">
+                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                        </svg>
+                    </a>
+                    <a href="https://linktr.ee/beloveful" target="_blank" rel="noopener noreferrer" class="text-white/80 hover:text-white transition-colors">
+                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M7.953 15.066c-.08.163-.08.324-.08.486.08.517.528.897 1.052.897.525 0 .973-.38 1.052-.897 0-.162 0-.323-.08-.486L8.005 9.5h1.838c.164 0 .324-.081.405-.243.081-.162.081-.405-.081-.567L6.647 3.595c-.162-.162-.405-.162-.567 0L2.56 8.69c-.162.162-.162.405-.081.567.081.162.241.243.405.243h1.838l1.231 5.566z"/>
+                        </svg>
+                    </a>
+                    <a href="https://www.instagram.com/beloveful" target="_blank" rel="noopener noreferrer" class="text-white/80 hover:text-white transition-colors">
+                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.62 5.367 11.987 11.988 11.987 6.62 0 11.987-5.367 11.987-11.987C24.014 5.367 18.637.001 12.017.001zM8.449 16.988c-1.297 0-2.448-.611-3.132-1.551-.684-.94-.684-2.126 0-3.066.684-.94 1.835-1.551 3.132-1.551s2.448.611 3.132 1.551c.684.94.684 2.126 0 3.066-.684.94-1.835 1.551-3.132 1.551z"/>
+                        </svg>
+                    </a>
                 </div>
-                <div class="about-content">
-                    <h2>About the Artist</h2>
-                    <p>Welcome to my world of photography. I'm passionate about capturing the essence of life through my lens, whether it's the raw beauty of landscapes, the intimate moments of portraits, or the vibrant energy of street photography.</p>
-                    <p>With over a decade of experience, I've documented stories across continents, always seeking that perfect moment where light, emotion, and composition converge.</p>
-                    <p>My work has been featured in publications and exhibitions, but what truly drives me is the connection I make with my subjects and the stories we create together.</p>
+                
+        
+                <div class="flex items-center">
+                    <img src="https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620506/beloveful-logo-black_rwsx2j.png" alt="BE LOVEFUL Photography" class="h-8 w-auto">
+                </div>
+            </header>
+            
+     
+            <nav class="absolute top-48 right-6">
+                <ul class="flex flex-col gap-6 text-right">
+                    <li><a href="#" onclick="showPage('home')" class="text-white/90 hover:text-white transition-colors text-sm font-light tracking-wide">HOME</a></li>
+                    <li class="flex items-center justify-end gap-1">
+                        <a href="#" onclick="showPage('portfolio')" class="text-white/90 hover:text-white transition-colors text-sm font-light tracking-wide">PORTFOLIO</a>
+                        <svg width="14" height="14" fill="currentColor" class="text-white/90" viewBox="0 0 24 24">
+                            <path d="M7 10l5 5 5-5z"/>
+                        </svg>
+                    </li>
+                    <li><a href="https://tr.ee/5UEQo99kEi" target="_blank" rel="noopener noreferrer" class="text-white/90 hover:text-white transition-colors text-sm font-light tracking-wide">PRINT SHOP</a></li>
+                    <li><a href="#" onclick="showPage('workshops')" class="text-white/90 hover:text-white transition-colors text-sm font-light tracking-wide">WORKSHOPS</a></li>
+                    <li><a href="#" onclick="showPage('about')" class="text-white/90 hover:text-white transition-colors text-sm font-light tracking-wide">ABOUT</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    
+    <div id="about-page" class="page min-h-screen bg-white hidden">
+       
+        <header class="relative z-10 flex items-center justify-between p-6">
+             
+            <div class="hidden md:flex items-center gap-2">
+                <a href="https://www.facebook.com/tony.menias#" target="_blank" rel="noopener noreferrer">
+                    <svg class="w-6 h-6 text-gray-600 hover:text-gray-800 transition-colors cursor-pointer" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                    </svg>
+                </a>
+                <a href="https://www.threads.com/@beloveful" target="_blank" rel="noopener noreferrer">
+                    <svg class="w-6 h-6 text-black hover:text-gray-900 transition-colors cursor-pointer" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12.186 2.25h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.5 12.5c0-3.086.85-5.94 2.495-8.491C5.845 1.205 8.598.024 12.179 0h.014z"/>
+                    </svg>
+                </a>
+                <a href="https://x.com/beloveful" target="_blank" rel="noopener noreferrer">
+                    <svg class="w-6 h-6 text-gray-600 hover:text-gray-800 transition-colors cursor-pointer" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                </a>
+                <a href="https://www.instagram.com/beloveful" target="_blank" rel="noopener noreferrer">
+                    <svg class="w-6 h-6 text-gray-600 hover:text-gray-800 transition-colors cursor-pointer" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.62 5.367 11.987 11.988 11.987 6.62 0 11.987-5.367 11.987-11.987C24.014 5.367 18.637.001 12.017.001z"/>
+                    </svg>
+                </a>
+            </div>
+
+         
+            <button class="md:hidden z-20" onclick="toggleMobileMenu()">
+                <svg id="menu-icon" class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+                <svg id="close-icon" class="w-6 h-6 text-gray-600 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            </button>
+
+            <div class="md:absolute md:left-1/2 md:transform md:-translate-x-1/2">
+                <img src="https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620506/beloveful-logo-black_rwsx2j.png" alt="BE LOVEFUL Photography" class="h-8 w-auto">
+            </div>
+
+            
+            <nav class="hidden md:flex items-center gap-8">
+                <a href="#" onclick="showPage('home')" class="text-gray-600 hover:text-gray-800 transition-colors font-sans">HOME</a>
+                <a href="#" onclick="showPage('portfolio')" class="text-gray-600 hover:text-gray-800 transition-colors font-sans">PORTFOLIO</a>
+                <a href="https://tr.ee/5UEQo99kEi" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-gray-800 transition-colors font-sans">PRINT SHOP</a>
+                <a href="#" onclick="showPage('workshops')" class="text-gray-600 hover:text-gray-800 transition-colors font-sans">WORKSHOPS</a>
+                <a href="#" onclick="showPage('about')" class="text-gray-800 font-medium font-sans">ABOUT</a>
+            </nav>
+
+
+            <div id="mobile-menu" class="fixed inset-0 bg-white z-10 md:hidden hidden">
+                <div class="flex flex-col items-center justify-center h-full space-y-8">
+                    <a href="#" onclick="showPage('home'); toggleMobileMenu()" class="text-2xl text-gray-600 hover:text-gray-800 transition-colors font-sans">HOME</a>
+                    <a href="#" onclick="showPage('portfolio'); toggleMobileMenu()" class="text-2xl text-gray-600 hover:text-gray-800 transition-colors font-sans">PORTFOLIO</a>
+                    <a href="https://tr.ee/5UEQo99kEi" target="_blank" rel="noopener noreferrer" class="text-2xl text-gray-600 hover:text-gray-800 transition-colors font-sans">PRINT SHOP</a>
+                    <a href="#" onclick="showPage('workshops'); toggleMobileMenu()" class="text-2xl text-gray-600 hover:text-gray-800 transition-colors font-sans">WORKSHOPS</a>
+                    <a href="#" onclick="showPage('about'); toggleMobileMenu()" class="text-2xl text-gray-800 font-medium font-sans">ABOUT</a>
+                </div>
+            </div>
+        </header>
+
+         
+        <section class="text-center py-8 px-6">
+            <h1 class="text-4xl md:text-5xl font-bold font-sans mb-4 text-black">Tony Menias</h1>
+            <p class="text-lg md:text-xl font-sans text-gray-700">Professional Photographer & Visual Artist</p>
+        </section>
+
+         
+        <section class="flex justify-center px-6 py-8">
+            <div class="relative w-full max-w-md md:max-w-lg aspect-square overflow-hidden rounded-lg shadow-lg">
+                <img src="https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620507/tony-hero-new_mtx9wk.jpg" alt="Tony Menias with sunglasses and a small monkey on his shoulder at a historic temple site" class="w-full h-full object-cover">
+            </div>
+        </section>
+
+        
+        <main class="max-w-4xl mx-auto px-6 py-12">
+            <div class="space-y-12">
+                
+                <section class="space-y-6">
+                    <h2 class="text-2xl font-bold text-gray-900 font-sans">Publications</h2>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center border-b border-gray-200 pb-2">
+                            <span class="font-medium text-gray-900 font-sans">'Capturing Japan'</span>
+                            <span class="text-gray-600 font-sans">ANNE Magazine, 2018</span>
+                        </div>
+                        <div class="flex justify-between items-center border-b border-gray-200 pb-2">
+                            <span class="font-medium text-gray-900 font-sans">'Into The Rabbit Hole'</span>
+                            <span class="text-gray-600 font-sans">Editors Showcase National Geographic, 2018</span>
+                        </div>
+                        <div class="flex justify-between items-center border-b border-gray-200 pb-2">
+                            <span class="font-medium text-gray-900 font-sans">'Sunset Sails'</span>
+                            <span class="text-gray-600 font-sans">Editors Showcase National Geographic, 2021</span>
+                        </div>
+                        <div class="flex justify-between items-center border-b border-gray-200 pb-2">
+                            <span class="font-medium text-gray-900 font-sans">'Story Behind the Still'</span>
+                            <span class="text-gray-600 font-sans">Digital Photographers Magazine, 2022</span>
+                        </div>
+                        <div class="flex justify-between items-center border-b border-gray-200 pb-2">
+                            <span class="font-medium text-gray-900 font-sans">'Chicago'</span>
+                            <span class="text-gray-600 font-sans">Bump Books, 2023</span>
+                        </div>
+                        <div class="flex justify-between items-center border-b border-gray-200 pb-2">
+                            <span class="font-medium text-gray-900 font-sans">'Burning Man Tunes'</span>
+                            <span class="text-gray-600 font-sans">Magnetic Magazine, 2023</span>
+                        </div>
+                    </div>
+                </section>
+
+                 
+                <section class="space-y-6">
+                    <h2 class="text-2xl font-bold text-gray-900 font-sans">Media & Features</h2>
+                    
+                  
+                    <div class="space-y-4">
+                        <h3 class="text-lg font-semibold text-gray-900 font-sans">Featured Video</h3>
+                        <div class="relative w-full aspect-video rounded-lg overflow-hidden shadow-lg">
+                            <iframe src="https://www.youtube.com/embed/8_77njFPQQU" title="Tony Menias Featured Video" class="absolute inset-0 w-full h-full" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <h3 class="text-lg font-semibold text-gray-900 font-sans">Podcast Feature</h3>
+                        <div class="flex justify-center">
+                            <iframe src="https://creators.spotify.com/pod/profile/mediumlargepodcast/embed/episodes/14-Tony-Menias--Egyptian-G--MD-ef5vk6/a-a2e09up" height="102px" width="400px" frameborder="0" scrolling="no" title="Medium Large Podcast - Tony Menias Episode" class="rounded-lg shadow-lg"></iframe>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    
+    <div id="portfolio-page" class="page min-h-screen bg-white hidden">
+        
+        <header class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-sm border-b border-gray-100">
+            <div class="container mx-auto px-6 py-4">
+                <div class="flex items-center justify-between">
+                     
+                    <div class="hidden md:flex items-center gap-4">
+                        <a href="https://www.facebook.com/tony.menias#" target="_blank" rel="noopener noreferrer">
+                            <svg class="w-5 h-5 text-gray-600 hover:text-gray-900 transition-colors" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </a>
+                        <a href="https://www.instagram.com/beloveful" target="_blank" rel="noopener noreferrer">
+                            <svg class="w-5 h-5 text-gray-600 hover:text-gray-900 transition-colors" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.62 5.367 11.987 11.988 11.987 6.62 0 11.987-5.367 11.987-11.987C24.014 5.367 18.637.001 12.017.001z"/>
+                            </svg>
+                        </a>
+                    </div>
+
+    
+                    <div class="flex-1 flex justify-center">
+                        <a href="#" onclick="showPage('home')">
+                            <img src="https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620506/beloveful-logo-black_rwsx2j.png" alt="BE LOVEFUL Photography" class="h-8 w-auto">
+                        </a>
+                    </div>
+
+        
+                    <nav class="hidden md:flex items-center gap-8">
+                        <a href="#" onclick="showPage('home')" class="text-gray-600 hover:text-gray-900 transition-colors font-medium">HOME</a>
+                        <a href="#" onclick="showPage('portfolio')" class="text-gray-900 font-medium border-b-2 border-gray-900 pb-1">PORTFOLIO</a>
+                        <a href="https://tr.ee/5UEQo99kEi" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-gray-900 transition-colors font-medium">PRINT SHOP</a>
+                        <a href="#" onclick="showPage('workshops')" class="text-gray-600 hover:text-gray-900 transition-colors font-medium">WORKSHOPS</a>
+                        <a href="#" onclick="showPage('about')" class="text-gray-600 hover:text-gray-900 transition-colors font-medium">ABOUT</a>
+                    </nav>
+
+                    <button class="md:hidden p-2" onclick="toggleMobileMenu()">
+                        <svg class="w-6 h-6 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+         
+        <main class="pt-24 pb-16">
+            <div class="container mx-auto px-6">
+                 
+                <div class="text-center mb-12">
+                    <h1 class="text-4xl md:text-5xl font-light text-gray-900 mb-4">Portfolio</h1>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">A curated collection of moments captured across continents, telling stories that transcend borders.</p>
+                </div>
+
+    
+                <div class="flex flex-wrap justify-center gap-4 mb-12">
+                    <button onclick="filterPortfolio('all')" class="px-6 py-2 rounded-full text-sm font-medium transition-all bg-gray-900 text-white" id="filter-all">Erasing Borders / View All</button>
+                    <button onclick="filterPortfolio('asia')" class="px-6 py-2 rounded-full text-sm font-medium transition-all bg-gray-100 text-gray-600 hover:bg-gray-200" id="filter-asia">Asia</button>
+                    <button onclick="filterPortfolio('europe')" class="px-6 py-2 rounded-full text-sm font-medium transition-all bg-gray-100 text-gray-600 hover:bg-gray-200" id="filter-europe">Europe</button>
+                    <button onclick="filterPortfolio('americas')" class="px-6 py-2 rounded-full text-sm font-medium transition-all bg-gray-100 text-gray-600 hover:bg-gray-200" id="filter-americas">Americas</button>
+                </div>
+ 
+                <div id="portfolio-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 auto-rows-[200px]">
+                
+                </div>
+
+                <div id="portfolio-loading" class="text-center py-12">
+                    <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900 mx-auto mb-4"></div>
+                    <p class="text-gray-600">Loading portfolio...</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="workshops-page" class="page min-h-screen bg-white hidden">
+     
+        <header class="relative z-10 flex items-center justify-between p-6">
+            <div class="md:absolute md:left-1/2 md:transform md:-translate-x-1/2">
+                <img src="https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620506/beloveful-logo-black_rwsx2j.png" alt="BE LOVEFUL Photography" class="h-8 w-auto">
+            </div>
+            <nav class="hidden md:flex items-center gap-8 ml-auto">
+                <a href="#" onclick="showPage('home')" class="text-gray-600 hover:text-gray-800 transition-colors font-sans">HOME</a>
+                <a href="#" onclick="showPage('portfolio')" class="text-gray-600 hover:text-gray-800 transition-colors font-sans">PORTFOLIO</a>
+                <a href="https://tr.ee/5UEQo99kEi" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-gray-800 transition-colors font-sans">PRINT SHOP</a>
+                <a href="#" onclick="showPage('workshops')" class="text-gray-800 font-medium font-sans">WORKSHOPS</a>
+                <a href="#" onclick="showPage('about')" class="text-gray-600 hover:text-gray-800 transition-colors font-sans">ABOUT</a>
+            </nav>
+        </header>
+
+
+        <section class="relative h-96 overflow-hidden">
+            <img src="https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620506/chicago-basketball-court_uf5asu.jpg" alt="Street Photography Workshop" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-black/40"></div>
+            <div class="absolute inset-0 flex items-center justify-center">
+                <div class="text-center text-white">
+                    <h1 class="text-4xl md:text-6xl font-light mb-4 font-sans">Walk the streets, see differently</h1>
+                    <p class="text-xl md:text-2xl font-light font-sans">Street Photography Workshop - Chicago</p>
                 </div>
             </div>
         </section>
-    </div>
 
-    <div id="portfolio" class="page-section">
-        <section class="portfolio">
-            <h2 class="section-title">Portfolio</h2>
-            <div class="filter-buttons">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="africa">Africa</button>
-                <button class="filter-btn" data-filter="asia">Asia</button>
-                <button class="filter-btn" data-filter="europe">Europe</button>
-                <button class="filter-btn" data-filter="americas">Americas</button>
-                <button class="filter-btn" data-filter="oceania">Oceania</button>
+        <main class="max-w-4xl mx-auto px-6 py-16">
+            <div class="space-y-12">
+                <section class="text-center">
+                    <h2 class="text-3xl font-light text-gray-900 mb-6 font-sans">Discover the Art of Street Photography</h2>
+                    <p class="text-lg text-gray-700 leading-relaxed font-sans">Join Tony Menias for an immersive street photography workshop in the heart of Chicago. Learn to capture authentic moments, master composition, and develop your unique photographic voice while exploring the city's vibrant neighborhoods.</p>
+                </section>
+
+                <section class="grid md:grid-cols-2 gap-12">
+                    <div>
+                        <h3 class="text-2xl font-light text-gray-900 mb-4 font-sans">What You'll Learn</h3>
+                        <ul class="space-y-3 text-gray-700 font-sans">
+                            <li>• Street photography ethics and approach</li>
+                            <li>• Composition techniques for urban environments</li>
+                            <li>• Working with natural light in the city</li>
+                            <li>• Capturing candid moments and emotions</li>
+                            <li>• Post-processing for street photography</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-light text-gray-900 mb-4 font-sans">Workshop Details</h3>
+                        <div class="space-y-3 text-gray-700 font-sans">
+                            <p><strong>Duration:</strong> Full Day (8 hours)</p>
+                            <p><strong>Location:</strong> Chicago, IL</p>
+                            <p><strong>Group Size:</strong> Maximum 8 participants</p>
+                            <p><strong>Level:</strong> All skill levels welcome</p>
+                            <p><strong>Equipment:</strong> Camera required (DSLR/Mirrorless preferred)</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="text-center">
+                    <a href="mailto:hello@beloveful.com" class="inline-block bg-black text-white px-8 py-4 rounded-full font-sans font-medium hover:bg-gray-800 transition-colors">Book Your Spot</a>
+                </section>
             </div>
-            <div class="portfolio-grid" id="full-portfolio"></div>
-        </section>
+        </main>
     </div>
 
-    <div id="workshops" class="page-section">
-        <div class="page-content">
-            <h2 class="section-title">Photography Workshops</h2>
-            <p style="text-align:center; margin-bottom:3rem; color:#666;">Join me for immersive photography experiences around the world</p>
-            <div class="workshops-grid">
-                <div class="workshop-card">
-                    <img src="https://via.placeholder.com/400x200/2c3e50/ffffff?text=Landscape+Workshop" alt="Landscape Workshop">
-                    <div class="workshop-info">
-                        <h3>Landscape Photography Mastery</h3>
-                        <p>Learn the art of capturing breathtaking landscapes with expert techniques for composition, lighting, and post-processing.</p>
-                        <div class="workshop-price">$299</div>
+    <footer class="bg-white border-t border-gray-100">
+    
+        <div class="md:hidden">
+            <div class="container mx-auto px-6 py-8">
+                <div class="text-center space-y-6">
+                    <div class="flex justify-center mb-6">
+                        <img src="https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620506/beloveful-logo-black_rwsx2j.png" alt="BE LOVEFUL Photography" class="h-8 w-auto">
+                    </div>
+                    <div class="space-y-4">
+                        <a href="#" onclick="showPage('signup')" class="block w-full bg-black text-white py-4 px-6 rounded-full font-sans font-medium text-center hover:bg-gray-800 transition-colors">Join Newsletter</a>
+                        <a href="#" onclick="showPage('workshops')" class="block w-full border-2 border-black text-black py-4 px-6 rounded-full font-sans font-medium text-center hover:bg-black hover:text-white transition-colors">Book Workshop</a>
+                        <a href="https://tr.ee/5UEQo99kEi" target="_blank" rel="noopener noreferrer" class="block w-full border-2 border-gray-300 text-gray-700 py-4 px-6 rounded-full font-sans font-medium text-center hover:border-black hover:text-black transition-colors">Print Shop</a>
+                    </div>
+                    <div class="pt-6 border-t border-gray-100">
+                        <p class="text-sm text-gray-500 font-sans">© 2025 Tony Menias. All rights reserved.</p>
                     </div>
                 </div>
-                <div class="workshop-card">
-                    <img src="https://via.placeholder.com/400x200/2c3e50/ffffff?text=Portrait+Workshop" alt="Portrait Workshop">
-                    <div class="workshop-info">
-                        <h3>Portrait Photography Intensive</h3>
-                        <p>Master the skills of portrait photography, from lighting setups to directing subjects for compelling portraits.</p>
-                        <div class="workshop-price">$399</div>
+            </div>
+        </div>
+
+       
+        <div class="hidden md:block">
+            <div class="container mx-auto px-6 py-12 relative">
+                 Social Icons - Top Right 
+                <div class="absolute top-6 right-6">
+                    <div class="flex items-center gap-6">
+                        <a href="https://www.instagram.com/beloveful" target="_blank" rel="noopener noreferrer">
+                            <svg class="w-6 h-6 text-gray-600 hover:text-black transition-colors cursor-pointer" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.62 5.367 11.987 11.988 11.987 6.62 0 11.987-5.367 11.987-11.987C24.014 5.367 18.637.001 12.017.001z"/>
+                            </svg>
+                        </a>
+                        <a href="https://www.facebook.com/beloveful" target="_blank" rel="noopener noreferrer">
+                            <svg class="w-6 h-6 text-gray-600 hover:text-black transition-colors cursor-pointer" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </a>
                     </div>
                 </div>
-                <div class="workshop-card">
-                    <img src="https://via.placeholder.com/400x200/2c3e50/ffffff?text=Street+Workshop" alt="Street Workshop">
-                    <div class="workshop-info">
-                        <h3>Street Photography Adventure</h3>
-                        <p>Explore the urban landscape and learn to capture authentic moments in the streets with confidence.</p>
-                        <div class="workshop-price">$249</div>
+
+        
+                <div class="absolute bottom-6 left-6">
+                    <img src="https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620506/beloveful-logo-black_rwsx2j.png" alt="BE LOVEFUL Photography" class="h-8 w-auto">
+                </div>
+
+                <div class="flex justify-center mb-8">
+                    <img src="https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620506/beloveful-logo-black_rwsx2j.png" alt="BE LOVEFUL Photography" class="h-8 w-auto">
+                </div>
+
+                <div class="flex justify-center">
+                    <div class="flex items-center gap-8">
+                        <a href="#" onclick="showPage('signup')" class="text-gray-700 hover:text-black font-sans font-medium transition-colors">Newsletter</a>
+                        <a href="#" onclick="showPage('workshops')" class="text-gray-700 hover:text-black font-sans font-medium transition-colors">Workshops</a>
+                        <a href="https://tr.ee/5UEQo99kEi" target="_blank" rel="noopener noreferrer" class="text-gray-700 hover:text-black font-sans font-medium transition-colors">Print Shop</a>
                     </div>
+                </div>
+
+      
+                <div class="mt-8 pt-8 border-t border-gray-100 text-center">
+                    <p class="text-sm text-gray-500 font-sans">© 2025 Tony Menias. All rights reserved.</p>
                 </div>
             </div>
         </div>
-    </div>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <h3>Let's Create Something Beautiful Together</h3>
-        <div class="social-links">
-            <a href="#">Instagram</a>
-            <a href="#">Facebook</a>
-            <a href="#">Twitter</a>
-            <a href="#">Email</a>
-        </div>
-        <p>&copy; 2025 BE LOVEFUL Photography. All rights reserved.</p>
     </footer>
 
-    <!-- Lightbox -->
-    <div class="lightbox" id="lightbox">
-        <div class="lightbox-content">
-            <button class="lightbox-close">&times;</button>
-            <img src="" alt="Lightbox Image" id="lightbox-img">
+ 
+    <div id="lightbox" class="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4 hidden" onclick="closeLightbox()">
+        <div class="relative max-w-4xl max-h-full">
+            <img id="lightbox-image" src="/placeholder.svg" alt="" class="max-w-full max-h-full object-contain">
+            <button onclick="closeLightbox()" class="absolute top-4 right-4 text-white hover:text-gray-300 transition-colors">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            </button>
+            <div id="lightbox-info" class="absolute bottom-4 left-4 text-white">
+                <h3 id="lightbox-title" class="font-medium text-lg"></h3>
+                <p id="lightbox-location" class="text-white/80"></p>
+            </div>
         </div>
     </div>
 
     <script>
-        // Hero slideshow
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.hero-slide');
-        function nextSlide() {
-            slides[currentSlide].classList.remove('active');
-            currentSlide = (currentSlide + 1) % slides.length;
-            slides[currentSlide].classList.add('active');
-        }
-        if (slides.length > 0) setInterval(nextSlide, 5000);
-
-        // Navigation
-        const navLinks = document.querySelectorAll('.nav-link');
-        const pageSections = document.querySelectorAll('.page-section');
-        const ctaButton = document.querySelector('.cta-button');
+        // Page Navigation
         function showPage(pageId) {
-            pageSections.forEach(section => section.classList.remove('active'));
-            document.getElementById(pageId).classList.add('active');
-            navLinks.forEach(link => link.classList.remove('active'));
-            const activeLink = document.querySelector(`[data-page="${pageId}"]`);
-            if (activeLink) activeLink.classList.add('active');
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.add('hidden');
+            });
+            
+            // Show selected page
+            const targetPage = document.getElementById(pageId + '-page');
+            if (targetPage) {
+                targetPage.classList.remove('hidden');
+                targetPage.classList.add('fade-in');
+            }
         }
-        navLinks.forEach(link => link.addEventListener('click', e => {
-            e.preventDefault();
-            showPage(link.getAttribute('data-page'));
-        }));
-        ctaButton?.addEventListener('click', e => { e.preventDefault(); showPage('portfolio'); });
 
-        // Portfolio Data
-        const portfolioData = [
-            { src:'https://res.cloudinary.com/dvwdoezk1/image/upload/v1758621045/NAM-11-22-DSCF8007_igcf5l.jpg', title:'Egyptian Architecture', continent:'africa', description:'Ancient structures in modern light' },
-            { src:'https://res.cloudinary.com/dvwdoezk1/image/upload/v1758621042/NAM-11-22-DSCF8086_hzb2al.jpg', title:'Egyptian Street', continent:'africa', description:'Life in the bustling streets' },
-            { src:'https://res.cloudinary.com/dvwdoezk1/image/upload/v1758621041/NAM-11-22-DSCF8069_s0sfqh.jpg', title:'Madame Jodhpur', continent:'asia', description:'Portrait from the Blue City' },
-            { src:'https://res.cloudinary.com/dvwdoezk1/image/upload/v1758621041/NAM-11-22-DSCF8077_tl3ovq.jpg', title:'Desert Landscape', continent:'africa', description:'Namibian desert at golden hour' },
-            { src:'https://res.cloudinary.com/dvwdoezk1/image/upload/v1758621040/NAM-03-18-DSCF3946_hd7bdg.jpg', title:'Mountain Vista', continent:'africa', description:'Dramatic peaks and valleys' },
-            { src:'https://res.cloudinary.com/dvwdoezk1/image/upload/v1758621055/Morocco-AlmostHome_aspjcf.jpg', title:'Morocco - Almost Home', continent:'africa', description:'Journey through Moroccan landscapes' }
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuIcon = document.getElementById('menu-icon');
+            const closeIcon = document.getElementById('close-icon');
+            
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.remove('hidden');
+                mobileMenu.classList.add('slide-in');
+                menuIcon.classList.add('hidden');
+                closeIcon.classList.remove('hidden');
+            } else {
+                mobileMenu.classList.add('hidden');
+                menuIcon.classList.remove('hidden');
+                closeIcon.classList.add('hidden');
+            }
+        }
+
+        // Portfolio functionality
+        let portfolioData = [];
+        
+        // Sample portfolio data
+        const samplePortfolioData = [
+            { id: 1, src: 'https://res.cloudinary.com/dvwdoezk1/image/upload/v1758621038/EGY-698_xpvwc0.jpg', alt: 'egypt', country: 'egypt', continent: 'asia', aspectRatio: 'portrait' },
+            { id: 2, src: 'https://res.cloudinary.com/dvwdoezk1/image/upload/v1758621036/EGY-888_vhl0tl.jpg', alt: 'Venice Canal', country: 'Italy', continent: 'europe', aspectRatio: 'landscape' },
+            { id: 3, src: 'https://res.cloudinary.com/dvwdoezk1/image/upload/v1758621033/EGY-42_mdsysd.jpg', alt: 'Chicago Architecture', country: 'USA', continent: 'americas', aspectRatio: 'square' },
+            { id: 4, src: 'https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620711/MadameJodhpur_kxinxc.jpg', alt: 'Bangkok Temple', country: 'Thailand', continent: 'asia', aspectRatio: 'portrait' },
+            { id: 5, src: 'https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620712/DSCF7677-1_hlb75w.jpg', alt: 'Paris Street', country: 'France', continent: 'europe', aspectRatio: 'landscape' },
+            { id: 6, src: 'https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620711/IND-4740_c5rfdh.jpg', alt: 'Mexico City', country: 'Mexico', continent: 'americas', aspectRatio: 'square' }
         ];
 
-        function renderPortfolio(container, items, limit=null) {
-            if (!container) return;
-            const itemsToShow = limit ? items.slice(0,limit) : items;
-            container.innerHTML = itemsToShow.map(item => `
-                <div class="portfolio-item" data-continent="${item.continent}" onclick="openLightbox('${item.src}')">
-                    <img src="${item.src}" alt="${item.title}">
-                    <div class="portfolio-overlay">
-                        <div><h3>${item.title}</h3><p>${item.description}</p></div>
+        function loadPortfolio() {
+            portfolioData = samplePortfolioData;
+            renderPortfolio('all');
+            document.getElementById('portfolio-loading').classList.add('hidden');
+        }
+
+        function renderPortfolio(filter) {
+            const grid = document.getElementById('portfolio-grid');
+            const filteredData = filter === 'all' ? portfolioData : portfolioData.filter(item => item.continent === filter);
+            
+            grid.innerHTML = filteredData.map(item => `
+                <div class="cursor-pointer group overflow-hidden rounded-lg bg-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 ${getGridSpan(item.aspectRatio)}" onclick="openLightbox('${item.src}', '${item.alt}', '${item.country}')">
+                    <div class="relative h-full">
+                        <img src="${item.src}" alt="${item.alt}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.src='/placeholder.svg'">
+                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <h3 class="text-white font-medium text-sm">${item.alt}</h3>
+                            <p class="text-white/80 text-xs">${item.country}</p>
+                        </div>
                     </div>
                 </div>
             `).join('');
         }
-        document.addEventListener('DOMContentLoaded', () => {
-            renderPortfolio(document.getElementById('featured-portfolio'), portfolioData, 6);
-            renderPortfolio(document.getElementById('full-portfolio'), portfolioData);
+
+        function getGridSpan(aspectRatio) {
+            switch(aspectRatio) {
+                case 'portrait': return 'row-span-2';
+                case 'landscape': return 'col-span-2';
+                case 'square': return '';
+                default: return '';
+            }
+        }
+
+        function filterPortfolio(category) {
+            // Update button states
+            document.querySelectorAll('[id^="filter-"]').forEach(btn => {
+                btn.className = 'px-6 py-2 rounded-full text-sm font-medium transition-all bg-gray-100 text-gray-600 hover:bg-gray-200';
+            });
+            document.getElementById('filter-' + category).className = 'px-6 py-2 rounded-full text-sm font-medium transition-all bg-gray-900 text-white';
+            
+            renderPortfolio(category);
+        }
+
+        // Lightbox functionality
+        function openLightbox(src, alt, country) {
+            document.getElementById('lightbox-image').src = src;
+            document.getElementById('lightbox-image').alt = alt;
+            document.getElementById('lightbox-title').textContent = alt;
+            document.getElementById('lightbox-location').textContent = country;
+            document.getElementById('lightbox').classList.remove('hidden');
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.add('hidden');
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Show home page by default
+            showPage('home');
+            
+            // Load portfolio data
+            loadPortfolio();
         });
 
-        // Filter
-        document.querySelectorAll('.filter-btn').forEach(btn => btn.addEventListener('click', () => {
-            document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
-            btn.classList.add('active');
-            const filter = btn.getAttribute('data-filter');
-            document.querySelectorAll('#full-portfolio .portfolio-item').forEach(item => {
-                item.style.display = (filter==='all' || item.getAttribute('data-continent')===filter) ? 'block':'none';
-            });
-        }));
-
-        // Lightbox
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImg = document.getElementById('lightbox-img');
-        document.querySelector('.lightbox-close')?.addEventListener('click', () => { lightbox.classList.remove('active'); document.body.style.overflow='auto'; });
-        window.openLightbox = (src) => { lightboxImg.src=src; lightbox.classList.add('active'); document.body.style.overflow='hidden'; };
-        lightbox?.addEventListener('click', e=>{ if(e.target===lightbox){ lightbox.classList.remove('active'); document.body.style.overflow='auto'; } });
-        document.addEventListener('keydown', e=>{ if(e.key==='Escape' && lightbox.classList.contains('active')){ lightbox.classList.remove('active'); document.body.style.overflow='auto'; } });
-
-        // Mobile menu
-        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-        const navLinksContainer = document.querySelector('.nav-links');
-        mobileMenuBtn?.addEventListener('click', ()=>{ navLinksContainer.style.display = navLinksContainer.style.display==='flex'?'none':'flex'; });
+        // Close lightbox on escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
+        });
     </script>
 </body>
 </html>
