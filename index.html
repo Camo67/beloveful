@@ -28,13 +28,300 @@
     <style>
         /* Enhanced CSS for the multi-image slideshow with movement animations */
         .hero-slideshow-container {
-            position: absolute; 
+            position: absolute;
             inset: 0;
             min-height: 100vh;
-            overflow: hidden; 
+            overflow: hidden;
+            background: #000; /* kept dark to enhance contrast; first slide shows instantly now */
+        }
+        .hero-slide {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-size: cover; background-position: center; background-repeat: no-repeat;
+            opacity: 0;
+            will-change: transform, opacity;
+            transition: opacity 2200ms ease-in-out;
+        }
+        .hero-slide.active {
+            opacity: 1;
+            animation: kenburns 12000ms ease-in-out forwards;
+        }
+        .hero-slide.prev {
+            opacity: 0;
+        }
+        /* Slightly vary motion per slide to avoid uniformity */
+        .hero-slide:nth-child(3n+1).active { animation-name: kenburns-pan-left; }
+        .hero-slide:nth-child(3n+2).active { animation-name: kenburns-zoom-in; }
+        .hero-slide:nth-child(3n+3).active { animation-name: kenburns-pan-right; }
+
+        @keyframes kenburns {
+            0%   { transform: scale(1.06) translate(0, 0); }
+            100% { transform: scale(1.12) translate(0.6%, -0.6%); }
+        }
+        @keyframes kenburns-zoom-in {
+            0%   { transform: scale(1.02) translate(0, 0); }
+            100% { transform: scale(1.10) translate(0.2%, 0.2%); }
+        }
+        @keyframes kenburns-pan-left {
+            0%   { transform: scale(1.06) translateX(1.2%); }
+            100% { transform: scale(1.12) translateX(-1.2%); }
+        }
+        @keyframes kenburns-pan-right {
+            0%   { transform: scale(1.06) translateX(-1.2%); }
+            100% { transform: scale(1.12) translateX(1.2%); }
+        }
+        /* Portfolio Grid */
+        
+        .portfolio-item { position: relative; overflow: hidden; cursor: pointer; transition: transform .3s ease; }
+        .portfolio-item:hover { transform: scale(1.02); z-index:10; }
+        .portfolio-item img { width:100%; height:100%; object-fit:cover; transition: opacity .3s; }
+        .portfolio-item:hover img { opacity:.8; }
+        /* Mobile menu */
+        .mobile-menu-slide-in { animation: slideInFromTop .3s ease-out forwards; }
+        .mobile-menu-slide-out { animation: slideOutToTop .3s ease-in forwards; }
+        @keyframes slideInFromTop { from { transform: translateY(-100%); opacity:0;} to { transform: translateY(0); opacity:1;} }
+        @keyframes slideOutToTop { from { transform: translateY(0); opacity:1;} to { transform: translateY(-100%); opacity:0;} }
+        /* Dropdown */
+        .dropdown { position: relative; }
+        .dropdown-menu {
+            position: absolute; top:100%; right:0; background:#fff; border:1px solid #e5e7eb; border-radius:8px;
+            box-shadow: 0 10px 25px rgba(0,0,0,.1); min-width:200px; opacity:0; visibility:hidden; transform: translateY(-10px);
+            transition: all .2s ease; z-index:50;
+        }
+        .dropdown:hover .dropdown-menu { opacity:1; visibility:visible; transform: translateY(0); }
+        /* Transitions */
+        .fade-in { animation: fadeIn .6s ease-in-out; }
+        @keyframes fadeIn { from { opacity:0;} to { opacity:1;} }
+    </style>
+</head>
+
+<body class="font-sans antialiased">
+<!-- Desktop top-center logo (home only) -->
+<div class="fixed top-0 left-0 right-0 z-50 hidden md:flex items-center justify-center pointer-events-none">
+  <a href="index.html" class="pointer-events-auto">
+    <img src="https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620507/beloveful-logo-white_q5prnb.png" alt="BE LOVEFUL Photography" class="h-20 w-auto">
+  </a>
+</div>
+
+<!-- Desktop social icons (top-right) -->
+<div class="fixed top-4 right-4 z-50 hidden md:flex items-center gap-4">
+  <a href="https://linktr.ee/beloveful?lt_utm_source=lt_share_link#74152480" target="_blank" rel="noopener noreferrer" aria-label="Linktree" class="text-white hover:opacity-90 transition" style="filter: drop-shadow(0 1px 2px rgba(0,0,0,.7));">
+    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M12 2c.6 0 1 .4 1 1v4h2a4 4 0 014 4v1a3 3 0 01-3 3h-2v5a2 2 0 11-4 0v-5H8a3 3 0 01-3-3v-1a4 4 0 014-4h2V3c0-.6.4-1 1-1zM9 9a2 2 0 00-2 2v1a1 1 0 001 1h3V9H9zm6 0h-3v4h3a1 1 0 001-1v-1a2 2 0 00-2-2z"/>
+    </svg>
+  </a>
+  <a href="https://www.facebook.com/tony.menias#" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="text-white hover:opacity-90 transition" style="filter: drop-shadow(0 1px 2px rgba(0,0,0,.7));">
+    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+  </a>
+  <a href="https://www.instagram.com/beloveful" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="text-white hover:opacity-90 transition" style="filter: drop-shadow(0 1px 2px rgba(0,0,0,.7));">
+    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-3.371 0-7.227.01-8.526.046C1.944.113.882.883.271 2.379.096 3.197 0 4.195 0 8.017v7.966c0 3.822.096 4.82.271 5.638.611 1.496 1.673 2.266 3.224 2.333 1.299.036 5.155.046 8.526.046 3.371 0 7.227-.01 8.526-.046 1.551-.067 2.613-.837 3.224-2.333.175-.818.271-1.816.271-5.638V8.017c0-3.822-.096-4.82-.271-5.638C22.41 1.047 21.348.277 19.797.21c-1.299-.036-5.155-.046-8.526-.046zM12 2.219c3.21 0 6.634.011 7.828.043 1.14.032 1.45.41 1.637.794.186.383.252.825.252 2.766v7.882c0 1.94-.066 2.383-.252 2.766-.187.384-.497.762-1.637.794-1.194.032-4.618.043-7.828.043-3.21 0-6.634-.011-7.828-.043-1.14-.032-1.45-.41-1.637-.794-.186-.383-.252-.825-.252-2.766V8.017c0-1.94.066-2.383.252-2.766.187-.384.497-.762 1.637-.794 1.194-.032 4.618.043 7.828.043zM12 6.809c-2.85 0-5.176 2.327-5.176 5.177 0 2.85 2.327 5.176 5.176 5.176s5.177-2.326 5.177-5.176c0-2.85-2.327-5.177-5.177-5.177zm0 2.21c1.63 0 2.967 1.336 2.967 2.967s-1.336 2.966-2.967 2.966c-1.63 0-2.966-1.336-2.966-2.966s1.336-2.967 2.966-2.967zm4.332-4.321c-.56 0-1.015.454-1.015 1.015s.455 1.015 1.015 1.015c.56 0 1.015-.454 1.015-1.015s-.455-1.015-1.015-1.015z"/></svg>
+  </a>
+</div>
+
+<!-- Mobile Top Bar (inline, no partials) -->
+
+<div class="fixed top-0 left-0 right-0 z-50 md:hidden">
+<div class="h-20 flex items-center justify-between px-4 relative">
+    <!-- Left: Burger -->
+    <button id="mobile-menu-toggle" class="md:hidden rounded-full p-2 shadow-none" onclick="toggleMobileMenu()" aria-label="Open menu">
+      <svg id="menu-icon" class="w-7 h-7 text-white" style="filter: drop-shadow(0 1px 2px rgba(0,0,0,.6));" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+      <svg id="close-icon" class="w-7 h-7 text-white hidden" style="filter: drop-shadow(0 1px 2px rgba(0,0,0,.6));" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+      </svg>
+    </button>
+    <!-- Center: Logo -->
+    <a href="index.html" class="absolute left-1/2 -translate-x-1/2" top-1/2 -translate-y-1/2">
+      <img src="https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620507/beloveful-logo-white_q5prnb.png" alt="BE LOVEFUL Photography" class="h-20 w-auto">
+    </a>
+
+    <!-- Right: Social icons (mobile) -->
+    <div data-mobile-icons class="flex items-center gap-4">
+      <a href="https://linktr.ee/beloveful?lt_utm_source=lt_share_link#74152480" target="_blank" rel="noopener noreferrer" aria-label="Linktree" class="text-white hover:opacity-90 transition" style="filter: drop-shadow(0 1px 2px rgba(0,0,0,.7));">
+        <!-- Simple tree icon -->
+        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 2c.6 0 1 .4 1 1v4h2a4 4 0 014 4v1a3 3 0 01-3 3h-2v5a2 2 0 11-4 0v-5H8a3 3 0 01-3-3v-1a4 4 0 014-4h2V3c0-.6.4-1 1-1zM9 9a2 2 0 00-2 2v1a1 1 0 001 1h3V9H9zm6 0h-3v4h3a1 1 0 001-1v-1a2 2 0 00-2-2z"/>
+        </svg>
+      </a>
+      <a href="https://www.facebook.com/tony.menias#" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="text-white hover:opacity-90 transition" style="filter: drop-shadow(0 1px 2px rgba(0,0,0,.7));">
+        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      </a>
+      <a href="https://www.instagram.com/beloveful" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="text-white hover:opacity-90 transition" style="filter: drop-shadow(0 1px 2px rgba(0,0,0,.7));">
+        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-3.371 0-7.227.01-8.526.046C1.944.113.882.883.271 2.379.096 3.197 0 4.195 0 8.017v7.966c0 3.822.096 4.82.271 5.638.611 1.496 1.673 2.266 3.224 2.333 1.299.036 5.155.046 8.526.046 3.371 0 7.227-.01 8.526-.046 1.551-.067 2.613-.837 3.224-2.333.175-.818.271-1.816.271-5.638V8.017c0-3.822-.096-4.82-.271-5.638C22.41 1.047 21.348.277 19.797.21c-1.299-.036-5.155-.046-8.526-.046zM12 2.219c3.21 0 6.634.011 7.828.043 1.14.032 1.45.41 1.637.794.186.383.252.825.252 2.766v7.882c0 1.94-.066 2.383-.252 2.766-.187.384-.497.762-1.637.794-1.194.032-4.618.043-7.828.043-3.21 0-6.634-.011-7.828-.043-1.14-.032-1.45-.41-1.637-.794-.186-.383-.252-.825-.252-2.766V8.017c0-1.94.066-2.383.252-2.766.187-.384.497-.762 1.637-.794 1.194-.032 4.618.043 7.828.043zM12 6.809c-2.85 0-5.176 2.327-5.176 5.177 0 2.85 2.327 5.176 5.176 5.176s5.177-2.326 5.177-5.176c0-2.85-2.327-5.177-5.177-5.177zm0 2.21c1.63 0 2.967 1.336 2.967 2.967s-1.336 2.966-2.967 2.966c-1.63 0-2.966-1.336-2.966-2.966s1.336-2.967 2.966-2.967zm4.332-4.321c-.56 0-1.015.454-1.015 1.015s.455 1.015 1.015 1.015c.56 0 1.015-.454 1.015-1.015s-.455-1.015-1.015-1.015z"/></svg>
+      </a>
+    </div>
+    
+  </div>
+</div>
+
+<!-- Mobile Fullscreen Menu (scrollable) -->
+<div id="mobile-menu" class="fixed inset-0 bg-white z-40 md:hidden hidden overflow-y-auto">
+  <div class="min-h-full flex flex-col items-center justify-center py-10 space-y-8">
+    <a href="index.html" class="text-2xl text-gray-700 hover:text-gray-900 transition-colors font-sans">HOME</a>
+    <div class="text-center space-y-4">
+      <div class="text-2xl text-gray-900 font-medium font-sans">PORTFOLIO</div>
+      <div class="space-y-3">
+        <a href="portfolio-asia.html" class="block text-lg text-gray-700 hover:text-gray-900 transition-colors font-sans">Asia</a>
+        <a href="portfolio-africa.html" class="block text-lg text-gray-700 hover:text-gray-900 transition-colors font-sans">Africa</a>
+        <a href="portfolio.html" class="block text-lg text-gray-700 hover:text-gray-900 transition-colors font-sans">View All</a>
+      </div>
+    </div>
+    <a href="https://www.printinnovationlab.com/collections/beloveful" target="_blank" rel="noopener noreferrer" class="text-2xl text-gray-700 hover:text-gray-900 transition-colors font-sans">PRINT SHOP</a>
+    <a href="workshops.html" class="text-2xl text-gray-700 hover:text-gray-900 transition-colors font-sans">WORKSHOPS</a>
+    <a href="about.html" class="text-2xl text-gray-700 hover:text-gray-900 transition-colors font-sans">ABOUT</a>
+
+    <!-- Right: Social icons (mobile) -->
+    
+    
+  </div>
+</div>
+
+
+    <!-- Injected navs -->
+    
+    
+    <!-- Desktop header -->
+
+
+    <!-- Mobile menu button -->
+    
+    <div id="mobile-menu" class="fixed inset-0 bg-white z-40 md:hidden hidden">
+        <div class="flex flex-col items-center justify-center h-full space-y-8">
+            <a href="index.html" class="text-2xl text-gray-600 hover:text-gray-800 transition-colors font-sans">HOME</a>
+            <div class="text-center space-y-4">
+                <div class="text-2xl text-gray-800 font-medium font-sans">PORTFOLIO</div>
+                <div class="space-y-3">
+                    <a href="portfolio-asia.html" class="block text-lg text-gray-600 hover:text-gray-800 transition-colors font-sans">Asia</a>
+                    <a href="portfolio-africa.html" class="block text-lg text-gray-600 hover:text-gray-800 transition-colors font-sans">Africa</a>
+                    <a href="portfolio.html" class="block text-lg text-gray-600 hover:text-gray-800 transition-colors font-sans">View All</a>
+                </div>
+            </div>
+            <a href="https://www.printinnovationlab.com/collections/beloveful" target="_blank" rel="noopener noreferrer" class="text-2xl text-gray-600 hover:text-gray-800 transition-colors font-sans">PRINT SHOP</a>
+            <a href="workshops.html" class="text-2xl text-gray-600 hover:text-gray-800 transition-colors font-sans">WORKSHOPS</a>
+            <a href="about.html" class="text-2xl text-gray-600 hover:text-gray-800 transition-colors font-sans">ABOUT</a>
+        </div>
+    </div>
+
+    <div class="relative min-h-screen">
+        <div class="hero-slideshow-container" id="slideshow-container"></div>
+        <div class="absolute inset-0 bg-black/20"></div>
+
+        <div class="relative z-10 min-h-screen">
+            <header class="flex justify-between items-start p-6">
+                <div class="flex gap-4">
+                    
+                    <a href="https://linktr.ee/beloveful" target="_blank" rel="noopener noreferrer" class="text-white/80 hover:text-white transition-colors">
+                    </a>
+                    
+                </div>
+         
+<nav class="absolute top-48 right-6 hidden md:block">
+                <ul class="flex flex-col gap-6 text-right">
+                    <li><a href="index.html" class="text-white/90 hover:text-white transition-colors text-sm font-light tracking-wide">HOME</a></li>
+                    <li class="flex items-center justify-end gap-1">
+                        <a href="portfolio.html" class="text-white/90 hover:text-white transition-colors text-sm font-light tracking-wide">PORTFOLIO</a>
+                        <svg width="14" height="14" fill="currentColor" class="text-white/90" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                    </li>
+                    <li><a href="https://www.printinnovationlab.com/collections/beloveful" target="_blank" rel="noopener noreferrer" class="text-white/90 hover:text-white transition-colors text-sm font-light tracking-wide">PRINT SHOP</a></li>
+                    <li><a href="workshops.html" class="text-white/90 hover:text-white transition-colors text-sm font-light tracking-wide">WORKSHOPS</a></li>
+                    <li><a href="about.html" class="text-white/90 hover:text-white transition-colors text-sm font-light tracking-wide">ABOUT</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <script>
+    // Seamless Ken Burns slideshow with instant first-frame display
+    let slideIndex = 0;
+    let timerId;
+
+    function buildSlidesImmediate() {
+      const container = document.getElementById('slideshow-container');
+      if (!container) return;
+      container.innerHTML = '';
+      slideshowImages.forEach((url, i) => {
+          const slide = document.createElement('div');
+          slide.className = 'hero-slide';
+          slide.style.backgroundImage = `url('${url}')`;
+          if (i === 0) slide.classList.add('active');
+          container.appendChild(slide);
+      });
+    }
+
+    function preloadRest(urls) {
+      urls.slice(1).forEach(url => {
+        const img = new Image();
+        img.src = url;
+      });
+    }
+
+    function gotoNextSlide() {
+      const slides = document.querySelectorAll('#slideshow-container .hero-slide');
+      if (!slides.length) return;
+      const prev = slideIndex;
+      slideIndex = (slideIndex + 1) % slides.length;
+      slides.forEach((s, i) => {
+          s.classList.remove('active');
+          if (i === prev) {
+            s.classList.add('prev');
+            setTimeout(() => s.classList.remove('prev'), 2400);
+          }
+      });
+      slides[slideIndex].classList.add('active');
+    }
+
+    function startSlideshow() {
+      timerId = setInterval(gotoNextSlide, 8000);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      buildSlidesImmediate();    // show first image immediately
+      preloadRest(slideshowImages);
+      startSlideshow();
+    });
+    </script>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4 hidden" onclick="closeLightbox()">
+        <div class="relative max-w-4xl max-h-full">
+            <img id="lightbox-image" src="/placeholder.svg" alt="" class="max-w-full max-h-full object-contain">
+            <button onclick="closeLightbox()" class="absolute top-4 right-4 text-white hover:text-gray-300 transition-colors">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+            <div id="lightbox-info" class="absolute bottom-4 left-4 text-white">
+                <h3 id="lightbox-title" class="font-medium text-lg"></h3>
+                <p id="lightbox-location" class="text-white/80"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuIcon = document.getElementById('menu-icon');
+            const closeIcon = document.getElementById('close-icon');
+            if (!mobileMenu) return;
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.remove('hidden');
+                mobileMenu.classList.add('mobile-menu-slide-in');
+                if (menuIcon) menuIcon.classList.add('hidden');
+                if (closeIcon) closeIcon.classList.remove('hidden');
+            } else {
+                mobileMenu.classList.add('mobile-menu-slide-out');
+                setTimeout(() => {
+                    mobileMenu.classList.add('hidden');
+                    mobileMenu.classList.remove('mobile-menu-slide-out');
+                }, 300);
+                if (menuIcon) menuIcon.classList.remove('hidden');
+                if (closeIcon) closeIcon.classList.add('hidden');
+            }
         }
 
-        .hero-slide {
+        const slideshowImages = [
+            'https://res.cloudinary.com/dvwdoezk1/image/upload/f_auto,q_auto/v1758620510/portfolio/DSCF8181-2.jpg',
+            'ht        .hero-slide {
             position: absolute;
             top: 0;
             left: 0;
@@ -935,3 +1222,4 @@
     </script>
 </body>
 </html>
+
