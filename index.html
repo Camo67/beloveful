@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BE LOVEFUL Photography</title>
+    <title>BELOVEFUL Photography</title>
     <meta name="description" content="Professional photography portfolio and services by Tony Menias">
     <link rel="icon" href="https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620508/favicon_staqlf.jpg">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -26,15 +26,39 @@
         }
     </script>
     <style>
-        .hero-slideshow {
-            background-image: url('/hero-bg.jpg');
+        /* CSS for the multi-image fading slideshow */
+        .hero-slideshow-container {
+            /* Full screen coverage */
+            position: absolute; 
+            inset: 0;
+            min-height: 100vh;
+            overflow: hidden; 
+        }
+
+        .hero-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* Background settings for proper display */
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
+            
+            /* Start invisible and transition smoothly over 1.5s */
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out; 
         }
-        
+
+        .hero-slide.active {
+            /* Make the active slide visible */
+            opacity: 1;
+        }
+
+        /* Existing transition classes */
         .fade-in {
-            animation: fadeIn 0.5s ease-in-out;
+            animation: fadeIn 0.6s ease-in-out;
         }
         
         @keyframes fadeIn {
@@ -43,7 +67,11 @@
         }
         
         .slide-in {
-            animation: slideIn 0.3s ease-out;
+            animation: slideIn 0.2s ease-in-out;
+        }
+        
+        .slide-out {
+            animation: slideOut 0.2s ease-in-out;
         }
         
         @keyframes slideIn {
@@ -55,16 +83,21 @@
 <body class="font-sans antialiased">
 
     <div id="home-page" class="page relative min-h-screen">
-       
-        <div class="hero-slideshow absolute inset-0"></div>
         
-     
+        <div class="hero-slideshow-container">
+            <div class="hero-slide active" style="background-image: url('https://res.cloudinary.com/dvwdoezk1/image/upload/f_auto,q_auto/v1758620510/portfolio/DSCF8181-2.jpg');"></div>
+            
+            <div class="hero-slide" style="background-image: url('https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620703/IND-5525_hd10xe.jpg');"></div>
+            
+            <div class="hero-slide" style="background-image: url('https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620506/chicago-basketball-court_uf5asu.jpg');"></div>
+
+            </div>
         <div class="absolute inset-0 bg-black/20"></div>
-      
+        
         <div class="relative z-10 min-h-screen">
-       
+        
             <header class="flex justify-between items-start p-6">
-       
+            
                 <div class="flex gap-4">
                     <a href="https://www.facebook.com/tony.menias#" target="_blank" rel="noopener noreferrer" class="text-white/80 hover:text-white transition-colors">
                         <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
@@ -89,7 +122,7 @@
                 </div>
             </header>
             
-     
+        
             <nav class="absolute top-48 right-6">
                 <ul class="flex flex-col gap-6 text-right">
                     <li><a href="#" onclick="showPage('home')" class="text-white/90 hover:text-white transition-colors text-sm font-light tracking-wide">HOME</a></li>
@@ -109,9 +142,9 @@
 
     
     <div id="about-page" class="page min-h-screen bg-white hidden">
-       
+        
         <header class="relative z-10 flex items-center justify-between p-6">
-             
+                
             <div class="hidden md:flex items-center gap-2">
                 <a href="https://www.facebook.com/tony.menias#" target="_blank" rel="noopener noreferrer">
                     <svg class="w-6 h-6 text-gray-600 hover:text-gray-800 transition-colors cursor-pointer" fill="currentColor" viewBox="0 0 24 24">
@@ -135,7 +168,7 @@
                 </a>
             </div>
 
-         
+            
             <button class="md:hidden z-20" onclick="toggleMobileMenu()">
                 <svg id="menu-icon" class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
@@ -170,13 +203,13 @@
             </div>
         </header>
 
-         
+            
         <section class="text-center py-8 px-6">
             <h1 class="text-4xl md:text-5xl font-bold font-sans mb-4 text-black">Tony Menias</h1>
             <p class="text-lg md:text-xl font-sans text-gray-700">Professional Photographer & Visual Artist</p>
         </section>
 
-         
+            
         <section class="flex justify-center px-6 py-8">
             <div class="relative w-full max-w-md md:max-w-lg aspect-square overflow-hidden rounded-lg shadow-lg">
                 <img src="https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620507/tony-hero-new_mtx9wk.jpg" alt="Tony Menias with sunglasses and a small monkey on his shoulder at a historic temple site" class="w-full h-full object-cover">
@@ -217,11 +250,11 @@
                     </div>
                 </section>
 
-                 
+                    
                 <section class="space-y-6">
                     <h2 class="text-2xl font-bold text-gray-900 font-sans">Media & Features</h2>
                     
-                  
+                    
                     <div class="space-y-4">
                         <h3 class="text-lg font-semibold text-gray-900 font-sans">Featured Video</h3>
                         <div class="relative w-full aspect-video rounded-lg overflow-hidden shadow-lg">
@@ -246,7 +279,7 @@
         <header class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-sm border-b border-gray-100">
             <div class="container mx-auto px-6 py-4">
                 <div class="flex items-center justify-between">
-                     
+                        
                     <div class="hidden md:flex items-center gap-4">
                         <a href="https://www.facebook.com/tony.menias#" target="_blank" rel="noopener noreferrer">
                             <svg class="w-5 h-5 text-gray-600 hover:text-gray-900 transition-colors" fill="currentColor" viewBox="0 0 24 24">
@@ -285,10 +318,10 @@
             </div>
         </header>
 
-         
+            
         <main class="pt-24 pb-16">
             <div class="container mx-auto px-6">
-                 
+                    
                 <div class="text-center mb-12">
                     <h1 class="text-4xl md:text-5xl font-light text-gray-900 mb-4">Portfolio</h1>
                     <p class="text-lg text-gray-600 max-w-2xl mx-auto">A curated collection of moments captured across continents, telling stories that transcend borders.</p>
@@ -301,7 +334,7 @@
                     <button onclick="filterPortfolio('europe')" class="px-6 py-2 rounded-full text-sm font-medium transition-all bg-gray-100 text-gray-600 hover:bg-gray-200" id="filter-europe">Europe</button>
                     <button onclick="filterPortfolio('americas')" class="px-6 py-2 rounded-full text-sm font-medium transition-all bg-gray-100 text-gray-600 hover:bg-gray-200" id="filter-americas">Americas</button>
                 </div>
- 
+    
                 <div id="portfolio-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 auto-rows-[200px]">
                 
                 </div>
@@ -315,7 +348,7 @@
     </div>
 
     <div id="workshops-page" class="page min-h-screen bg-white hidden">
-     
+        
         <header class="relative z-10 flex items-center justify-between p-6">
             <div class="md:absolute md:left-1/2 md:transform md:-translate-x-1/2">
                 <img src="https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620506/beloveful-logo-black_rwsx2j.png" alt="BE LOVEFUL Photography" class="h-8 w-auto">
@@ -398,10 +431,9 @@
             </div>
         </div>
 
-       
+        
         <div class="hidden md:block">
             <div class="container mx-auto px-6 py-12 relative">
-                 Social Icons - Top Right 
                 <div class="absolute top-6 right-6">
                     <div class="flex items-center gap-6">
                         <a href="https://www.instagram.com/beloveful" target="_blank" rel="noopener noreferrer">
@@ -423,8 +455,7 @@
                 </div>
 
                 <div class="flex justify-center mb-8">
-                    <img src="https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620506/beloveful-logo-black_rwsx2j.png" alt="BE LOVEFUL Photography" class="h-8 w-auto">
-                </div>
+                    </div>
 
                 <div class="flex justify-center">
                     <div class="flex items-center gap-8">
@@ -434,7 +465,7 @@
                     </div>
                 </div>
 
-      
+            
                 <div class="mt-8 pt-8 border-t border-gray-100 text-center">
                     <p class="text-sm text-gray-500 font-sans">© 2025 Tony Menias. All rights reserved.</p>
                 </div>
@@ -442,10 +473,10 @@
         </div>
     </footer>
 
- 
+    
     <div id="lightbox" class="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4 hidden" onclick="closeLightbox()">
         <div class="relative max-w-4xl max-h-full">
-            <img id="lightbox-image" src="/placeholder.svg" alt="" class="max-w-full max-h-full object-contain">
+            <img id="lightbox-image" src="https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620703/IND-5525_hd10xe.jpg" alt="" class="max-w-full max-h-full object-contain">
             <button onclick="closeLightbox()" class="absolute top-4 right-4 text-white hover:text-gray-300 transition-colors">
                 <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
@@ -472,6 +503,11 @@
                 targetPage.classList.remove('hidden');
                 targetPage.classList.add('fade-in');
             }
+
+            // Slideshow control: Only start/continue if we're on the home page
+            if (pageId === 'home') {
+                startSlideshow(); 
+            }
         }
 
         // Mobile Menu Toggle
@@ -492,90 +528,87 @@
             }
         }
 
-        // Portfolio functionality
-        let portfolioData = [];
-        
-        // Sample portfolio data
-        const samplePortfolioData = [
-            { id: 1, src: 'https://res.cloudinary.com/dvwdoezk1/image/upload/v1758621038/EGY-698_xpvwc0.jpg', alt: 'egypt', country: 'egypt', continent: 'asia', aspectRatio: 'portrait' },
-            { id: 2, src: 'https://res.cloudinary.com/dvwdoezk1/image/upload/v1758621036/EGY-888_vhl0tl.jpg', alt: 'Venice Canal', country: 'Italy', continent: 'europe', aspectRatio: 'landscape' },
-            { id: 3, src: 'https://res.cloudinary.com/dvwdoezk1/image/upload/v1758621033/EGY-42_mdsysd.jpg', alt: 'Chicago Architecture', country: 'USA', continent: 'americas', aspectRatio: 'square' },
-            { id: 4, src: 'https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620711/MadameJodhpur_kxinxc.jpg', alt: 'Bangkok Temple', country: 'Thailand', continent: 'asia', aspectRatio: 'portrait' },
-            { id: 5, src: 'https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620712/DSCF7677-1_hlb75w.jpg', alt: 'Paris Street', country: 'France', continent: 'europe', aspectRatio: 'landscape' },
-            { id: 6, src: 'https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620711/IND-4740_c5rfdh.jpg', alt: 'Mexico City', country: 'Mexico', continent: 'americas', aspectRatio: 'square' }
-        ];
+        // SLIDESHOW LOGIC
+        let slideIndex = 0;
+        let slideshowTimeout; // Variable to hold the setTimeout timer
 
-        function loadPortfolio() {
-            portfolioData = samplePortfolioData;
-            renderPortfolio('all');
-            document.getElementById('portfolio-loading').classList.add('hidden');
-        }
-
-        function renderPortfolio(filter) {
-            const grid = document.getElementById('portfolio-grid');
-            const filteredData = filter === 'all' ? portfolioData : portfolioData.filter(item => item.continent === filter);
+        function showSlides() {
+            let slides = document.getElementsByClassName("hero-slide");
             
-            grid.innerHTML = filteredData.map(item => `
-                <div class="cursor-pointer group overflow-hidden rounded-lg bg-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 ${getGridSpan(item.aspectRatio)}" onclick="openLightbox('${item.src}', '${item.alt}', '${item.country}')">
-                    <div class="relative h-full">
-                        <img src="${item.src}" alt="${item.alt}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.src='/placeholder.svg'">
-                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300"></div>
-                        <div class="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <h3 class="text-white font-medium text-sm">${item.alt}</h3>
-                            <p class="text-white/80 text-xs">${item.country}</p>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function getGridSpan(aspectRatio) {
-            switch(aspectRatio) {
-                case 'portrait': return 'row-span-2';
-                case 'landscape': return 'col-span-2';
-                case 'square': return '';
-                default: return '';
+            // 1. Remove 'active' class from all slides
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].classList.remove('active');
             }
-        }
-
-        function filterPortfolio(category) {
-            // Update button states
-            document.querySelectorAll('[id^="filter-"]').forEach(btn => {
-                btn.className = 'px-6 py-2 rounded-full text-sm font-medium transition-all bg-gray-100 text-gray-600 hover:bg-gray-200';
-            });
-            document.getElementById('filter-' + category).className = 'px-6 py-2 rounded-full text-sm font-medium transition-all bg-gray-900 text-white';
             
-            renderPortfolio(category);
+            // 2. Increment slide index and wrap around
+            slideIndex++;
+            if (slideIndex >= slides.length) {
+                slideIndex = 0;
+            }
+            
+            // 3. Add 'active' class to the current slide
+            slides[slideIndex].classList.add('active');
+            
+            // 4. Set the timer for the next transition (5 seconds)
+            slideshowTimeout = setTimeout(showSlides, 5000); 
         }
 
-        // Lightbox functionality
-        function openLightbox(src, alt, country) {
-            document.getElementById('lightbox-image').src = src;
-            document.getElementById('lightbox-image').alt = alt;
-            document.getElementById('lightbox-title').textContent = alt;
-            document.getElementById('lightbox-location').textContent = country;
-            document.getElementById('lightbox').classList.remove('hidden');
+        function startSlideshow() {
+            // Clear any existing timer to prevent doubling up
+            clearTimeout(slideshowTimeout);
+            // Reset index and start the show
+            slideIndex = -1; 
+            showSlides();
+        }
+
+        // Start the slideshow when the page initially loads
+        document.addEventListener('DOMContentLoaded', () => {
+            // Check if the slideshow container exists before starting
+            if (document.querySelector('.hero-slideshow-container')) {
+                startSlideshow(); 
+            }
+        });
+        // End Slideshow Logic
+
+        // Placeholder functions for pages not yet implemented
+        function filterPortfolio(category) {
+            console.log('Filtering portfolio by:', category);
+            // Placeholder for actual filtering logic
+            document.querySelectorAll('.flex-wrap button').forEach(button => {
+                button.classList.remove('bg-gray-900', 'text-white');
+                button.classList.add('bg-gray-100', 'text-gray-600', 'hover:bg-gray-200');
+            });
+            document.getElementById('filter-' + category).classList.add('bg-gray-900', 'text-white');
+            document.getElementById('filter-' + category).classList.remove('bg-gray-100', 'text-gray-600', 'hover:bg-gray-200');
+            
+            // Simulate content loading (e.g., call a function to fetch/display images)
+            document.getElementById('portfolio-grid').innerHTML = ''; // Clear content
+            document.getElementById('portfolio-loading').classList.remove('hidden');
+            setTimeout(() => {
+                document.getElementById('portfolio-loading').classList.add('hidden');
+                document.getElementById('portfolio-grid').innerHTML = 
+                    `<div class="portfolio-item data-category="${category}">... Content for ${category} ...</div>`;
+            }, 800);
+        }
+
+        function openLightbox(imgSrc, title, location) {
+            const lightbox = document.getElementById('lightbox');
+            document.getElementById('lightbox-image').src = imgSrc;
+            document.getElementById('lightbox-title').textContent = title;
+            document.getElementById('lightbox-location').textContent = location;
+            lightbox.classList.remove('hidden');
         }
 
         function closeLightbox() {
             document.getElementById('lightbox').classList.add('hidden');
         }
 
-        // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
-            // Show home page by default
-            showPage('home');
-            
-            // Load portfolio data
-            loadPortfolio();
+        // Initialize portfolio grid state (since no real data is loaded yet)
+        document.addEventListener('DOMContentLoaded', () => {
+             // Simulate initial portfolio load on page load
+             filterPortfolio('all');
         });
 
-        // Close lightbox on escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeLightbox();
-            }
-        });
     </script>
 </body>
 </html>
