@@ -56,6 +56,30 @@
             opacity: 1;
         }
 
+        /* Portfolio Grid specific styling */
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .portfolio-item:hover {
+            transform: scale(1.02);
+            z-index: 10;
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.3s;
+        }
+
+        .portfolio-item:hover img {
+            opacity: 0.8;
+        }
+
         /* Existing transition classes */
         .fade-in {
             animation: fadeIn 0.6s ease-in-out;
@@ -84,13 +108,7 @@
 
     <div id="home-page" class="page relative min-h-screen">
         
-        <div class="hero-slideshow-container">
-            <div class="hero-slide active" style="background-image: url('https://res.cloudinary.com/dvwdoezk1/image/upload/f_auto,q_auto/v1758620510/portfolio/DSCF8181-2.jpg');"></div>
-            
-            <div class="hero-slide" style="background-image: url('https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620703/IND-5525_hd10xe.jpg');"></div>
-            
-            <div class="hero-slide" style="background-image: url('https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620506/chicago-basketball-court_uf5asu.jpg');"></div>
-
+        <div class="hero-slideshow-container" id="slideshow-container">
             </div>
         <div class="absolute inset-0 bg-black/20"></div>
         
@@ -339,7 +357,7 @@
                 
                 </div>
 
-                <div id="portfolio-loading" class="text-center py-12">
+                <div id="portfolio-loading" class="text-center py-12 hidden">
                     <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900 mx-auto mb-4"></div>
                     <p class="text-gray-600">Loading portfolio...</p>
                 </div>
@@ -476,7 +494,7 @@
     
     <div id="lightbox" class="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4 hidden" onclick="closeLightbox()">
         <div class="relative max-w-4xl max-h-full">
-            <img id="lightbox-image" src="https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620703/IND-5525_hd10xe.jpg" alt="" class="max-w-full max-h-full object-contain">
+            <img id="lightbox-image" src="" alt="" class="max-w-full max-h-full object-contain">
             <button onclick="closeLightbox()" class="absolute top-4 right-4 text-white hover:text-gray-300 transition-colors">
                 <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
@@ -490,6 +508,61 @@
     </div>
 
     <script>
+        // Data for the homepage slideshow
+        const slideshowImages = [
+            'https://res.cloudinary.com/dvwdoezk1/image/upload/f_auto,q_auto/v1758620510/portfolio/DSCF8181-2.jpg', // Berlin, Europe
+            'https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620703/IND-5525_hd10xe.jpg', // Jaipur, Asia
+            'https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620506/chicago-basketball-court_uf5asu.jpg' // Chicago, Americas
+        ];
+
+        // Data structure for portfolio images (including the slideshow images)
+        const portfolioImages = [
+            // Slideshow Images (Included here for Portfolio page)
+            {
+                url: slideshowImages[0],
+                title: 'Urban Silhouette',
+                location: 'Berlin, Germany',
+                category: 'europe'
+            },
+            {
+                url: slideshowImages[1],
+                title: 'Monsoon Morning',
+                location: 'Jaipur, India',
+                category: 'asia'
+            },
+            {
+                url: slideshowImages[2],
+                title: 'Concrete Court',
+                location: 'Chicago, USA',
+                category: 'americas'
+            },
+            // Other Portfolio Images
+            {
+                url: 'https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620703/shanghai-street.jpg',
+                title: 'Neon Reflection',
+                location: 'Shanghai, China',
+                category: 'asia'
+            },
+            {
+                url: 'https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620703/rome-vespa.jpg',
+                title: 'Roman Holiday',
+                location: 'Rome, Italy',
+                category: 'europe'
+            },
+            {
+                url: 'https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620703/nyc-taxi.jpg',
+                title: 'Yellow Blur',
+                location: 'New York City, USA',
+                category: 'americas'
+            },
+            {
+                url: 'https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620703/tokyo-crossing.jpg',
+                title: 'Shibuya Rush',
+                location: 'Tokyo, Japan',
+                category: 'asia'
+            }
+        ];
+
         // Page Navigation
         function showPage(pageId) {
             // Hide all pages
@@ -507,6 +580,14 @@
             // Slideshow control: Only start/continue if we're on the home page
             if (pageId === 'home') {
                 startSlideshow(); 
+            } else {
+                // Stop slideshow if navigating away from home
+                clearTimeout(slideshowTimeout);
+            }
+
+            // Portfolio control: Re-filter when navigating to the portfolio page
+            if (pageId === 'portfolio') {
+                 filterPortfolio('all'); // Show all when navigating to portfolio
             }
         }
 
@@ -532,9 +613,35 @@
         let slideIndex = 0;
         let slideshowTimeout; // Variable to hold the setTimeout timer
 
+        /**
+         * Dynamically creates the slide elements in the HTML based on the slideshowImages array.
+         */
+        function initializeSlideshowDOM() {
+            const container = document.getElementById('slideshow-container');
+            if (!container) return; // Exit if container doesn't exist
+
+            // Clear previous slides (if any)
+            container.innerHTML = ''; 
+
+            slideshowImages.forEach((imageUrl, index) => {
+                const slideDiv = document.createElement('div');
+                slideDiv.classList.add('hero-slide');
+                if (index === 0) {
+                    slideDiv.classList.add('active'); // Set the first slide as active initially
+                }
+                // Set the background image using inline style
+                slideDiv.style.backgroundImage = `url('${imageUrl}')`;
+                slideDiv.setAttribute('aria-label', `Slideshow image ${index + 1}`);
+                container.appendChild(slideDiv);
+            });
+        }
+
+
         function showSlides() {
             let slides = document.getElementsByClassName("hero-slide");
             
+            if (slides.length === 0) return; // Safety check
+
             // 1. Remove 'active' class from all slides
             for (let i = 0; i < slides.length; i++) {
                 slides[i].classList.remove('active');
@@ -556,42 +663,67 @@
         function startSlideshow() {
             // Clear any existing timer to prevent doubling up
             clearTimeout(slideshowTimeout);
-            // Reset index and start the show
+            // Reset index and start the show (start from the first image after reset)
             slideIndex = -1; 
             showSlides();
         }
 
-        // Start the slideshow when the page initially loads
-        document.addEventListener('DOMContentLoaded', () => {
-            // Check if the slideshow container exists before starting
-            if (document.querySelector('.hero-slideshow-container')) {
-                startSlideshow(); 
-            }
-        });
-        // End Slideshow Logic
-
-        // Placeholder functions for pages not yet implemented
+        // Portfolio Filtering and Display Logic
         function filterPortfolio(category) {
-            console.log('Filtering portfolio by:', category);
-            // Placeholder for actual filtering logic
+            const grid = document.getElementById('portfolio-grid');
+            const loading = document.getElementById('portfolio-loading');
+            
+            // 1. Update active filter button
             document.querySelectorAll('.flex-wrap button').forEach(button => {
                 button.classList.remove('bg-gray-900', 'text-white');
                 button.classList.add('bg-gray-100', 'text-gray-600', 'hover:bg-gray-200');
             });
-            document.getElementById('filter-' + category).classList.add('bg-gray-900', 'text-white');
-            document.getElementById('filter-' + category).classList.remove('bg-gray-100', 'text-gray-600', 'hover:bg-gray-200');
-            
-            // Simulate content loading (e.g., call a function to fetch/display images)
-            document.getElementById('portfolio-grid').innerHTML = ''; // Clear content
-            document.getElementById('portfolio-loading').classList.remove('hidden');
+            const activeFilterButton = document.getElementById('filter-' + category);
+            if(activeFilterButton) {
+                activeFilterButton.classList.add('bg-gray-900', 'text-white');
+                activeFilterButton.classList.remove('bg-gray-100', 'text-gray-600', 'hover:bg-gray-200');
+            }
+
+            // 2. Filter images based on category
+            const filteredImages = portfolioImages.filter(img => 
+                category === 'all' || img.category === category
+            );
+
+            // 3. Simulate loading and render images
+            grid.innerHTML = '';
+            // Only show loading if there are images to load (to prevent flicker on empty sets)
+            if (filteredImages.length > 0) {
+                 loading.classList.remove('hidden');
+            }
+
+
             setTimeout(() => {
-                document.getElementById('portfolio-loading').classList.add('hidden');
-                document.getElementById('portfolio-grid').innerHTML = 
-                    `<div class="portfolio-item data-category="${category}">... Content for ${category} ...</div>`;
-            }, 800);
+                loading.classList.add('hidden');
+                let htmlContent = '';
+                
+                filteredImages.forEach(img => {
+                    // Create the HTML structure for each portfolio item
+                    htmlContent += `
+                        <div class="portfolio-item group" 
+                            data-category="${img.category}" 
+                            onclick="openLightbox(event, '${img.url}', '${img.title}', '${img.location}')">
+                            <img src="${img.url}" alt="${img.title} by Tony Menias" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                                <div class="text-white">
+                                    <h3 class="font-medium">${img.title}</h3>
+                                    <p class="text-xs text-white/80">${img.location}</p>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+                grid.innerHTML = htmlContent;
+                grid.classList.add('fade-in'); // Add a fade-in effect to the grid
+            }, 500); // 0.5s delay to simulate loading
         }
 
-        function openLightbox(imgSrc, title, location) {
+        function openLightbox(event, imgSrc, title, location) {
+            event.stopPropagation(); // Prevent closing immediately if click originated from the item
             const lightbox = document.getElementById('lightbox');
             document.getElementById('lightbox-image').src = imgSrc;
             document.getElementById('lightbox-title').textContent = title;
@@ -603,9 +735,18 @@
             document.getElementById('lightbox').classList.add('hidden');
         }
 
-        // Initialize portfolio grid state (since no real data is loaded yet)
+        // Initialize on DOMContentLoaded
         document.addEventListener('DOMContentLoaded', () => {
-             // Simulate initial portfolio load on page load
+             // 1. Build the slideshow DOM elements
+             initializeSlideshowDOM(); 
+
+             // 2. Start the slideshow on home page load
+             // This check ensures the slideshow only runs when the home page is visible
+             if (!document.getElementById('home-page').classList.contains('hidden')) {
+                 startSlideshow(); 
+            }
+            
+             // 3. Initialize portfolio grid state (show all images on initial load)
              filterPortfolio('all');
         });
 
