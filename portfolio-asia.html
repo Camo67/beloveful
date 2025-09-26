@@ -1,364 +1,275 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BELOVEFUL Photography</title>
-    <meta name="description" content="Professional photography portfolio and services by Tony Menias">
-    <link rel="icon" href="https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620508/favicon_staqlf.jpg">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        'sans': ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-                    },
-                    colors: {
-                        'background': '#ffffff',
-                        'foreground': '#374151',
-                        'primary': '#dc2626',
-                        'secondary': '#f59e0b',
-                        'muted': '#6b7280',
-                    }
-                }
-            }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BELOVEFUL Photography • Asia</title>
+  <meta name="description" content="Professional photography portfolio and services by Tony Menias" />
+  <link rel="icon" href="https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620508/favicon_staqlf.jpg" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { 'sans': ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'] },
+          colors: {
+            background: '#ffffff', foreground: '#374151', primary: '#dc2626',
+            secondary: '#f59e0b', muted: '#6b7280'
+          }
         }
-    </script>
-    <style>
-        /* Enhanced CSS for the multi-image slideshow with movement animations */
-        .hero-slideshow-container {
-            position: absolute; 
-            inset: 0;
-            min-height: 100vh;
-            overflow: hidden; 
-        }
-        .hero-slide {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-size: cover; background-position: center; background-repeat: no-repeat;
-            opacity: 0; transform: scale(1.1) rotate(0deg);
-            transition: opacity 2s ease-in-out, transform 15s ease-out;
-        }
-        .hero-slide.active { opacity: 1; transform: scale(1.05) rotate(0.5deg); }
-        .hero-slide:nth-child(1).active { transform: scale(1.08) translateX(-2%) rotate(-0.3deg); }
-        .hero-slide:nth-child(2).active { transform: scale(1.06) translateY(-1%) rotate(0.4deg); }
-        .hero-slide:nth-child(3).active { transform: scale(1.07) translateX(1%) translateY(1%) rotate(-0.2deg); }
-        .hero-slide:nth-child(4).active { transform: scale(1.09) translateX(-1%) rotate(0.6deg); }
-        .hero-slide:nth-child(5).active { transform: scale(1.05) translateY(2%) rotate(-0.4deg); }
-        .hero-slide:nth-child(6).active { transform: scale(1.08) translateX(2%) translateY(-1%) rotate(0.3deg); }
-        .hero-slide.entering { animation: slideEnter 2s ease-out forwards; }
-        @keyframes slideEnter { 0% { opacity:0; transform: scale(1.15) translateY(-3%);} 100% { opacity:1; transform: scale(1.05) translateY(0%);} }
-        .hero-slide.exiting { animation: slideExit 1.5s ease-in forwards; }
-        @keyframes slideExit { 0% { opacity:1; transform: scale(1.05);} 100% { opacity:0; transform: scale(1.02) translateY(2%);} }
-        /* Portfolio Grid */
-        .portfolio-item { position: relative; overflow: hidden; cursor: pointer; transition: transform .3s ease; }
-        .portfolio-item:hover { transform: scale(1.02); z-index:10; }
-        .portfolio-item img { width:100%; height:100%; object-fit:cover; transition: opacity .3s; }
-        .portfolio-item:hover img { opacity:.8; }
-        /* Mobile menu */
-        .mobile-menu-slide-in { animation: slideInFromTop .3s ease-out forwards; }
-        .mobile-menu-slide-out { animation: slideOutToTop .3s ease-in forwards; }
-        @keyframes slideInFromTop { from { transform: translateY(-100%); opacity:0;} to { transform: translateY(0); opacity:1;} }
-        @keyframes slideOutToTop { from { transform: translateY(0); opacity:1;} to { transform: translateY(-100%); opacity:0;} }
-        /* Dropdown */
-        .dropdown { position: relative; }
-        .dropdown-menu {
-            position: absolute; top:100%; right:0; background:#fff; border:1px solid #e5e7eb; border-radius:8px;
-            box-shadow: 0 10px 25px rgba(0,0,0,.1); min-width:200px; opacity:0; visibility:hidden; transform: translateY(-10px);
-            transition: all .2s ease; z-index:50;
-        }
-        .dropdown:hover .dropdown-menu { opacity:1; visibility:visible; transform: translateY(0); }
-        /* Transitions */
-        .fade-in { animation: fadeIn .6s ease-in-out; }
-        @keyframes fadeIn { from { opacity:0;} to { opacity:1;} }
-    </style>
+      }
+    }
+  </script>
+
+  <style>
+    /* Hero (unused but kept) */
+    .hero-slideshow-container{position:absolute;inset:0;min-height:100vh;overflow:hidden}
+    .hero-slide{position:absolute;top:0;left:0;width:100%;height:100%;background-size:cover;background-position:center;background-repeat:no-repeat;opacity:0;transform:scale(1.1);transition:opacity 2s ease-in-out,transform 15s ease-out}
+    .hero-slide.active{opacity:1;transform:scale(1.05)}
+
+    /* Grid items */
+    .portfolio-item{position:relative;overflow:hidden;cursor:pointer;transition:transform .3s ease}
+    .portfolio-item:hover{transform:scale(1.02);z-index:10}
+    .portfolio-item img{width:100%;height:100%;object-fit:cover;transition:opacity .3s}
+    .portfolio-item:hover img{opacity:.85}
+
+    /* Mobile menu animations */
+    .mobile-menu-slide-in{animation:slideInFromTop .3s ease-out forwards}
+    .mobile-menu-slide-out{animation:slideOutToTop .3s ease-in forwards}
+    @keyframes slideInFromTop{from{transform:translateY(-100%);opacity:0}to{transform:translateY(0);opacity:1}}
+    @keyframes slideOutToTop{from{transform:translateY(0);opacity:1}to{transform:translateY(-100%);opacity:0}}
+
+    /* Dropdown */
+    .dropdown{position:relative}
+    .dropdown-menu{position:absolute;top:100%;right:0;background:#fff;border:1px solid #e5e7eb;border-radius:8px;box-shadow:0 10px 25px rgba(0,0,0,.1);min-width:200px;opacity:0;visibility:hidden;transform:translateY(-10px);transition:all .2s ease;z-index:50}
+    .dropdown:hover .dropdown-menu{opacity:1;visibility:visible;transform:translateY(0)}
+
+    .fade-in{animation:fadeIn .6s ease-in-out}
+    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+    /* Mobile top padding */
+    @media (max-width:767px){ body{padding-top:88px} }
+  </style>
 </head>
 
 <body class="font-sans antialiased">
-<!-- Mobile Top Bar (inline, no partials) -->
-<style>
-  @media (max-width: 767px){
-    body { padding-top: 88px; }
-  }
-</style>
-<div class="fixed top-0 left-0 right-0 z-50 md:hidden bg-white/95 backdrop-blur-sm border-b border-gray-100">
-  <div class="h-20 flex items-center justify-between px-4 relative">
-    <!-- Left: Burger -->
-    <button id="mobile-menu-toggle" class="rounded-full p-2 shadow-none" onclick="toggleMobileMenu()" aria-label="Open menu">
-      <svg id="menu-icon" class="w-7 h-7 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-      </svg>
-      <svg id="close-icon" class="w-7 h-7 text-gray-700 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-      </svg>
-    </button>
-    <!-- Center: Logo -->
-    <a href="index.html" class="absolute left-1/2 -translate-x-1/2">
-      <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/design-mode-images/beloveful-logo-black_rwsx2j-wOoxP7eLkfyJ730eMjwAqDCcd3bPnz.png" alt="BE LOVEFUL Photography" class="h-16 w-auto">
-    </a>
-    <!-- Right: Social icons -->
-    <div class="flex items-center gap-4">
-      <a href="https://www.facebook.com/tony.menias#" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="text-gray-700 hover:text-gray-900 transition-colors">
-        <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+  <!-- Mobile Top Bar -->
+  <div class="fixed top-0 left-0 right-0 z-50 md:hidden bg-white/95 backdrop-blur-sm border-b border-gray-100">
+    <div class="h-20 flex items-center justify-between px-4 relative">
+      <button id="mobile-menu-toggle" class="rounded-full p-2" onclick="toggleMobileMenu()" aria-label="Open menu">
+        <svg id="menu-icon" class="w-7 h-7 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <svg id="close-icon" class="w-7 h-7 text-gray-700 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+      <a href="index.html" class="absolute left-1/2 -translate-x-1/2">
+        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/design-mode-images/beloveful-logo-black_rwsx2j-wOoxP7eLkfyJ730eMjwAqDCcd3bPnz.png" alt="BE LOVEFUL Photography" class="h-16 w-auto">
       </a>
-      <a href="https://www.instagram.com/beloveful" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="text-gray-700 hover:text-gray-900 transition-colors">
-        <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-3.371 0-7.227.01-8.526.046C1.944.113.882.883.271 2.379.096 3.197 0 4.195 0 8.017v7.966c0 3.822.096 4.82.271 5.638.611 1.496 1.673 2.266 3.224 2.333 1.299.036 5.155.046 8.526.046 3.371 0 7.227-.01 8.526-.046 1.551-.067 2.613-.837 3.224-2.333.175-.818.271-1.816.271-5.638V8.017c0-3.822-.096-4.82-.271-5.638C22.41 1.047 21.348.277 19.797.21c-1.299-.036-5.155-.046-8.526-.046zM12 2.219c3.21 0 6.634.011 7.828.043 1.14.032 1.45.41 1.637.794.186.383.252.825.252 2.766v7.882c0 1.94-.066 2.383-.252 2.766-.187.384-.497.762-1.637.794-1.194.032-4.618.043-7.828.043-3.21 0-6.634-.011-7.828-.043-1.14-.032-1.45-.41-1.637-.794-.186-.383-.252-.825-.252-2.766V8.017c0-1.94.066-2.383.252-2.766.187-.384.497-.762 1.637-.794 1.194-.032 4.618-.043 7.828-.043zM12 6.809c-2.85 0-5.176 2.327-5.176 5.177 0 2.85 2.327 5.176 5.176 5.176s5.177-2.326 5.177-5.176c0-2.85-2.327-5.177-5.177-5.177zm0 2.21c1.63 0 2.967 1.336 2.967 2.967s-1.336 2.966-2.967 2.966c-1.63 0-2.966-1.336-2.966-2.966s1.336-2.967 2.966-2.967zm4.332-4.321c-.56 0-1.015.454-1.015 1.015s.455 1.015 1.015 1.015c.56 0 1.015-.454 1.015-1.015s-.455-1.015-1.015-1.015z"/></svg>
-      </a>
-    </div>
-  </div>
-</div>
-
-<!-- Mobile Fullscreen Menu (scrollable) -->
-<div id="mobile-menu" class="fixed inset-0 bg-white z-40 md:hidden hidden overflow-y-auto">
-  <div class="min-h-full flex flex-col items-center justify-center py-10 space-y-8">
-    <a href="index.html" class="text-2xl text-gray-700 hover:text-gray-900 transition-colors font-sans">HOME</a>
-    <div class="text-center space-y-4">
-      <div class="text-2xl text-gray-900 font-medium font-sans">PORTFOLIO</div>
-      <div class="space-y-3">
-        <a href="portfolio-asia.html" class="block text-lg text-gray-700 hover:text-gray-900 transition-colors font-sans">Asia</a>
-        <a href="portfolio-africa.html" class="block text-lg text-gray-700 hover:text-gray-900 transition-colors font-sans">Africa</a>
-        <a href="portfolio.html" class="block text-lg text-gray-700 hover:text-gray-900 transition-colors font-sans">View All</a>
+      <div class="flex items-center gap-4">
+        <a href="https://www.facebook.com/tony.menias#" target="_blank" rel="noopener" aria-label="Facebook" class="text-gray-700 hover:text-gray-900"><svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+        <a href="https://www.instagram.com/beloveful" target="_blank" rel="noopener" aria-label="Instagram" class="text-gray-700 hover:text-gray-900"><svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-3.371 0-7.227.01-8.526.046C1.944.113.882.883.271 2.379.096 3.197 0 4.195 0 8.017v7.966c0 3.822.096 4.82.271 5.638.611 1.496 1.673 2.266 3.224 2.333 1.299.036 5.155.046 8.526.046 3.371 0 7.227-.01 8.526-.046 1.551-.067 2.613-.837 3.224-2.333.175-.818.271-1.816.271-5.638V8.017c0-3.822-.096-4.82-.271-5.638C22.41 1.047 21.348.277 19.797.21c-1.299-.036-5.155-.046-8.526-.046zM12 2.219c3.21 0 6.634.011 7.828.043 1.14.032 1.45.41 1.637.794.186.383.252.825.252 2.766v7.882c0 1.94-.066 2.383-.252 2.766-.187.384-.497.762-1.637.794-1.194.032-4.618.043-7.828.043-3.21 0-6.634-.011-7.828-.043-1.14-.032-1.45-.41-1.637-.794-.186-.383-.252-.825-.252-2.766V8.017c0-1.94.066-2.383.252-2.766.187-.384.497-.762 1.637-.794 1.194-.032 4.618-.043 7.828-.043zM12 6.809c-2.85 0-5.176 2.327-5.176 5.177 0 2.85 2.327 5.176 5.176 5.176s5.177-2.326 5.177-5.176c0-2.85-2.327-5.177-5.177-5.177zm0 2.21c1.63 0 2.967 1.336 2.967 2.967s-1.336 2.966-2.967 2.966c-1.63 0-2.966-1.336-2.966-2.966s1.336-2.967 2.966-2.967zm4.332-4.321c-.56 0-1.015.454-1.015 1.015s.455 1.015 1.015 1.015c.56 0 1.015-.454 1.015-1.015s-.455-1.015-1.015-1.015z"/></svg></a>
       </div>
     </div>
-    <a href="https://www.printinnovationlab.com/collections/beloveful" target="_blank" rel="noopener noreferrer" class="text-2xl text-gray-700 hover:text-gray-900 transition-colors font-sans">PRINT SHOP</a>
-    <a href="workshops.html" class="text-2xl text-gray-700 hover:text-gray-900 transition-colors font-sans">WORKSHOPS</a>
-    <a href="about.html" class="text-2xl text-gray-700 hover:text-gray-900 transition-colors font-sans">ABOUT</a>
   </div>
-</div>
 
-    <!-- Injected navs -->
-    
-    
-    <!-- Desktop header -->
-    <header class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-sm border-b border-gray-100 hidden md:block">
-        <div class="container mx-auto px-6 py-4">
-            <div class="flex items-center justify-between">
-                <div class="flex items-center">
-                    <a href="index.html">
-                      <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/design-mode-images/beloveful-logo-black_rwsx2j-wOoxP7eLkfyJ730eMjwAqDCcd3bPnz.png" alt="BE LOVEFUL Photography" class="h-8 w-auto">
-                    </a>
-                </div>
-                <nav class="flex items-center gap-8">
-                    <a href="index.html" class="text-gray-600 hover:text-gray-800 transition-colors text-sm font-medium tracking-wide">HOME</a>
-                    <div class="dropdown">
-                        <button class="text-gray-600 hover:text-gray-800 transition-colors text-sm font-medium tracking-wide flex items-center gap-1">
-                            PORTFOLIO
-                            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
-                        </button>
-                        <div class="dropdown-menu">
-                            <a href="portfolio-asia.html" class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors">Asia</a>
-                            <a href="portfolio-africa.html" class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors">Africa</a>
-                            <a href="portfolio.html" class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors border-t border-gray-100">View All</a>
-                        </div>
-                    </div>
-                    <a href="https://www.printinnovationlab.com/collections/beloveful" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-gray-800 transition-colors text-sm font-medium tracking-wide">PRINT SHOP</a>
-                    <a href="workshops.html" class="text-gray-600 hover:text-gray-800 transition-colors text-sm font-medium tracking-wide">WORKSHOPS</a>
-                    <a href="about.html" class="text-gray-600 hover:text-gray-800 transition-colors text-sm font-medium tracking-wide">ABOUT</a>
-                </nav>
-                <div class="flex items-center gap-4">
-                    <a href="https://www.facebook.com/tony.menias#" target="_blank" rel="noopener noreferrer">
-                        <svg class="w-5 h-5 text-gray-600 hover:text-gray-800 transition-colors cursor-pointer" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-                    </a>
-                    <a href="https://x.com/beloveful" target="_blank" rel="noopener noreferrer">
-                        <svg class="w-5 h-5 text-gray-600 hover:text-gray-800 transition-colors cursor-pointer" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-                    </a>
-                    <a href="https://www.instagram.com/beloveful" target="_blank" rel="noopener noreferrer">
-                        <svg class="w-5 h-5 text-gray-600 hover:text-gray-800 transition-colors cursor-pointer" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-3.371 0-7.227.01-8.526.046C1.944.113.882.883.271 2.379.096 3.197 0 4.195 0 8.017v7.966c0 3.822.096 4.82.271 5.638.611 1.496 1.673 2.266 3.224 2.333 1.299.036 5.155.046 8.526.046 3.371 0 7.227-.01 8.526-.046 1.551-.067 2.613-.837 3.224-2.333.175-.818.271-1.816.271-5.638V8.017c0-3.822-.096-4.82-.271-5.638C22.41 1.047 21.348.277 19.797.21c-1.299-.036-5.155-.046-8.526-.046zM12 2.219c3.21 0 6.634.011 7.828.043 1.14.032 1.45.41 1.637.794.186.383.252.825.252 2.766v7.882c0 1.94-.066 2.383-.252 2.766-.187.384-.497.762-1.637.794-1.194.032-4.618.043-7.828.043-3.21 0-6.634-.011-7.828-.043-1.14-.032-1.45-.41-1.637-.794-.186-.383-.252-.825-.252-2.766V8.017c0-1.94.066-2.383.252-2.766.187-.384.497-.762 1.637-.794 1.194-.032 4.618-.043 7.828-.043zM12 6.809c-2.85 0-5.176 2.327-5.176 5.177 0 2.85 2.327 5.176 5.176 5.176s5.177-2.326 5.177-5.176c0-2.85-2.327-5.177-5.177-5.177zm0 2.21c1.63 0 2.967 1.336 2.967 2.967s-1.336 2.966-2.967 2.966c-1.63 0-2.966-1.336-2.966-2.966s1.336-2.967 2.966-2.967zm4.332-4.321c-.56 0-1.015.454-1.015 1.015s.455 1.015 1.015 1.015c.56 0 1.015-.454 1.015-1.015s-.455-1.015-1.015-1.015z"/></svg>
-                    </a>
-                </div>
-            </div>
+  <!-- Mobile Fullscreen Menu (single instance) -->
+  <div id="mobile-menu" class="fixed inset-0 bg-white z-40 md:hidden hidden overflow-y-auto">
+    <div class="min-h-full flex flex-col items-center justify-center py-10 space-y-8">
+      <a href="index.html" class="text-2xl text-gray-700 hover:text-gray-900">HOME</a>
+      <div class="text-center space-y-4">
+        <div class="text-2xl text-gray-900 font-medium">PORTFOLIO</div>
+        <div class="space-y-3">
+          <a href="portfolio-asia.html" class="block text-lg text-gray-700 hover:text-gray-900">Asia</a>
+          <a href="portfolio-africa.html" class="block text-lg text-gray-700 hover:text-gray-900">Africa</a>
+          <a href="portfolio.html" class="block text-lg text-gray-700 hover:text-gray-900">View All</a>
         </div>
-    </header>
+      </div>
+      <a href="https://www.printinnovationlab.com/collections/beloveful" target="_blank" rel="noopener" class="text-2xl text-gray-700 hover:text-gray-900">PRINT SHOP</a>
+      <a href="workshops.html" class="text-2xl text-gray-700 hover:text-gray-900">WORKSHOPS</a>
+      <a href="about.html" class="text-2xl text-gray-700 hover:text-gray-900">ABOUT</a>
+    </div>
+  </div>
 
-    <!-- Mobile menu button -->
-  
-    <div id="mobile-menu" class="fixed inset-0 bg-white z-40 md:hidden hidden">
-        <div class="flex flex-col items-center justify-center h-full space-y-8">
-            <a href="index.html" class="text-2xl text-gray-600 hover:text-gray-800 transition-colors font-sans">HOME</a>
-            <div class="text-center space-y-4">
-                <div class="text-2xl text-gray-800 font-medium font-sans">PORTFOLIO</div>
-                <div class="space-y-3">
-                    <a href="portfolio-asia.html" class="block text-lg text-gray-600 hover:text-gray-800 transition-colors font-sans">Asia</a>
-                    <a href="portfolio-africa.html" class="block text-lg text-gray-600 hover:text-gray-800 transition-colors font-sans">Africa</a>
-                    <a href="portfolio.html" class="block text-lg text-gray-600 hover:text-gray-800 transition-colors font-sans">View All</a>
-                </div>
+  <!-- Desktop header -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-sm border-b border-gray-100 hidden md:block">
+    <div class="container mx-auto px-6 py-4">
+      <div class="flex items-center justify-between">
+        <a href="index.html"><img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/design-mode-images/beloveful-logo-black_rwsx2j-wOoxP7eLkfyJ730eMjwAqDCcd3bPnz.png" alt="BE LOVEFUL Photography" class="h-8 w-auto"></a>
+        <nav class="flex items-center gap-8">
+          <a href="index.html" class="text-gray-600 hover:text-gray-800 text-sm font-medium tracking-wide">HOME</a>
+          <div class="dropdown">
+            <button class="text-gray-600 hover:text-gray-800 text-sm font-medium tracking-wide flex items-center gap-1">PORTFOLIO <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></button>
+            <div class="dropdown-menu">
+              <a href="portfolio-asia.html" class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50">Asia</a>
+              <a href="portfolio-africa.html" class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50">Africa</a>
+              <a href="portfolio.html" class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 border-t border-gray-100">View All</a>
             </div>
-            <a href="https://www.printinnovationlab.com/collections/beloveful" target="_blank" rel="noopener noreferrer" class="text-2xl text-gray-600 hover:text-gray-800 transition-colors font-sans">PRINT SHOP</a>
-            <a href="workshops.html" class="text-2xl text-gray-600 hover:text-gray-800 transition-colors font-sans">WORKSHOPS</a>
-            <a href="about.html" class="text-2xl text-gray-600 hover:text-gray-800 transition-colors font-sans">ABOUT</a>
+          </div>
+          <a href="https://www.printinnovationlab.com/collections/beloveful" target="_blank" rel="noopener" class="text-gray-600 hover:text-gray-800 text-sm font-medium tracking-wide">PRINT SHOP</a>
+          <a href="workshops.html" class="text-gray-600 hover:text-gray-800 text-sm font-medium tracking-wide">WORKSHOPS</a>
+          <a href="about.html" class="text-gray-600 hover:text-gray-800 text-sm font-medium tracking-wide">ABOUT</a>
+        </nav>
+        <div class="flex items-center gap-4">
+          <a href="https://www.facebook.com/tony.menias#" target="_blank" rel="noopener" aria-label="Facebook"><svg class="w-5 h-5 text-gray-600 hover:text-gray-800" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+          <a href="https://x.com/beloveful" target="_blank" rel="noopener" aria-label="X"><svg class="w-5 h-5 text-gray-600 hover:text-gray-800" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a href="https://www.instagram.com/beloveful" target="_blank" rel="noopener" aria-label="Instagram"><svg class="w-5 h-5 text-gray-600 hover:text-gray-800" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-3.371 0-7.227.01-8.526.046C1.944.113.882.883.271 2.379.096 3.197 0 4.195 0 8.017v7.966c0 3.822.096 4.82.271 5.638.611 1.496 1.673 2.266 3.224 2.333 1.299.036 5.155.046 8.526.046 3.371 0 7.227-.01 8.526-.046 1.551-.067 2.613-.837 3.224-2.333.175-.818.271-1.816.271-5.638V8.017c0-3.822-.096-4.82-.271-5.638C22.41 1.047 21.348.277 19.797.21c-1.299-.036-5.155-.046-8.526-.046zM12 2.219c3.21 0 6.634.011 7.828.043 1.14.032 1.45.41 1.637.794.186.383.252.825.252 2.766v7.882c0 1.94-.066 2.383-.252 2.766-.187.384-.497.762-1.637.794-1.194.032-4.618.043-7.828.043-3.21 0-6.634-.011-7.828-.043-1.14-.032-1.45-.41-1.637-.794-.186-.383-.252-.825-.252-2.766V8.017c0-1.94.066-2.383.252-2.766.187-.384.497-.762 1.637-.794 1.194-.032 4.618-.043 7.828-.043zM12 6.809c-2.85 0-5.176 2.327-5.176 5.177 0 2.85 2.327 5.176 5.176 5.176s5.177-2.326 5.177-5.176c0-2.85-2.327-5.177-5.177-5.177zm0 2.21c1.63 0 2.967 1.336 2.967 2.967s-1.336 2.966-2.967 2.966c-1.63 0-2.966-1.336-2.966-2.966s1.336-2.967 2.966-2.967zm4.332-4.321c-.56 0-1.015.454-1.015 1.015s.455 1.015 1.015 1.015c.56 0 1.015-.454 1.015-1.015s-.455-1.015-1.015-1.015z"/></svg></a>
         </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Content -->
+  <div class="pt-24 md:pt-28">
+    <main class="container mx-auto px-6">
+      <div class="text-center mb-12">
+        <h1 class="text-4xl md:text-5xl font-light text-gray-900 mb-4">Asia</h1>
+        <p class="text-lg text-gray-600 max-w-2xl mx-auto">Capturing the vibrant cultures, ancient traditions, and modern energy across Asian landscapes.</p>
+      </div>
+      <div id="asia-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 auto-rows-[200px]"></div>
+    </main>
+  </div>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4 hidden" onclick="closeLightbox()">
+    <div class="relative max-w-4xl max-h-full">
+      <img id="lightbox-image" src="" alt="" class="max-w-full max-h-full object-contain">
+      <button onclick="closeLightbox()" class="absolute top-4 right-4 text-white hover:text-gray-300" aria-label="Close lightbox">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+      <div id="lightbox-info" class="absolute bottom-4 left-4 text-white">
+        <h3 id="lightbox-title" class="font-medium text-lg"></h3>
+        <p id="lightbox-location" class="text-white/80"></p>
+      </div>
+    </div>
+  </div>
+
+  <footer class="bg-white border-t border-gray-100 mt-24" id="main-footer">
+    <div class="md:hidden">
+      <div class="container mx-auto px-6 py-6">
+        <div class="text-center space-y-4">
+          <div class="flex justify-center mb-4">
+            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/design-mode-images/beloveful-logo-black_rwsx2j-wOoxP7eLkfyJ730eMjwAqDCcd3bPnz.png" alt="BE LOVEFUL Photography" class="h-7 w-auto">
+          </div>
+          <div class="flex justify-center gap-6 text-gray-600">
+            <a href="https://www.instagram.com/beloveful" target="_blank" rel="noopener"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-3.371 0-7.227.01-8.526.046C1.944.113.882.883.271 2.379.096 3.197 0 4.195 0 8.017v7.966c0 3.822.096 4.82.271 5.638.611 1.496 1.673 2.266 3.224 2.333 1.299.036 5.155.046 8.526.046 3.371 0 7.227-.01 8.526-.046 1.551-.067 2.613-.837 3.224-2.333.175-.818.271-1.816.271-5.638V8.017c0-3.822-.096-4.82-.271-5.638C22.41 1.047 21.348.277 19.797.21c-1.299-.036-5.155-.046-8.526-.046zM12 2.219c3.21 0 6.634.011 7.828.043 1.14.032 1.45.41 1.637.794.186.383.252.825.252 2.766v7.882c0 1.94-.066 2.383-.252 2.766-.187.384-.497.762-1.637.794-1.194.032-4.618.043-7.828.043-3.21 0-6.634-.011-7.828-.043-1.14-.032-1.45-.41-1.637-.794-.186-.383-.252-.825-.252-2.766V8.017c0-1.94.066-2.383.252-2.766.187-.384.497-.762 1.637-.794 1.194-.032 4.618-.043 7.828-.043zM12 6.809c-2.85 0-5.176 2.327-5.176 5.177 0 2.85 2.327 5.176 5.176 5.176s5.177-2.326 5.177-5.176c0-2.85-2.327-5.177-5.177-5.177zm0 2.21c1.63 0 2.967 1.336 2.967 2.967s-1.336 2.966-2.967 2.966c-1.63 0-2.966-1.336-2.966-2.966s1.336-2.967 2.966-2.967zm4.332-4.321c-.56 0-1.015.454-1.015 1.015s.455 1.015 1.015 1.015c.56 0 1.015-.454 1.015-1.015s-.455-1.015-1.015-1.015z"/></svg></a>
+            <a href="https://www.facebook.com/tony.menias#" target="_blank" rel="noopener"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+          </div>
+          <div class="space-y-3">
+            <a href="signup.html" class="block w-full bg-black text-white py-3 px-5 rounded-full text-sm font-medium text-center hover:bg-gray-800">Join Newsletter</a>
+            <a href="workshops.html" class="block w-full border-2 border-black text-black py-3 px-5 rounded-full text-sm font-medium text-center hover:bg-black hover:text-white">Book Workshop</a>
+            <a href="https://www.printinnovationlab.com/collections/beloveful" target="_blank" rel="noopener" class="block w-full border-2 border-gray-300 text-gray-700 py-3 px-5 rounded-full text-sm font-medium text-center hover:border-black hover:text-black">Print Shop</a>
+          </div>
+          <div class="pt-4 border-t border-gray-100">
+            <p class="text-xs text-gray-500">© 2025 Tony Menias. All rights reserved.</p>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="pt-24 md:pt-28">
-        <main class="container mx-auto px-6">
-            <div class="text-center mb-12">
-                <h1 class="text-4xl md:twxt-5xl font-light text-gray-900 mb-4">Asia</h1>
-                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Capturing the vibrant cultures, ancient traditions, and modern energy across Asian landscapes.</p>
-            </div>
-            <div id="asia-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 auto-rows-[200px]"></div>
-        </main>
+    <div class="hidden md:block">
+      <div class="container mx-auto px-6 py-12 relative">
+        <div class="absolute top-6 right-6">
+          <div class="flex items-center gap-6">
+            <a href="https://www.instagram.com/beloveful" target="_blank" rel="noopener"><svg class="w-6 h-6 text-gray-600 hover:text-black" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-3.371 0-7.227.01-8.526.046C1.944.113.882.883.271 2.379.096 3.197 0 4.195 0 8.017v7.966c0 3.822.096 4.82.271 5.638.611 1.496 1.673 2.266 3.224 2.333 1.299.036 5.155.046 8.526.046 3.371 0 7.227-.01 8.526-.046 1.551-.067 2.613-.837 3.224-2.333.175-.818.271-1.816.271-5.638V8.017c0-3.822-.096-4.82-.271-5.638C22.41 1.047 21.348.277 19.797.21c-1.299-.036-5.155-.046-8.526-.046zM12 2.219c3.21 0 6.634.011 7.828.043 1.14.032 1.45.41 1.637.794.186.383.252.825.252 2.766v7.882c0 1.94-.066 2.383-.252 2.766-.187.384-.497.762-1.637.794-1.194.032-4.618.043-7.828.043-3.21 0-6.634-.011-7.828-.043-1.14-.032-1.45-.41-1.637-.794-.186-.383-.252-.825-.252-2.766V8.017c0-1.94.066-2.383.252-2.766.187-.384.497-.762 1.637-.794 1.194-.032 4.618-.043 7.828-.043zM12 6.809c-2.85 0-5.176 2.327-5.176 5.177 0 2.85 2.327 5.176 5.176 5.176s5.177-2.326 5.177-5.176c0-2.85-2.327-5.177-5.177-5.177zm0 2.21c1.63 0 2.967 1.336 2.967 2.967s-1.336 2.966-2.967 2.966c-1.63 0-2.966-1.336-2.966-2.966s1.336-2.967 2.966-2.967zm4.332-4.321c-.56 0-1.015.454-1.015 1.015s.455 1.015 1.015 1.015c.56 0 1.015-.454 1.015-1.015s-.455-1.015-1.015-1.015z"/></svg></a>
+            <a href="https://www.facebook.com/beloveful" target="_blank" rel="noopener"><svg class="w-6 h-6 text-gray-600 hover:text-black" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+          </div>
+        </div>
+        <div class="absolute bottom-6 left-6">
+          <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/design-mode-images/beloveful-logo-black_rwsx2j-wOoxP7eLkfyJ730eMjwAqDCcd3bPnz.png" alt="BE LOVEFUL Photography" class="h-8 w-auto">
+        </div>
+        <div class="flex justify-center">
+          <div class="flex items-center gap-8">
+            <a href="signup.html" class="text-gray-700 hover:text-black font-medium">Newsletter</a>
+            <a href="workshops.html" class="text-gray-700 hover:text-black font-medium">Workshops</a>
+            <a href="https://www.printinnovationlab.com/collections/beloveful" target="_blank" rel="noopener" class="text-gray-700 hover:text-black font-medium">Print Shop</a>
+          </div>
+        </div>
+        <div class="mt-8 pt-8 border-t border-gray-100 text-center">
+          <p class="text-sm text-gray-500">© 2025 Tony Menias. All rights reserved.</p>
+        </div>
+      </div>
     </div>
-    <script>document.addEventListener('DOMContentLoaded',()=>loadPortfolioImages('asia','asia-grid'));</script>
+  </footer>
 
-    <!-- Lightbox -->
-    <div id="lightbox" class="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4 hidden" onclick="closeLightbox()">
-        <div class="relative max-w-4xl max-h-full">
-            <img id="lightbox-image" src="/placeholder.svg" alt="" class="max-w-full max-h-full object-contain">
-            <button onclick="closeLightbox()" class="absolute top-4 right-4 text-white hover:text-gray-300 transition-colors">
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-            </button>
-            <div id="lightbox-info" class="absolute bottom-4 left-4 text-white">
-                <h3 id="lightbox-title" class="font-medium text-lg"></h3>
-                <p id="lightbox-location" class="text-white/80"></p>
+  <script>
+    function toggleMobileMenu(){
+      const mobileMenu=document.getElementById('mobile-menu');
+      const menuIcon=document.getElementById('menu-icon');
+      const closeIcon=document.getElementById('close-icon');
+      if(!mobileMenu) return;
+      if(mobileMenu.classList.contains('hidden')){
+        mobileMenu.classList.remove('hidden');
+        mobileMenu.classList.add('mobile-menu-slide-in');
+        if(menuIcon) menuIcon.classList.add('hidden');
+        if(closeIcon) closeIcon.classList.remove('hidden');
+      }else{
+        mobileMenu.classList.add('mobile-menu-slide-out');
+        setTimeout(()=>{ mobileMenu.classList.add('hidden'); mobileMenu.classList.remove('mobile-menu-slide-out'); }, 300);
+        if(menuIcon) menuIcon.classList.remove('hidden');
+        if(closeIcon) closeIcon.classList.add('hidden');
+      }
+    }
+
+    // ---------- DATA (OBJECT BY CATEGORY) ----------
+    const portfolioImages = {
+      asia: [
+        { url: 'https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620681/HK-04-17-_DSF6504_sknmxo.jpg', title: 'Urban Reflections', location: 'Hong Kong' },
+        { url: 'https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620680/HK-Unexpected_perspective-6919_zzi74r.jpg', title: 'City of Layers', location: 'Hong Kong' },
+        { url: 'https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620680/HK-04-17-_DSF5703_i2sokz.jpg', title: 'Street Level', location: 'Hong Kong' },
+        { url: 'https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620679/HK-04-07-17-3_xwlpuy.jpg', title: 'High-Rise Jungle', location: 'Hong Kong' },
+        { url: 'https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620679/HK-04-07-17_v9g09f.jpg', title: 'Symmetrical City', location: 'Hong Kong' },
+        { url: 'https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620679/HK-5958-04-05-17_fk4wuo.jpg', title: 'Urban Pattern', location: 'Hong Kong' },
+        { url: 'https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620678/HK-Pastel_Playground_3-6617_ayxssd.jpg', title: 'Pastel Playground', location: 'Hong Kong' },
+        { url: 'https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620678/Pastel_Playground_sluwyy.jpg', title: 'Colorful Building', location: 'Hong Kong' },
+        { url: 'https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620677/HK-Pastel_Playground_2-6570_xzsixb.jpg', title: 'Rainbow High-Rises', location: 'Hong Kong' },
+        { url: 'https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620677/HK-5960-04-05-17_rrc3ik.jpg', title: 'Looking Up', location: 'Hong Kong' },
+        { url: 'https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620677/HK-5933-04-05-17_iypper.jpg', title: 'Apartment Blocks', location: 'Hong Kong' },
+        { url: 'https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620677/HK-04-17-_DSF5965_thdllx.jpg', title: 'Urban Labyrinth', location: 'Hong Kong' },
+        { url: 'https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620676/HK-5841_copy_oftjsq.jpg', title: 'City Streets', location: 'Hong Kong' },
+        { url: 'https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620676/_DSF6933_b9ihxi.jpg', title: 'Neon Lights', location: 'Hong Kong' },
+        { url: 'https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620676/_DSF6254_a4l3be.jpg', title: 'Crowded Sidewalk', location: 'Hong Kong' },
+        { url: 'https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620676/_DSF5646-2_gjjfym.jpg', title: 'Temple Street Market', location: 'Hong Kong' },
+        { url: 'https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620675/HK-Pastel_Playground_4-6559_yeil6k.jpg', title: 'Colorful Facade', location: 'Hong Kong' },
+        { url: 'https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620675/_DSF6882_yggp35.jpg', title: 'Street Vendor', location: 'Hong Kong' },
+        { url: 'https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620674/HK-6578_smezhl.jpg', title: 'Night Market', location: 'Hong Kong' },
+        { url: 'https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620674/_DSF6743-2_ftkxyl.jpg', title: 'Cityscape at Dusk', location: 'Hong Kong' }
+      ]
+    };
+
+    function loadPortfolioImages(category, gridId){
+      const grid=document.getElementById(gridId);
+      if(!grid) return;
+      const images = (portfolioImages[category] || []);
+      grid.innerHTML = images.map(img => `
+        <div class="portfolio-item group" onclick="openLightbox(event, '${img.url.replace(/'/g, "&#39;")}', '${(img.title||'').replace(/'/g, "&#39;")}', '${(img.location||'').replace(/'/g, "&#39;")}')">
+          <img src="${img.url}" alt="${img.title || ''} by Tony Menias" loading="lazy" />
+          <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+            <div class="text-white">
+              <h3 class="font-medium">${img.title || ''}</h3>
+              <p class="text-xs text-white/80">${img.location || ''}</p>
             </div>
+          </div>
         </div>
-    </div>
+      `).join('');
+      grid.classList.add('fade-in');
+    }
 
-    <script>
-        function toggleMobileMenu() {
-            const mobileMenu = document.getElementById('mobile-menu');
-            const menuIcon = document.getElementById('menu-icon');
-            const closeIcon = document.getElementById('close-icon');
-            if (!mobileMenu) return;
-            if (mobileMenu.classList.contains('hidden')) {
-                mobileMenu.classList.remove('hidden');
-                mobileMenu.classList.add('mobile-menu-slide-in');
-                if (menuIcon) menuIcon.classList.add('hidden');
-                if (closeIcon) closeIcon.classList.remove('hidden');
-            } else {
-                mobileMenu.classList.add('mobile-menu-slide-out');
-                setTimeout(() => {
-                    mobileMenu.classList.add('hidden');
-                    mobileMenu.classList.remove('mobile-menu-slide-out');
-                }, 300);
-                if (menuIcon) menuIcon.classList.remove('hidden');
-                if (closeIcon) closeIcon.classList.add('hidden');
-            }
-        }
+    function openLightbox(event, imgSrc, title, location){
+      if(event) event.stopPropagation();
+      const lightbox=document.getElementById('lightbox');
+      if(!lightbox) return;
+      document.getElementById('lightbox-image').src = imgSrc;
+      document.getElementById('lightbox-title').textContent = title || '';
+      document.getElementById('lightbox-location').textContent = location || '';
+      lightbox.classList.remove('hidden');
+    }
+    function closeLightbox(){
+      const lightbox=document.getElementById('lightbox');
+      if(lightbox) lightbox.classList.add('hidden');
+    }
 
-        const slideshowImages = [
-            'https://res.cloudinary.com/dvwdoezk1/image/upload/f_auto,q_auto/v1758620510/portfolio/DSCF8181-2.jpg',
-            'https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620703/IND-5525_hd10xe.jpg',
-            'https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620506/chicago-basketball-court_uf5asu.jpg',
-            'https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620827/MYA-04-17-DSCF0068_svqwrr.jpg',
-            'https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620827/MYA-1292_dclmsa.jpg',
-            'https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620827/MYA-0839_gligvf.jpg'
-        ];
-
-        const portfolioImages = {
-            all: [
-                { url:'https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620824/DSCF9932_erydwn.jpg', title:'Urban Silhouette', location:'Berlin, Germany', category:'europe' },
-                { url:'https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620703/IND-5525_hd10xe.jpg', title:'Monsoon Morning', location:'Jaipur, India', category:'asia' },
-                { url:'https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620506/chicago-basketball-court_uf5asu.jpg', title:'Concrete Court', location:'Chicago, USA', category:'americas' },
-                { url:'https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620827/MYA-04-17-DSCF0068_svqwrr.jpg', title:'Neon Reflection', location:'Shanghai, China', category:'asia' },
-                { url:'https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620827/MYA-1292_dclmsa.jpg', title:'Roman Holiday', location:'Rome, Italy', category:'europe' },
-                { url:'https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620827/MYA-0839_gligvf.jpg', title:'Yellow Blur', location:'New York City, USA', category:'americas' },
-                { url:'https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620822/DSCF9240_uotnpn.jpg', title:'Shibuya Rush', location:'Tokyo, Japan', category:'asia' }
-            ],
-            asia: [
-                { url:'https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620703/IND-5525_hd10xe.jpg', title:'Monsoon Morning', location:'Jaipur, India' },
-                { url:'https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620827/MYA-04-17-DSCF0068_svqwrr.jpg', title:'Neon Reflection', location:'Shanghai, China' },
-                { url:'https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620822/DSCF9240_uotnpn.jpg', title:'Shibuya Rush', location:'Tokyo, Japan' },
-                { url:'https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620510/portfolio/DSCF8181-2.jpg', title:'Temple Serenity', location:'Hong Kong' }
-            ],
-            africa: [
-                { url:'https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620824/DSCF9932_erydwn.jpg', title:'Desert Wanderer', location:'Namibia' },
-                { url:'https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620827/MYA-1292_dclmsa.jpg', title:'Cape Town Sunset', location:'South Africa' },
-                { url:'https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620827/MYA-0839_gligvf.jpg', title:'Pyramid Shadows', location:'Egypt' }
-            ]
-        };
-
-        function openLightbox(event, imgSrc, title, location) {
-            if (event) event.stopPropagation();
-            const lightbox = document.getElementById('lightbox');
-            if (!lightbox) return;
-            document.getElementById('lightbox-image').src = imgSrc;
-            document.getElementById('lightbox-title').textContent = title || '';
-            document.getElementById('lightbox-location').textContent = location || '';
-            lightbox.classList.remove('hidden');
-        }
-        function closeLightbox() {
-            const lightbox = document.getElementById('lightbox');
-            if (lightbox) lightbox.classList.add('hidden');
-        }
-        function loadPortfolioImages(category, gridId) {
-            const grid = document.getElementById(gridId);
-            if (!grid) return;
-            const images = (portfolioImages[category] || []);
-            grid.innerHTML = images.map(img => `
-                <div class="portfolio-item group" onclick="openLightbox(event, '${img.url}', '${img.title}', '${img.location}')">
-                    <img src="${img.url}" alt="${img.title || ''} by Tony Menias" class="w-full h-full object-cover">
-                    <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-                        <div class="text-white">
-                            <h3 class="font-medium">${img.title || ''}</h3>
-                            <p class="text-xs text-white/80">${img.location || ''}</p>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
-            grid.classList.add('fade-in');
-        }
-    </script>
-
-    <footer class="bg-white border-t border-gray-100 mt-24" id="main-footer">
-        <div class="md:hidden">
-            <div class="container mx-auto px-6 py-6">
-                <div class="text-center space-y-4">
-                    <div class="flex justify-center mb-4">
-                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/design-mode-images/beloveful-logo-black_rwsx2j-wOoxP7eLkfyJ730eMjwAqDCcd3bPnz.png" alt="BE LOVEFUL Photography" class="h-7 w-auto">
-                    </div>
-                    <div class="flex justify-center gap-6 text-gray-600">
-                        <a href="https://www.instagram.com/beloveful" target="_blank" rel="noopener noreferrer">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-3.371 0-7.227.01-8.526.046C1.944.113.882.883.271 2.379.096 3.197 0 4.195 0 8.017v7.966c0 3.822.096 4.82.271 5.638.611 1.496 1.673 2.266 3.224 2.333 1.299.036 5.155.046 8.526.046 3.371 0 7.227-.01 8.526-.046 1.551-.067 2.613-.837 3.224-2.333.175-.818.271-1.816.271-5.638V8.017c0-3.822-.096-4.82-.271-5.638C22.41 1.047 21.348.277 19.797.21c-1.299-.036-5.155-.046-8.526-.046zM12 2.219c3.21 0 6.634.011 7.828.043 1.14.032 1.45.41 1.637.794.186.383.252.825.252 2.766v7.882c0 1.94-.066 2.383-.252 2.766-.187.384-.497.762-1.637.794-1.194.032-4.618.043-7.828.043-3.21 0-6.634-.011-7.828-.043-1.14-.032-1.45-.41-1.637-.794-.186-.383-.252-.825-.252-2.766V8.017c0-1.94.066-2.383.252-2.766.187-.384.497-.762 1.637-.794 1.194-.032 4.618-.043 7.828-.043zM12 6.809c-2.85 0-5.176 2.327-5.176 5.177 0 2.85 2.327 5.176 5.176 5.176s5.177-2.326 5.177-5.176c0-2.85-2.327-5.177-5.177-5.177zm0 2.21c1.63 0 2.967 1.336 2.967 2.967s-1.336 2.966-2.967 2.966c-1.63 0-2.966-1.336-2.966-2.966s1.336-2.967 2.966-2.967zm4.332-4.321c-.56 0-1.015.454-1.015 1.015s.455 1.015 1.015 1.015c.56 0 1.015-.454 1.015-1.015s-.455-1.015-1.015-1.015z"/></svg>
-                        </a>
-                        <a href="https://www.facebook.com/tony.menias#" target="_blank" rel="noopener noreferrer">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-                        </a>
-                    </div>
-                    <div class="space-y-3">
-                        <a href="signup.html" class="block w-full bg-black text-white py-3 px-5 rounded-full text-sm font-medium text-center hover:bg-gray-800 transition-colors">Join Newsletter</a>
-                        <a href="workshops.html" class="block w-full border-2 border-black text-black py-3 px-5 rounded-full text-sm font-medium text-center hover:bg-black hover:text-white transition-colors">Book Workshop</a>
-                        <a href="https://www.printinnovationlab.com/collections/beloveful" target="_blank" rel="noopener noreferrer" class="block w-full border-2 border-gray-300 text-gray-700 py-3 px-5 rounded-full text-sm font-medium text-center hover:border-black hover:text-black transition-colors">Print Shop</a>
-                    </div>
-                    <div class="pt-4 border-t border-gray-100">
-                        <p class="text-xs text-gray-500 font-sans">© 2025 Tony Menias. All rights reserved.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="hidden md:block">
-            <div class="container mx-auto px-6 py-12 relative">
-                <div class="absolute top-6 right-6">
-                    <div class="flex items-center gap-6">
-                        <a href="https://www.instagram.com/beloveful" target="_blank" rel="noopener noreferrer">
-                            <svg class="w-6 h-6 text-gray-600 hover:text-black transition-colors cursor-pointer" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-3.371 0-7.227.01-8.526.046C1.944.113.882.883.271 2.379.096 3.197 0 4.195 0 8.017v7.966c0 3.822.096 4.82.271 5.638.611 1.496 1.673 2.266 3.224 2.333 1.299.036 5.155.046 8.526.046 3.371 0 7.227-.01 8.526-.046 1.551-.067 2.613-.837 3.224-2.333.175-.818.271-1.816.271-5.638V8.017c0-3.822-.096-4.82-.271-5.638C22.41 1.047 21.348.277 19.797.21c-1.299-.036-5.155-.046-8.526-.046zM12 2.219c3.21 0 6.634.011 7.828.043 1.14.032 1.45.41 1.637.794.186.383.252.825.252 2.766v7.882c0 1.94-.066 2.383-.252 2.766-.187.384-.497.762-1.637.794-1.194.032-4.618.043-7.828.043-3.21 0-6.634-.011-7.828-.043-1.14-.032-1.45-.41-1.637-.794-.186-.383-.252-.825-.252-2.766V8.017c0-1.94.066-2.383.252-2.766.187-.384.497-.762 1.637-.794 1.194-.032 4.618-.043 7.828-.043zM12 6.809c-2.85 0-5.176 2.327-5.176 5.177 0 2.85 2.327 5.176 5.176 5.176s5.177-2.326 5.177-5.176c0-2.85-2.327-5.177-5.177-5.177zm0 2.21c1.63 0 2.967 1.336 2.967 2.967s-1.336 2.966-2.967 2.966c-1.63 0-2.966-1.336-2.966-2.966s1.336-2.967 2.966-2.967zm4.332-4.321c-.56 0-1.015.454-1.015 1.015s.455 1.015 1.015 1.015c.56 0 1.015-.454 1.015-1.015s-.455-1.015-1.015-1.015z"/></svg>
-                        </a>
-                        <a href="https://www.facebook.com/beloveful" target="_blank" rel="noopener noreferrer">
-                            <svg class="w-6 h-6 text-gray-600 hover:text-black transition-colors cursor-pointer" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-                        </a>
-                    </div>
-                </div>
-                <div class="absolute bottom-6 left-6">
-                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/design-mode-images/beloveful-logo-black_rwsx2j-wOoxP7eLkfyJ730eMjwAqDCcd3bPnz.png" alt="BE LOVEFUL Photography" class="h-8 w-auto">
-                </div>
-                <div class="flex justify-center">
-                    <div class="flex items-center gap-8">
-                        <a href="signup.html" class="text-gray-700 hover:text-black font-sans font-medium transition-colors">Newsletter</a>
-                        <a href="workshops.html" class="text-gray-700 hover:text-black font-sans font-medium transition-colors">Workshops</a>
-                        <a href="https://www.printinnovationlab.com/collections/beloveful" target="_blank" rel="noopener noreferrer" class="text-gray-700 hover:text-black font-sans font-medium transition-colors">Print Shop</a>
-                    </div>
-                </div>
-                <div class="mt-8 pt-8 border-t border-gray-100 text-center">
-                    <p class="text-sm text-gray-500 font-sans">© 2025 Tony Menias. All rights reserved.</p>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-
-
-
+    document.addEventListener('DOMContentLoaded', ()=>{
+      loadPortfolioImages('asia','asia-grid');
+    });
+  </script>
 </body>
 </html>
