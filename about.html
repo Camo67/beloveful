@@ -6,6 +6,8 @@
   <title>About • BELOVEFUL Photography</title>
   <meta name="description" content="About Tony Menias — BELOVEFUL Photography" />
   <link rel="icon" href="https://res.cloudinary.com/dvwdoezk1/image/upload/v1758620508/favicon_staqlf.jpg"/>
+
+  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -23,111 +25,118 @@
       }
     }
   </script>
+
   <style>
-    /* Keep spacing under fixed desktop header */
-    @media (min-width: 768px){ body { padding-top: 72px; } }
-    /* Keep spacing under mobile bar when visible */
-    @media (max-width: 767px){ body { padding-top: 88px; } }
-    /* Simple 16:9 helper (fallback for older browsers) */
-    .ratio-16x9 { position: relative; padding-bottom: 56.25%; height: 0; }
-    .ratio-16x9 > iframe { position:absolute; inset:0; width:100%; height:100%; }
-    /* Small fade-in */
-    .fade-in { animation: fadeIn .6s ease-in-out; }
-    @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
+    :root{
+      --desktop-header-h: 88px; /* same height we used elsewhere */
+      --mobile-header-h: 92px;
+    }
+    @media (min-width:768px){ body{ padding-top: var(--desktop-header-h);} }
+    @media (max-width:767px){ body{ padding-top: var(--mobile-header-h);} }
+
+    /* 16:9 helper for embeds */
+    .ratio-16x9{ position:relative; padding-bottom:56.25%; height:0; }
+    .ratio-16x9 > iframe{ position:absolute; inset:0; width:100%; height:100%; }
+
+    /* Fade-in */
+    .fade-in{ animation:fadeIn .6s ease-in-out; }
+    @keyframes fadeIn{ from{opacity:0} to{opacity:1} }
+
+    /* Dropdown (same as other pages) */
+    .dropdown{ position:relative; }
+    .dropdown-menu{
+      position:absolute; top:100%; right:0; background:#fff;
+      border:1px solid #e5e7eb; border-radius:8px; min-width:200px;
+      box-shadow:0 10px 25px rgba(0,0,0,.1);
+      opacity:0; visibility:hidden; transform:translateY(-10px);
+      transition:all .2s ease; z-index:50;
+    }
+    .dropdown:hover .dropdown-menu{ opacity:1; visibility:visible; transform:translateY(0); }
   </style>
 </head>
 <body class="font-sans antialiased bg-white text-gray-900">
 
-  <!-- ======= Mobile Top Bar ======= -->
+  <!-- ===== Mobile Top Bar (consistent) ===== -->
   <div class="fixed top-0 left-0 right-0 z-50 md:hidden bg-white/95 backdrop-blur-sm border-b border-gray-100">
-    <div class="h-20 flex items-center justify-between px-4 relative">
-      <!-- Left: Burger -->
+    <div class="h-[92px] flex items-center justify-between px-4 relative">
+      <!-- Burger -->
       <button id="mobile-menu-toggle" class="rounded-full p-2" onclick="toggleMobileMenu()" aria-label="Open menu">
-        <svg id="menu-icon" class="w-7 h-7 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg id="menu-icon" class="w-8 h-8 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
         </svg>
-        <svg id="close-icon" class="w-7 h-7 text-gray-700 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg id="close-icon" class="w-8 h-8 text-gray-700 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
         </svg>
       </button>
-
-      <!-- Center: Logo -->
+      <!-- Center logo (bigger) -->
       <a href="index.html" class="absolute left-1/2 -translate-x-1/2">
-        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/design-mode-images/beloveful-logo-black_rwsx2j-wOoxP7eLkfyJ730eMjwAqDCcd3bPnz.png" alt="BE LOVEFUL Photography" class="h-16 w-auto">
+        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/design-mode-images/beloveful-logo-black_rwsx2j-wOoxP7eLkfyJ730eMjwAqDCcd3bPnz.png" alt="BE LOVEFUL Photography" class="h-20 w-auto">
       </a>
-
-      <!-- Right: Social -->
+      <!-- Right socials -->
       <div class="flex items-center gap-4">
-        <a href="https://www.facebook.com/tony.menias#" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="text-gray-700 hover:text-gray-900 transition-colors">
+        <a href="https://www.facebook.com/tony.menias#" target="_blank" rel="noopener" aria-label="Facebook" class="text-gray-700 hover:text-gray-900">
           <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
         </a>
-        <a href="https://www.instagram.com/beloveful" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="text-gray-700 hover:text-gray-900 transition-colors">
+        <a href="https://www.instagram.com/beloveful" target="_blank" rel="noopener" aria-label="Instagram" class="text-gray-700 hover:text-gray-900">
           <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-3.371 0-7.227.01-8.526.046C1.944.113.882.883.271 2.379.096 3.197 0 4.195 0 8.017v7.966c0 3.822.096 4.82.271 5.638.611 1.496 1.673 2.266 3.224 2.333 1.299.036 5.155.046 8.526.046 3.371 0 7.227-.01 8.526-.046 1.551-.067 2.613-.837 3.224-2.333.175-.818.271-1.816.271-5.638V8.017c0-3.822-.096-4.82-.271-5.638C22.41 1.047 21.348.277 19.797.21c-1.299-.036-5.155-.046-8.526-.046zM12 2.219c3.21 0 6.634.011 7.828.043 1.14.032 1.45.41 1.637.794.186.383.252.825.252 2.766v7.882c0 1.94-.066 2.383-.252 2.766-.187.384-.497.762-1.637.794-1.194.032-4.618.043-7.828.043-3.21 0-6.634-.011-7.828-.043-1.14-.032-1.45-.41-1.637-.794-.186-.383-.252-.825-.252-2.766V8.017c0-1.94.066-2.383.252-2.766.187-.384.497-.762 1.637-.794 1.194-.032 4.618-.043 7.828-.043zM12 6.809c-2.85 0-5.176 2.327-5.176 5.177 0 2.85 2.327 5.176 5.176 5.176s5.177-2.326 5.177-5.176c0-2.85-2.327-5.177-5.177-5.177zm0 2.21c1.63 0 2.967 1.336 2.967 2.967s-1.336 2.966-2.967 2.966c-1.63 0-2.966-1.336-2.966-2.966s1.336-2.967 2.966-2.967zm4.332-4.321c-.56 0-1.015.454-1.015 1.015s.455 1.015 1.015 1.015c.56 0 1.015-.454 1.015-1.015s-.455-1.015-1.015-1.015z"/></svg>
         </a>
       </div>
     </div>
   </div>
 
-  <!-- ======= Desktop Header ======= -->
+  <!-- ===== Desktop Header (consistent) ===== -->
   <header class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-sm border-b border-gray-100 hidden md:block">
-    <div class="container mx-auto px-6 py-4">
+    <div class="max-w-7xl mx-auto px-6 py-3">
       <div class="flex items-center justify-between">
         <a href="index.html">
-          <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/design-mode-images/beloveful-logo-black_rwsx2j-wOoxP7eLkfyJ730eMjwAqDCcd3bPnz.png" alt="BE LOVEFUL Photography" class="h-8 w-auto">
+          <!-- Bigger logo for desktop like other pages -->
+          <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/design-mode-images/beloveful-logo-black_rwsx2j-wOoxP7eLkfyJ730eMjwAqDCcd3bPnz.png" alt="BE LOVEFUL Photography" class="h-12 w-auto">
         </a>
         <nav class="flex items-center gap-8">
-          <a href="index.html" class="text-gray-600 hover:text-gray-800 transition-colors text-sm font-medium tracking-wide">HOME</a>
-          <div class="relative dropdown">
-            <button class="text-gray-600 hover:text-gray-800 transition-colors text-sm font-medium tracking-wide flex items-center gap-1">
+          <a href="index.html" class="text-gray-600 hover:text-gray-800 text-sm font-medium tracking-wide">HOME</a>
+
+          <div class="dropdown">
+            <button class="text-gray-600 hover:text-gray-800 text-sm font-medium tracking-wide flex items-center gap-1">
               PORTFOLIO
               <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
             </button>
             <div class="dropdown-menu">
-              <a href="portfolio-asia.html" class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors">Asia</a>
-              <a href="portfolio-africa.html" class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors">Africa</a>
-              <a href="portfolio.html" class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors border-t border-gray-100">View All</a>
+              <a href="portfolio-asia.html" class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50">Asia</a>
+              <a href="portfolio-africa.html" class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50">Africa</a>
+              <a href="portfolio.html" class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 border-t border-gray-100">View All</a>
             </div>
           </div>
-          <a href="https://www.printinnovationlab.com/collections/beloveful" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-gray-800 transition-colors text-sm font-medium tracking-wide">PRINT SHOP</a>
-          <a href="workshops.html" class="text-gray-600 hover:text-gray-800 transition-colors text-sm font-medium tracking-wide">WORKSHOPS</a>
-          <a href="about.html" class="text-gray-900 transition-colors text-sm font-semibold tracking-wide">ABOUT</a>
+
+          <a href="https://www.printinnovationlab.com/collections/beloveful" target="_blank" rel="noopener" class="text-gray-600 hover:text-gray-800 text-sm font-medium tracking-wide">PRINT SHOP</a>
+          <a href="workshops.html" class="text-gray-600 hover:text-gray-800 text-sm font-medium tracking-wide">WORKSHOPS</a>
+          <a href="about.html" class="text-gray-600 hover:text-gray-800 text-sm font-medium tracking-wide">ABOUT</a>
         </nav>
-        <div class="flex items-center gap-4">
-          <a href="https://www.facebook.com/tony.menias#" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-            <svg class="w-5 h-5 text-gray-600 hover:text-gray-800 transition-colors cursor-pointer" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-          </a>
-          <a href="https://www.instagram.com/beloveful" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-            <svg class="w-5 h-5 text-gray-600 hover:text-gray-800 transition-colors cursor-pointer" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-3.371 0-7.227.01-8.526.046C1.944.113.882.883.271 2.379.096 3.197 0 4.195 0 8.017v7.966c0 3.822.096 4.82.271 5.638.611 1.496 1.673 2.266 3.224 2.333 1.299.036 5.155.046 8.526.046 3.371 0 7.227-.01 8.526-.046 1.551-.067 2.613-.837 3.224-2.333.175-.818.271-1.816.271-5.638V8.017c0-3.822-.096-4.82-.271-5.638C22.41 1.047 21.348.277 19.797.21c-1.299-.036-5.155-.046-8.526-.046zM12 2.219c3.21 0 6.634.011 7.828.043 1.14.032 1.45.41 1.637.794.186.383.252.825.252 2.766v7.882c0 1.94-.066 2.383-.252 2.766-.187.384-.497.762-1.637.794-1.194.032-4.618.043-7.828.043-3.21 0-6.634-.011-7.828-.043-1.14-.032-1.45-.41-1.637-.794-.186-.383-.252-.825-.252-2.766V8.017c0-1.94.066-2.383.252-2.766.187-.384.497-.762 1.637-.794 1.194-.032 4.618-.043 7.828-.043zM12 6.809c-2.85 0-5.176 2.327-5.176 5.177 0 2.85 2.327 5.176 5.176 5.176s5.177-2.326 5.177-5.176c0-2.85-2.327-5.177-5.177-5.177zm0 2.21c1.63 0 2.967 1.336 2.967 2.967s-1.336 2.966-2.967 2.966c-1.63 0-2.966-1.336-2.966-2.966s1.336-2.967 2.966-2.967zm4.332-4.321c-.56 0-1.015.454-1.015 1.015s.455 1.015 1.015 1.015c.56 0 1.015-.454 1.015-1.015s-.455-1.015-1.015-1.015z"/></svg>
-          </a>
-        </div>
       </div>
     </div>
   </header>
 
-  <!-- ======= Mobile Fullscreen Menu ======= -->
-  <div id="mobile-menu" class="fixed inset-0 bg-white z-40 md:hidden hidden overflow-y-auto">
+  <!-- ===== Mobile Fullscreen Menu (one instance only) ===== -->
+  <div id="mobile-menu" class="fixed inset-0 bg-white z-50 md:hidden hidden overflow-y-auto">
     <div class="min-h-full flex flex-col items-center justify-center py-10 space-y-8">
-      <a href="index.html" class="text-2xl text-gray-700 hover:text-gray-900 transition-colors font-sans">HOME</a>
+      <a href="index.html" class="text-2xl text-gray-700 hover:text-gray-900">HOME</a>
       <div class="text-center space-y-4">
-        <div class="text-2xl text-gray-900 font-medium font-sans">PORTFOLIO</div>
+        <div class="text-2xl text-gray-900 font-medium">PORTFOLIO</div>
         <div class="space-y-3">
-          <a href="portfolio-asia.html" class="block text-lg text-gray-700 hover:text-gray-900 transition-colors font-sans">Asia</a>
-          <a href="portfolio-africa.html" class="block text-lg text-gray-700 hover:text-gray-900 transition-colors font-sans">Africa</a>
-          <a href="portfolio.html" class="block text-lg text-gray-700 hover:text-gray-900 transition-colors font-sans">View All</a>
+          <a href="portfolio-asia.html" class="block text-lg text-gray-700 hover:text-gray-900">Asia</a>
+          <a href="portfolio-africa.html" class="block text-lg text-gray-700 hover:text-gray-900">Africa</a>
+          <a href="portfolio.html" class="block text-lg text-gray-700 hover:text-gray-900">View All</a>
         </div>
       </div>
-      <a href="https://www.printinnovationlab.com/collections/beloveful" target="_blank" rel="noopener noreferrer" class="text-2xl text-gray-700 hover:text-gray-900 transition-colors font-sans">PRINT SHOP</a>
-      <a href="workshops.html" class="text-2xl text-gray-700 hover:text-gray-900 transition-colors font-sans">WORKSHOPS</a>
-      <a href="about.html" class="text-2xl text-gray-900 transition-colors font-sans font-semibold">ABOUT</a>
+      <a href="https://www.printinnovationlab.com/collections/beloveful" target="_blank" rel="noopener" class="text-2xl text-gray-700 hover:text-gray-900">PRINT SHOP</a>
+      <a href="workshops.html" class="text-2xl text-gray-700 hover:text-gray-900">WORKSHOPS</a>
+      <a href="about.html" class="text-2xl text-gray-700 hover:text-gray-900">ABOUT</a>
     </div>
   </div>
 
   <!-- ======= Main ======= -->
   <main class="max-w-6xl mx-auto px-6 pb-20 pt-6">
-
     <!-- Videos on top (no heading) -->
     <section class="grid gap-6 md:grid-cols-2 mb-12">
-      <!-- Video 1 -->
       <div class="w-full rounded-xl overflow-hidden shadow-lg ratio-16x9 fade-in">
         <iframe
           src="https://www.youtube.com/embed/jNBE_RQECeA"
@@ -136,8 +145,7 @@
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowfullscreen></iframe>
       </div>
-      <!-- Video 2 -->
-      
+      <!-- (Add second video here if needed) -->
     </section>
 
     <!-- About text: bigger, 3 equal columns -->
@@ -149,7 +157,7 @@
       </div>
     </section>
 
-    <!-- Title & image moved to bottom (just before Publications) -->
+    <!-- Title & image moved to bottom -->
     <section class="text-center py-8 px-6">
       <h1 class="text-4xl md:text-5xl font-bold mb-2">Tony Menias</h1>
       <p class="text-lg md:text-xl text-gray-700">Professional Photographer &amp; Visual Artist</p>
@@ -188,7 +196,7 @@
       </div>
     </section>
 
-    <!-- Media & Features (kept simple) -->
+    <!-- Media & Features -->
     <section class="space-y-6">
       <h2 class="text-2xl font-bold">Media &amp; Features</h2>
       <div class="space-y-4">
@@ -202,10 +210,9 @@
         </div>
       </div>
     </section>
-
   </main>
 
-  <!-- ======= Footer ======= -->
+  <!-- ======= Footer (unchanged) ======= -->
   <footer class="bg-white border-t border-gray-100 mt-24" id="main-footer">
     <div class="container mx-auto px-6 py-10">
       <div class="grid md:grid-cols-3 gap-10 items-start">
@@ -214,10 +221,10 @@
           <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/design-mode-images/beloveful-logo-black_rwsx2j-wOoxP7eLkfyJ730eMjwAqDCcd3bPnz.png" alt="BE LOVEFUL Photography" class="h-8 w-auto">
           <p class="text-sm text-gray-500">© 2025 Tony Menias. All rights reserved.</p>
           <div class="flex gap-4 text-gray-600">
-            <a href="https://www.instagram.com/beloveful" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="hover:text-gray-800 transition-colors">
+            <a href="https://www.instagram.com/beloveful" target="_blank" rel="noopener" aria-label="Instagram" class="hover:text-gray-800">
               <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-3.371 0-7.227.01-8.526.046C1.944.113.882.883.271 2.379.096 3.197 0 4.195 0 8.017v7.966c0 3.822.096 4.82.271 5.638.611 1.496 1.673 2.266 3.224 2.333 1.299.036 5.155.046 8.526.046 3.371 0 7.227-.01 8.526-.046 1.551-.067 2.613-.837 3.224-2.333.175-.818.271-1.816.271-5.638V8.017c0-3.822-.096-4.82-.271-5.638C22.41 1.047 21.348.277 19.797.21c-1.299-.036-5.155-.046-8.526-.046zM12 2.219c3.21 0 6.634.011 7.828.043 1.14.032 1.45.41 1.637.794.186.383.252.825.252 2.766v7.882c0 1.94-.066 2.383-.252 2.766-.187.384-.497.762-1.637.794-1.194.032-4.618.043-7.828.043-3.21 0-6.634-.011-7.828-.043-1.14-.032-1.45-.41-1.637-.794-.186-.383-.252-.825-.252-2.766V8.017c0-1.94.066-2.383.252-2.766.187-.384.497-.762 1.637-.794 1.194-.032 4.618-.043 7.828-.043zM12 6.809c-2.85 0-5.176 2.327-5.176 5.177 0 2.85 2.327 5.176 5.176 5.176s5.177-2.326 5.177-5.176c0-2.85-2.327-5.177-5.177-5.177zm0 2.21c1.63 0 2.967 1.336 2.967 2.967s-1.336 2.966-2.967 2.966c-1.63 0-2.966-1.336-2.966-2.966s1.336-2.967 2.966-2.967zm4.332-4.321c-.56 0-1.015.454-1.015 1.015s.455 1.015 1.015 1.015c.56 0 1.015-.454 1.015-1.015s-.455-1.015-1.015-1.015z"/></svg>
             </a>
-            <a href="https://www.facebook.com/tony.menias#" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="hover:text-gray-800 transition-colors">
+            <a href="https://www.facebook.com/tony.menias#" target="_blank" rel="noopener" aria-label="Facebook" class="hover:text-gray-800">
               <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
             </a>
           </div>
@@ -234,7 +241,7 @@
           </div>
           <div class="space-y-3">
             <div class="text-gray-900 font-semibold">More</div>
-            <a href="https://www.printinnovationlab.com/collections/beloveful" target="_blank" rel="noopener noreferrer" class="block text-gray-600 hover:text-gray-900">Print Shop</a>
+            <a href="https://www.printinnovationlab.com/collections/beloveful" target="_blank" rel="noopener" class="block text-gray-600 hover:text-gray-900">Print Shop</a>
             <a href="mailto:hello@beloveful.com" class="block text-gray-600 hover:text-gray-900">Contact</a>
           </div>
         </div>
@@ -242,26 +249,26 @@
         <!-- Actions -->
         <div class="space-y-3">
           <a href="https://lb.benchmarkemail.com//listbuilder/signupnew?IkfHTmyPVq92wBnn4lX%252FTf5pwVnAjsSIeL8KRSOgMpXtO5iNRn8gS049TyW7spdJ"
-             class="block w-full bg-black text-white py-3 px-5 rounded-full text-sm font-medium text-center hover:bg-gray-800 transition-colors"
-             target="_blank" rel="noopener noreferrer">Join Newsletter</a>
-          <a href="workshops.html" class="block w-full border-2 border-black text-black py-3 px-5 rounded-full text-sm font-medium text-center hover:bg-black hover:text-white transition-colors">Book Workshop</a>
-          <a href="https://www.printinnovationlab.com/collections/beloveful" target="_blank" rel="noopener noreferrer" class="block w-full border-2 border-gray-300 text-gray-700 py-3 px-5 rounded-full text-sm font-medium text-center hover:border-black hover:text-black transition-colors">Print Shop</a>
+             class="block w-full bg-black text-white py-3 px-5 rounded-full text-sm font-medium text-center hover:bg-gray-800"
+             target="_blank" rel="noopener">Join Newsletter</a>
+          <a href="workshops.html" class="block w-full border-2 border-black text-black py-3 px-5 rounded-full text-sm font-medium text-center hover:bg-black hover:text-white">Book Workshop</a>
+          <a href="https://www.printinnovationlab.com/collections/beloveful" target="_blank" rel="noopener" class="block w-full border-2 border-gray-300 text-gray-700 py-3 px-5 rounded-full text-sm font-medium text-center hover:border-black hover:text-black">Print Shop</a>
         </div>
       </div>
     </div>
   </footer>
 
-  <!-- ======= JS (shared pattern) ======= -->
+  <!-- Shared JS -->
   <script>
-    function toggleMobileMenu() {
+    function toggleMobileMenu(){
       const mobileMenu = document.getElementById('mobile-menu');
-      const menuIcon = document.getElementById('menu-icon');
-      const closeIcon = document.getElementById('close-icon');
-      if (!mobileMenu) return;
+      const menuIcon   = document.getElementById('menu-icon');
+      const closeIcon  = document.getElementById('close-icon');
+      if(!mobileMenu) return;
       const opening = mobileMenu.classList.contains('hidden');
       mobileMenu.classList.toggle('hidden');
-      if (menuIcon) menuIcon.classList.toggle('hidden', opening);
-      if (closeIcon) closeIcon.classList.toggle('hidden', !opening);
+      if(menuIcon)  menuIcon.classList.toggle('hidden', opening);
+      if(closeIcon) closeIcon.classList.toggle('hidden', !opening);
     }
   </script>
 </body>
